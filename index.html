@@ -9,24 +9,24 @@
 
   <!-- katex -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous"> -->
-  <link href="./node_modules/katex/dist/katex.min.css" rel="stylesheet" type="text/css" />
+  <link href="node_modules/katex/dist/katex.min.css" rel="stylesheet" type="text/css" />
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.js" integrity="sha384-OMvkZ24ANLwviZR2lVq8ujbE/bUO8IR1FdBrKLQBI14Gq5Xp/lksIccGkmKL8m+h" crossorigin="anonymous"></script> -->
-  <script src="./node_modules/katex/dist/katex.min.js" ></script>
+  <script src="node_modules/katex/dist/katex.min.js" ></script>
 
   <!-- jquery -->
-  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
 
   <!-- svg.js -->
-  <script src="./node_modules/svg.js/dist/svg.min.js"></script>
-  <script src="./node_modules/svg.panzoom.js/dist/svg.panzoom.min.js"></script>
+  <script src="node_modules/svg.js/dist/svg.min.js"></script>
+  <script src="node_modules/svg.panzoom.js/dist/svg.panzoom.min.js"></script>
 
   <!-- algebra -->
-  <script src="./node_modules/algebrite/dist/algebrite.bundle-for-browser.js"></script>
+  <script src="node_modules/algebrite/dist/algebrite.bundle-for-browser.js"></script>
 
   <!-- gsap -->
   <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script> -->
-  <script src="./node_modules/gsap/TweenMax.js"></script>
+  <script src="node_modules/gsap/TweenMax.js"></script>
 
 
 
@@ -42,9 +42,9 @@
   </main>
   <aside>
     <div>
-      <a href="#" onclick="D.zoom(100, {0, 0});">center</a>
-      <a href="#" onclick="DrawTL.restart();">draw</a>
-      <a href="#" onclick="GoldenTL.restart();">golden segments</a>
+      <a href="#" onclick="D.zoom(100, {0, 0});">center</a> •
+      <a href="#" onclick="DrawTL.restart();">draw</a> •
+      <a href="#" onclick="animateGoldenSegments();">golden segments</a>
     </div>
     <pre id="points">POINTS
 ------
@@ -63,15 +63,15 @@
   <footer id="footer"></footer>
 
   <!-- geometor -->
-  <script src="./js/SVG-utils.js"></script>
-  <script src="./js/SVG-algebra.js"></script>
-  <script src="./js/SVG-elements.js"></script>
+  <script src="js/SVG-utils.js"></script>
+  <script src="js/SVG-algebra.js"></script>
+  <script src="js/SVG-elements.js"></script>
 
 
-  <script src="./js/SVG-animate.js"></script>
-  <script src="./js/SVG-animate-utils.js"></script>
+  <script src="js/SVG-animate.js"></script>
+  <script src="js/SVG-animate-utils.js"></script>
 
-  <script src="./js/main.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 

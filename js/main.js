@@ -58,7 +58,6 @@ function main() {
   // Circle( points[80], points[119] );
 
 
-
   logSummary();
 
   checkAllSegments();
