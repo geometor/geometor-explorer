@@ -1,0 +1,277 @@
+
+.katex {
+  color: white;
+  font-size: 1.5em;
+}
+
+test {
+  
+}
+* {
+    /*stroke-dasharray: 2, 3;*/
+    margin: 0;
+    padding: 0;
+
+}
+
+
+body.explorer {
+  color: white;
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 25vw 75vw;
+  grid-template-rows: 85vh 15vh;
+  grid-template-areas:  "aside main"
+                        "aside footer";
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+
+  main {
+      grid-area: main;
+      background-color: black;
+
+  }
+
+  aside {
+    grid-area: aside;
+    font-size: .8em;
+    padding: .5em;
+    background-color: #111;
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap; */
+
+    display: grid;
+    grid-gap: .5em;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20%;
+    grid-template-areas:  "points"
+                          "lines"
+                          "circles"
+                          "segments"
+                          "info"
+                          ;
+    #points {
+      color: #FFF;
+    }
+    #lines {
+      color: #C0F;
+    }
+    #circles {
+      color: #0C9;
+    }
+    #segments {
+      color: #C90;
+    }
+    #info {
+      color: #CCC;
+    }
+
+  }
+  aside pre {
+    overflow : auto;
+    /* height: 20%; */
+    background-color: #000;
+    padding: .5em;
+
+  }
+
+  footer {
+    grid-area: footer;
+    color: white;
+    background-color: black;
+    padding: .5em;
+    font-size: 2em;
+  }
+
+  a, a:visited {
+    color: white;
+  }
+
+  a:hover {
+    color: #C90;
+  }
+
+}
+
+body.static {
+  /* color: white; */
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 100vw;
+  grid-template-rows: 100vh;
+  grid-template-areas:  "main";
+  /* background-color: black; */
+  width: 100vw;
+  height: 100vh;
+
+  main img {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+
+.Circle, .Line, .Point {
+  fill: #CCC;
+  fill-opacity: 0;
+  stroke: #CCC;
+  stroke-width: .008;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 10;
+  stroke-dasharray: none;
+  pointer-events: auto;
+
+}
+
+.Circle, .Line {
+  pointer-events: stroke;
+}
+
+
+
+#drawing {
+ /* background-color: black; */
+  width: 100%;
+  height: 100%;
+
+
+}
+
+
+
+
+
+/* Points ************************************************/
+.Point {
+    fill: #FFF;
+    fill-opacity: 1;
+    stroke: #000;
+    stroke-width: .005;
+    stroke-opacity: 1;
+
+    &.hover {
+      stroke-width: .06;
+      stroke: #FFF;
+    }
+    &.click {
+      stroke-width: .02;
+      stroke: red;
+      fill: red;
+      fill-opacity: .1;
+    }
+}
+
+/* Lines ************************************************/
+.Line {
+    stroke: #C0F;
+    &.hover {
+      stroke-width: .02;
+    }
+    &.click {
+      stroke-width: .025;
+      stroke: red;
+      fill: red;
+      fill-opacity: .1;
+    }
+    &.b {
+      stroke-dasharray: 6, 4, 2, 4;
+    }
+
+}
+
+
+/* Circles ************************************************/
+.Circle {
+    stroke: #0C9;
+    fill: #0C9;
+    &.hover {
+      stroke-width: .02;
+      fill-opacity: .2;
+    }
+    &.click {
+      stroke-width: .025;
+      stroke: red;
+      fill: red;
+      fill-opacity: .1;
+    }
+
+}
+
+/* Segments ************************************************/
+.Segment {
+  fill: none;
+  stroke: #C90;
+  stroke-opacity:0.3;
+
+  &.hover {
+    stroke-opacity:1;
+  }
+
+}
+
+marker {
+  fill: #FFF;
+  fill-opacity: 0;
+  stroke: #C90;
+  stroke-width: .3;
+  stroke-opacity: .3;
+
+  &.hover {
+    stroke-opacity:1;
+  }
+
+}
+
+
+/* Shapes ************************************************/
+
+
+.Quadrilateral, .Triangle {
+    fill: #999;
+    stroke: #999;
+    fill-opacity: 0.2;
+    stroke-width: 2px;
+}
+
+.Quadrilateral {
+  fill: #390;
+  stroke: #390;
+}
+
+.Quadrilateral.y {
+    fill: #390;
+}
+
+.Quadrilateral.y.b {
+    fill: #039;
+}
+
+.Triangle {
+  fill: #900;
+  stroke: #900;
+}
+
+
+
+
+.Sector {
+    fill-opacity: 0.6;
+    stroke-width: 4;
+}
+
+.Sector.s03,
+.Sector.s04,
+.Sector.s05 {
+  fill-opacity: 0.6;
+}
+
+
+
+.Quadrilateral.y.s05 {
+    stroke: #09C;
+    fill: #09C;
+}
