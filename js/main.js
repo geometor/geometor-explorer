@@ -40,8 +40,8 @@ function main() {
   // Circle( points[3], points[0] );
   // Circle( points[2], points[1] );
 
-  Line( points[0], points[7] );
-  Circle( points[18], points[7] );
+  // Line( points[0], points[7] );
+  // Circle( points[18], points[7] );
 
 
   //
