@@ -2,22 +2,18 @@
   color: white;
   font-size: 1.5em; }
 
-test {
-  margin: 0; }
-
 * {
-  /*stroke-dasharray: 2, 3;*/
   margin: 0;
   padding: 0; }
 
 body.explorer {
   color: white;
+  background-color: black;
   display: grid;
   grid-gap: 0px;
   grid-template-columns: 25vw 75vw;
   grid-template-rows: 85vh 15vh;
   grid-template-areas: "aside main" "aside footer";
-  background-color: black;
   width: 100vw;
   height: 100vh; }
   body.explorer main {
@@ -28,9 +24,6 @@ body.explorer {
     font-size: .8em;
     padding: .5em;
     background-color: #111;
-    /* display: flex;
-    flex-direction: column;
-    flex-wrap: no-wrap; */
     display: grid;
     grid-gap: .5em;
     grid-template-columns: 1fr;
@@ -49,7 +42,7 @@ body.explorer {
   body.explorer aside pre {
     overflow: auto;
     /* height: 20%; */
-    background-color: #000;
+    background-color: black;
     padding: .5em; }
   body.explorer footer {
     grid-area: footer;
@@ -62,6 +55,10 @@ body.explorer {
   body.explorer a:hover {
     color: #C90; }
 
+#drawing {
+  width: 100%;
+  height: 100%; }
+
 body.static {
   /* color: white; */
   display: grid;
@@ -69,7 +66,7 @@ body.static {
   grid-template-columns: 100vw;
   grid-template-rows: 100vh;
   grid-template-areas: "main";
-  /* background-color: black; */
+  /* background-color: $bgcolor; */
   width: 100vw;
   height: 100vh; }
   body.static main img {
@@ -77,9 +74,7 @@ body.static {
     height: 100%; }
 
 .Circle, .Line, .Point {
-  fill: #CCC;
   fill-opacity: 0;
-  stroke: #CCC;
   stroke-width: .008;
   stroke-linecap: butt;
   stroke-linejoin: miter;
@@ -90,16 +85,11 @@ body.static {
 .Circle, .Line {
   pointer-events: stroke; }
 
-#drawing {
-  /* background-color: black; */
-  width: 100%;
-  height: 100%; }
-
 /* Points ************************************************/
 .Point {
   fill: #FFF;
   fill-opacity: 1;
-  stroke: #000;
+  stroke: black;
   stroke-width: .005;
   stroke-opacity: 1; }
   .Point.hover {
@@ -107,8 +97,8 @@ body.static {
     stroke: #FFF; }
   .Point.click {
     stroke-width: .02;
-    stroke: red;
-    fill: red;
+    stroke: #FCC;
+    fill: #FCC;
     fill-opacity: .1; }
 
 /* Lines ************************************************/
@@ -118,8 +108,8 @@ body.static {
     stroke-width: .02; }
   .Line.click {
     stroke-width: .025;
-    stroke: red;
-    fill: red;
+    stroke: #FCC;
+    fill: #FCC;
     fill-opacity: .1; }
   .Line.b {
     stroke-dasharray: 6, 4, 2, 4; }
@@ -133,8 +123,8 @@ body.static {
     fill-opacity: .2; }
   .Circle.click {
     stroke-width: .025;
-    stroke: red;
-    fill: red;
+    stroke: #FCC;
+    fill: #FCC;
     fill-opacity: .1; }
 
 /* Segments ************************************************/
@@ -146,8 +136,7 @@ body.static {
     stroke-opacity: 1; }
 
 marker {
-  fill: #FFF;
-  fill-opacity: 0;
+  fill: none;
   stroke: #C90;
   stroke-width: .3;
   stroke-opacity: .3; }

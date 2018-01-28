@@ -1,24 +1,26 @@
 
+$bgcolor: black;
+$bgcolor-aside: #111;
+$color-line: #C0F;
+$color-circle: #0C9;
+$color-point: #FFF;
+$color-segment: #C90;
+$color-selected: #FCC;
+
 .katex {
   color: white;
   font-size: 1.5em;
 }
 
-test {
-  margin: 0;
-
-}
 * {
-    /*stroke-dasharray: 2, 3;*/
+    // /*stroke-dasharray: 2, 3;*/
     margin: 0;
     padding: 0;
-
 }
-
 
 body.explorer {
   color: white;
-  background-color: black;
+  background-color: $bgcolor;
 
   display: grid;
   grid-gap: 0px;
@@ -31,7 +33,7 @@ body.explorer {
 
   main {
       grid-area: main;
-      background-color: black;
+      background-color: $bgcolor;
 
   }
 
@@ -39,10 +41,7 @@ body.explorer {
     grid-area: aside;
     font-size: .8em;
     padding: .5em;
-    background-color: #111;
-    /* display: flex;
-    flex-direction: column;
-    flex-wrap: no-wrap; */
+    background-color: $bgcolor-aside;
 
     display: grid;
     grid-gap: .5em;
@@ -55,16 +54,16 @@ body.explorer {
                           "info"
                           ;
     #points {
-      color: #FFF;
+      color: $color-point;
     }
     #lines {
-      color: #C0F;
+      color: $color-line;
     }
     #circles {
-      color: #0C9;
+      color: $color-circle;
     }
     #segments {
-      color: #C90;
+      color: $color-segment;
     }
     #info {
       color: #CCC;
@@ -74,7 +73,7 @@ body.explorer {
   aside pre {
     overflow : auto;
     /* height: 20%; */
-    background-color: #000;
+    background-color: $bgcolor;
     padding: .5em;
 
   }
@@ -82,7 +81,7 @@ body.explorer {
   footer {
     grid-area: footer;
     color: white;
-    background-color: black;
+    background-color: $bgcolor;
     padding: .5em;
     font-size: 2em;
   }
@@ -92,10 +91,18 @@ body.explorer {
   }
 
   a:hover {
-    color: #C90;
+    color: $color-segment;
   }
 
 }
+
+// SVG element
+#drawing {
+  width: 100%;
+  height: 100%;
+
+}
+
 
 body.static {
   /* color: white; */
@@ -104,7 +111,7 @@ body.static {
   grid-template-columns: 100vw;
   grid-template-rows: 100vh;
   grid-template-areas:  "main";
-  /* background-color: black; */
+  /* background-color: $bgcolor; */
   width: 100vw;
   height: 100vh;
 
@@ -117,16 +124,13 @@ body.static {
 
 
 .Circle, .Line, .Point {
-  fill: #CCC;
   fill-opacity: 0;
-  stroke: #CCC;
   stroke-width: .008;
   stroke-linecap: butt;
   stroke-linejoin: miter;
   stroke-miterlimit: 10;
   stroke-dasharray: none;
   pointer-events: auto;
-
 }
 
 .Circle, .Line {
@@ -135,13 +139,6 @@ body.static {
 
 
 
-#drawing {
- /* background-color: black; */
-  width: 100%;
-  height: 100%;
-
-
-}
 
 
 
@@ -149,34 +146,34 @@ body.static {
 
 /* Points ************************************************/
 .Point {
-    fill: #FFF;
+    fill: $color-point;
     fill-opacity: 1;
-    stroke: #000;
+    stroke: $bgcolor;
     stroke-width: .005;
     stroke-opacity: 1;
 
     &.hover {
       stroke-width: .06;
-      stroke: #FFF;
+      stroke: $color-point;
     }
     &.click {
       stroke-width: .02;
-      stroke: red;
-      fill: red;
+      stroke: $color-selected;
+      fill: $color-selected;
       fill-opacity: .1;
     }
 }
 
 /* Lines ************************************************/
 .Line {
-    stroke: #C0F;
+    stroke: $color-line;
     &.hover {
       stroke-width: .02;
     }
     &.click {
       stroke-width: .025;
-      stroke: red;
-      fill: red;
+      stroke: $color-selected;
+      fill: $color-selected;
       fill-opacity: .1;
     }
     &.b {
@@ -188,16 +185,16 @@ body.static {
 
 /* Circles ************************************************/
 .Circle {
-    stroke: #0C9;
-    fill: #0C9;
+    stroke: $color-circle;
+    fill: $color-circle;
     &.hover {
       stroke-width: .02;
       fill-opacity: .2;
     }
     &.click {
       stroke-width: .025;
-      stroke: red;
-      fill: red;
+      stroke: $color-selected;
+      fill: $color-selected;
       fill-opacity: .1;
     }
 
@@ -206,7 +203,7 @@ body.static {
 /* Segments ************************************************/
 .Segment {
   fill: none;
-  stroke: #C90;
+  stroke: $color-segment;
   stroke-opacity:0.3;
 
   &.hover {
@@ -216,9 +213,8 @@ body.static {
 }
 
 marker {
-  fill: #FFF;
-  fill-opacity: 0;
-  stroke: #C90;
+  fill: none;
+  stroke: $color-segment;
   stroke-width: .3;
   stroke-opacity: .3;
 

@@ -56,10 +56,16 @@ function setLine(id) {
     );
 }
 
-function setSegment(id) {
+function setSegment(segment) {
+
+    //TODO:
+    var query = "#s" + segment.id;
+    query += ", " + segment.markerStart;
+    query += ", " + segment.markerEnd;
+
 
     DrawTL.fromTo(
-        id,
+        query,
         .5,
         {
           autoAlpha: 1,
@@ -75,7 +81,7 @@ function setSegment(id) {
         }
     )
     .to(
-        id,
+        query,
         .5,
         {
           strokeOpacity: MUTEOPACITY,

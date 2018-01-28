@@ -776,7 +776,7 @@ function Segment(pt1, pt2, line) {
   this.markerStart = this.element.attr('marker-start').replace("url(", "").replace(")", "")
   this.markerEnd = this.element.attr('marker-end').replace("url(", "").replace(")", "")
 
-  // setSegment("#s" + this.id);
+  setSegment(this);
 
   //add this element to array
   segments.push(this);
