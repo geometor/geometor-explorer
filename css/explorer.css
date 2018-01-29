@@ -97,8 +97,8 @@ body.static {
     stroke: #FFF; }
   .Point.click {
     stroke-width: .02;
-    stroke: #FCC;
-    fill: #FCC;
+    stroke: #F33;
+    fill: #F33;
     fill-opacity: .1; }
 
 /* Lines ************************************************/
@@ -108,8 +108,8 @@ body.static {
     stroke-width: .02; }
   .Line.click {
     stroke-width: .025;
-    stroke: #FCC;
-    fill: #FCC;
+    stroke: #F33;
+    fill: #F33;
     fill-opacity: .1; }
   .Line.b {
     stroke-dasharray: 6, 4, 2, 4; }
@@ -123,8 +123,8 @@ body.static {
     fill-opacity: .2; }
   .Circle.click {
     stroke-width: .025;
-    stroke: #FCC;
-    fill: #FCC;
+    stroke: #F33;
+    fill: #F33;
     fill-opacity: .1; }
 
 /* Segments ************************************************/
