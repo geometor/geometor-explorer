@@ -46,8 +46,9 @@ body.explorer {
     display: grid;
     grid-gap: .5em;
     grid-template-columns: 1fr;
-    grid-template-rows: 20%;
-    grid-template-areas:  "points"
+    // grid-template-rows: 20%;
+    grid-template-areas:  "menu"
+                          "points"
                           "lines"
                           "circles"
                           "segments"
