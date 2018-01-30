@@ -1,4 +1,4 @@
-**GEOMETOR Explorer** is an essential tool for the GEOMETOR Project. You can learn more about our collaborative research project on [geometor.com](http://geometor.com)
+**GEOMETOR Explorer** is an essential tool of the GEOMETOR Project. You can learn more about our collaborative research project on [geometor.com](http://geometor.com)
 
 The purpose of **Explorer** is to find and catalogue unique instances of golden sections within geometric constructions with algebraic proofs.
 
@@ -6,11 +6,12 @@ The purpose of **Explorer** is to find and catalogue unique instances of golden 
 
 check out **Explorer** here:
 
-- [default - 4 circles](http://i-am-phi.net/geometor-explorer/)
+- [default - 4 circles](http://geometor.com/explorer/)
 
 these two can take up to a few minutes to load
-- [root 3 example](http://i-am-phi.net/geometor-explorer/root3.html)
-- [root 5 example](http://i-am-phi.net/geometor-explorer/root5,html)
+
+- [root 3 example](http://geometor.com/explorer/root3.html)
+- [root 5 example](http://geometor.com/explorer/root5,html)
 
 only tested with Chrome and Firefox - Chrome is significantly faster than Firefox.
 
