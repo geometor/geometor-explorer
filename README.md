@@ -2,7 +2,7 @@
 
 The purpose of **Explorer** is to find and catalogue unique instances of golden sections within geometric constructions with algebraic proofs.
 
-**Explorer** is currently a demonstration prototype. There are significant plans for enabling user interactivity including adding lines and circles within the field, as well as analysis of the discovered golden sections.
+**Explorer** is currently a demonstration prototype. There are significant plans for enabling user interactivity including adding lines and circles within the interface, as well as analysis of the discovered golden sections.
 
 check out **Explorer** here:
 
@@ -36,7 +36,7 @@ While following the formality of Euclid's constructive geometry, **Explorer** in
 
 With our unit measure established by the starting points and a notion of perpendicularity, we establish a horizontal (x) and vertical (y) scale. We use these scales to identify the position of points as `[x y]`.
 
-The origin is the point half way between the starting points. In the cartesian plane this is `[0 0]`.
+The origin is the point half-way between the starting points. In the cartesian plane this is `[0 0]`.
 
 As our givens, the starting points are the only points without parents and are placed on the field with positions of `[1/2 0]` and `[-1/2 0]`
 
@@ -75,15 +75,17 @@ Circle( points[1], points[2] );
 
 ```
 
-Explorer uses SVG for rendering the construction with the [SVG.js](http://svgjs.com/) library. It also includes the panzoom plugin for moving around the construction.
+**Explorer** uses SVG for rendering the construction with the [SVG.js](http://svgjs.com/) library. It also includes the panzoom plugin for moving around the construction.
 
 Elements and points are listed in the Side panel.
 
-Each element is added to an animation timeline. The timeline plays after the construction script is completed.
+Each element is added to a [GSAP](https://greensock.com/) animation timeline. The timeline plays after the construction script is completed.
 
 The "draw" link on the menu bar will replay the animation.
 
 When you hover over an element or point in the drawing, its details are presented in the side panels.
+
+There is extensive logging to the javascript console during the construction - so I highly recommend reviewing the output there.
 
 ## golden sections
 
@@ -97,22 +99,22 @@ Every point in the field is fully traceable - both algebraically and geometrical
 
 ## algebra
 
-Explorer uses the amazing javascript algebra library, [Algebrite](http://algebrite.org/) to handle the calculations under the construction.
+Explorer uses the amazing javascript algebra library, [Algebrite](http://algebrite.org/), to handle the calculations under the construction.
 
 Katex is used to render the algebraic expressions.
 
 
-
-## The future
+## The future...
 
 - deep automated recursion to explore the geometric field
 - analysis of golden section instances to look for patterns
--
 
 # The GEOMETOR Project
 
 The GEOMETOR Project is a collaborative effort to explore the architecture of all that is.
 
 Whether we look at the architecture of nature (matter) or the architecture of logic (mind) - a resonance emerges in the form of a simple proportion. Great philosophers and scientists throughout history, when encountering this proportion and its many attributes, felt a reverence - giving it names like the "Golden Ratio" and the "Divine Proportion."
+
+The GEOMETOR Project is an effort to document the fascinating attributes of the Golden Ratio and to seek a deeper understanding of its pervasive beauty.
 
 more to come...
