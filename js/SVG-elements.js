@@ -280,7 +280,6 @@ function Line(pt1, pt2) {
   this.getX = function(y) {
     var x, deg;
     if (this.xRoot) {
-
       deg = alg( `deg(${this.xRoot})` );
       if (deg == 1) {
         x = alg( `subst((${y}), y, (${this.xRoot}))` );
@@ -370,7 +369,6 @@ function intersectLineLine (line1, line2) {
 
   if (line1.m == line2.m) {
     //lines are parallel;
-    // log("    lines are parallel");
     return;
   }
 
@@ -379,12 +377,10 @@ function intersectLineLine (line1, line2) {
 
   if ( test1 == test2 ) {
     //lines are parallel;
-    // log("    lines are parallel");
     return;
   }
 
-
-  //check if line2 line is vertical
+  //check if line1 is vertical
   if ( line1.b !== "0") {
     x = alg(`( (${line2.b}) * (${line1.c}) - (${line1.b}) * (${line2.c}) )/( (${line2.a}) * (${line1.b}) - (${line1.a}) * (${line2.b}) )`);
     y = line1.getY(x);
@@ -553,8 +549,7 @@ function Circle(centerPoint, radiusPoint) {
 //used in Point object
 function distanceTo(point) {
   var d = Algebrite.run(
-    `(( ((${this.x}) - (${point.x}))^2 + ((${point.y}) - (${this.y}))^2 )^(1/2))` );
-  // log("  d: " + d);
+    `( ((${this.x}) - (${point.x}))^2 + ((${point.y}) - (${this.y}))^2 )^(1/2)` );
   return d;
 }
 
