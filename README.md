@@ -19,7 +19,7 @@ only tested with Chrome and Firefox - Chrome is significantly faster than Firefo
 
 ## classical constructive geometry
 
-**Explorer** operates under the rules of classical constructive geometry within a planar field. Explorer provides two virtual tools for constructions - an unmarked straight edge and a compass. Both of these tools require two points to operate. We align the straightedge with two points to make a line. We align the compass with two points to draw a circle. This simple framework for the study of geometric proportions has been with us since the ancients and is the foundation of Euclid's Elements.
+**Explorer** operates under the rules of classical constructive geometry within a planar field. Explorer provides two virtual tools for constructions - an unmarked straight edge and a compass. Both of these tools require two points to operate. We align the straightedge with two points to trace a line. We align the compass with two points to trace a circle. This simple framework for the study of geometric proportions has been with us since the ancients and is the foundation of Euclid's Elements.
 
 Every geometric construction within **Explorer** begins with a blank slate. The only "givens" are the first two **starting points** on our field. Everything else must be constructed.
 
