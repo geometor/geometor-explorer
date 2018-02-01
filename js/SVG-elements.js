@@ -122,7 +122,7 @@ function addPoint(x, y, parent1, parent2) {
 
     }
   } else {
-    // log("      * not a valid point\n");
+    log("      * not a valid point\n");
     return;
   }
 
@@ -484,66 +484,277 @@ function intersectLineLine (line1, line2) {
 
 }
 
+// test two element equations for an intersection
+function intersect(element1, element2){
+
+  //TODO: return R as set of solutions
+  let result = {}
+
+  var cmd = `
+  E1 = ${element1.eq}
+  E2 = ${element2.eq}
+  # subtract equations to define the System
+  S = E1 - E2
+  `;
+  alg(cmd)
+
+  log("E1: " + alg("E1"))
+  log("E2: " + alg("E2"))
+  log(" S: " + alg("S"))
+
+  // check if there is an x term
+  var degX = alg("deg(S, x)")
+  log(" deg(S, x): " + degX)
+
+  if (degX != "0") {
+
+    log("roots(S, x): " + alg("roots(S, x)"))
+
+    for (let i = 1; i <= degX; i++) {
+      console.group("root x: " + i)
+
+        log(" Sx: " + alg(`Sx = roots(S, x)[${i}] \n Sx`) )
+
+        // check both equations
+        y1 = alg( "y1 = roots( subst( Sx, x, E1 ), y ) \n y1" )
+        log("  y1 = " + y1 )
+
+        y2 = alg( "y2 = roots( subst( Sx, x, E2 ), y ) \n y2" )
+        log("  y2 = " + y2 )
+
+        if (y1 == y2) {
+
+          log(" E1x: " + alg(`E1x = subst( y1, y, E1 ) \n E1x`) )
+
+          var degE1x = alg("deg(E1x, x)")
+          log("  degE1x = " + degE1x )
+
+          for (let j = 1; j <= degE1x; j++) {
+
+            x = alg( `roots( E1x, x )[${j}]` )
+            log("  x = " + x )
+
+            addPoint(x, y1, element1, element2);
+
+          }
+
+        } else {
+          console.warn("y1 != y2")
+        }
+
+      console.groupEnd()
+
+    }
+
+
+  } else {
+
+    log(`* no x term`)
+    var degY = alg("deg(S, y)")
+    log(" deg(S, y): " + degY)
+
+    if (degY != "0") {
+
+      for (let i = 1; i <= degY; i++) {
+
+        console.group("root y: " + i)
+
+          log(" Sy: " + alg(`Sy = roots(S, y)[${i}] \n Sy`) )
+
+          // check both equations
+
+          x1 = alg( "x1 = roots( subst( Sy, y, E1 ), x ) \n x1" )
+          log("  x1 = " + x1 )
+
+          x2 = alg( "x2 = roots( subst( Sy, y, E2 ), x ) \n x2" )
+          log("  x2 = " + x2 )
+
+
+          if (x1 == x2) {
+
+            log(" E1y: " + alg(`E1y = subst( x1, x, E1 ) \n E1y`) )
+
+            var degE1y = alg("deg(E1y, x)")
+            log("  degE1y = " + degE1y )
+
+            for (let j = 1; j <= degE1y; j++) {
+
+              y = alg( `roots( E1y, y )[${j}]` )
+              log("  y = " + y )
+
+              addPoint(x1, y, element1, element2);
+
+            }
+
+          } else {
+            console.warn("x1 != x2")
+          }
+
+        console.groupEnd()
+
+      }
+
+    }
+  }
+
+}
+
+
+
+
 function intersectLineCircle (line, circle) {
 
   console.group("line:" + line.id + " > circle:" + circle.id);
-  var r = circle.r;
-  var h = circle.h;
-  var k = circle.k;
 
+  var cmd = `
+  L = ${line.eq}
+  C = ${circle.eq}
+  # subtract equations to define the system
+  S = L - C
+  `;
+  alg(cmd)
 
-  if ((line.xRoot)) {
-    // if not vertical solve for y
-    alg(`
-    C = ${circle.eq}
-    L = ${line.xRoot}
-    S = subst(L,x,C)`);
+  log("L: " + alg("L"))
+  log("C: " + alg("C"))
+  log("S: " + alg("S"))
 
-    log(" C: " + alg("L1"))
-    log(" L: " + alg("L2"))
-    log(" S: " + alg("S"))
+  var degX = alg("deg(S, x)")
+  log(" deg(S, x): " + degX)
 
-    var deg = alg(`deg(S)`);
+  if (degX != "0") {
 
-    var x, y;
+    log("roots(S, x): " + alg("roots(S, x)"))
 
-    // TODO: get roots as array
-    for (var i = 1; i <= deg; i++) {
-      y = alg(`roots(S, y)[${i}]`);
-      x = line.getX(y);
-      if (checkValid(x) && checkValid(y)) {
-        // log("    > add circle intersection: " + x + ", " + y);
-        addPoint(x, y, line, circle);
-      } else {
-        console.warn(`not a valid point: [${x}, ${y}]`);
-      }
+    for (let i = 1; i <= degX; i++) {
+      console.group("root x: " + i)
+
+        log(" Sx: " + alg(`Sx = roots(S, x)[${i}] \n Sx`) )
+
+        y = alg( "y1 = roots( subst( Sx, x, C ), y ) \n y1" )
+        log("  y = " + y )
+
+        log(" Cx: " + alg(`Cx = subst( y1, y, C ) \n Cx`) )
+        var degCx = alg("deg(Cx, x)")
+        for (let j = 1; j <= degCx; j++) {
+
+          x = alg( `roots( Cx, x )[${j}]` )
+          log("  x = " + x )
+
+          addPoint(x, y, line, circle);
+        }
+      console.groupEnd()
+
+      /// old
+      // y = alg(`roots(S, y)[${i}]`);
+      // x = line.getX(y);
+      // if (checkValid(x) && checkValid(y)) {
+      //   // log("    > add circle intersection: " + x + ", " + y);
+      //   addPoint(x, y, line, circle);
+      // } else {
+      //   console.warn(`not a valid point: [${x}, ${y}]`);
+      // }
 
     }
+
 
   } else {
-    // if vertical solve for x
-    alg(`
-    C = ${circle.eq}
-    L = ${line.yRoot}
-    S = subst(L,y,C)`);
 
-    var deg = alg(`deg(S)`);
+    var degY = alg("deg(S, y)")
+    log(" deg(S, y): " + degY)
 
-    var x, y;
+    if (degY != "0") {
 
-    // TODO: get roots as array
-    for (var i = 1; i <= deg; i++) {
-      x = alg(`roots(S, x)[${i}]`);
-      y = line.getY(x);
+      for (let i = 1; i <= degY; i++) {
 
-      if (checkValid(x) && checkValid(y)) {
-        // log("    > add circle intersection: " + x + ", " + y);
-        addPoint(x, y, line, circle);
-      } else {
-        console.warn(`not a valid point: [${x}, ${y}]`);
+        console.group("root y: " + i)
+
+
+          log(" Sy: " + alg(`Sy = roots(S, y)[${i}] \n Sy`) )
+
+          x = alg( "x1 = roots( subst( Sy, y, C ), x ) \n x1" )
+          log("  x = " + x )
+
+          y = alg( "roots( subst( x1, x, C ), y )" )
+          log("  y = " + y )
+
+          addPoint(x, y, line, circle);
+
+        console.groupEnd()
+
       }
+
+      // log(" Sy: " + alg("Sy = roots(S, y) \n Sy") )
+      // x = alg("x1 = roots( subst( Sy, y, L1 ), x ) \n x1")
+      // log("  x = " + x )
+      // y = alg(" roots( subst( x1, x, L1 ), y )")
+      // log("  y = " + y )
+
     }
+
   }
+
+
+
+
+  // /////////////////////////
+  // // old
+  // var r = circle.r;
+  // var h = circle.h;
+  // var k = circle.k;
+  //
+  //
+  // if ((line.xRoot)) {
+  //   // if not vertical solve for y
+  //   alg(`
+  //   C = ${circle.eq}
+  //   L = ${line.xRoot}
+  //   S = subst(L,x,C)`);
+  //
+  //   log(" C: " + alg("L1"))
+  //   log(" L: " + alg("L2"))
+  //   log(" S: " + alg("S"))
+  //
+  //   var deg = alg(`deg(S)`);
+  //
+  //   var x, y;
+  //
+  //   // TODO: get roots as array
+  //   for (var i = 1; i <= deg; i++) {
+  //     y = alg(`roots(S, y)[${i}]`);
+  //     x = line.getX(y);
+  //     if (checkValid(x) && checkValid(y)) {
+  //       // log("    > add circle intersection: " + x + ", " + y);
+  //       addPoint(x, y, line, circle);
+  //     } else {
+  //       console.warn(`not a valid point: [${x}, ${y}]`);
+  //     }
+  //
+  //   }
+  //
+  // } else {
+  //   // if vertical solve for x
+  //   alg(`
+  //   C = ${circle.eq}
+  //   L = ${line.yRoot}
+  //   S = subst(L,y,C)`);
+  //
+  //   var deg = alg(`deg(S)`);
+  //
+  //   var x, y;
+  //
+  //   // TODO: get roots as array
+  //   for (var i = 1; i <= deg; i++) {
+  //     x = alg(`roots(S, x)[${i}]`);
+  //     y = line.getY(x);
+  //
+  //     if (checkValid(x) && checkValid(y)) {
+  //       // log("    > add circle intersection: " + x + ", " + y);
+  //       addPoint(x, y, line, circle);
+  //     } else {
+  //       console.warn(`not a valid point: [${x}, ${y}]`);
+  //     }
+  //   }
+  // }
   console.groupEnd();
 
 }
