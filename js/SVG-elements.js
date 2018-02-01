@@ -71,7 +71,6 @@ function Point(x, y, parent1, parent2) {
   this.element.on('mouseover', hover);
   this.element.on('mouseout', hover);
 
-
   this.toString = function() {
 
     var str = `${this.type}: ${this.id}
@@ -97,7 +96,9 @@ function Point(x, y, parent1, parent2) {
 function addPoint(x, y, parent1, parent2) {
   // log(`    + add point: ${x}, ${y} `);
   var point;
-
+  console.group("+ point")
+  log(`x: ${x}`)
+  log(`y: ${y}`)
 
   // TODO: determine if value check is necessary
   var xVal = getNumber(x);
@@ -110,13 +111,13 @@ function addPoint(x, y, parent1, parent2) {
     point = findPoint(x, y);
 
     if (point) {
-
+      log("point exists: " + point.id )
       // add new parents to existing point
       point.addParent(parent1);
       point.addParent(parent2);
 
     } else {
-
+      log("create new point")
       point = new Point(x, y, parent1, parent2);
 
     }
@@ -128,6 +129,8 @@ function addPoint(x, y, parent1, parent2) {
   //add point to each parent point list
   parent1.addPoint(point);
   parent2.addPoint(point);
+
+  console.groupEnd();
 
   return point;
 
@@ -196,7 +199,14 @@ function Line(pt1, pt2) {
   this.points[0] = pt1;
   this.points[1] = pt2;
 
+  console.groupCollapsed("points")
+  console.dir(pt1);
+  console.dir(pt2);
+  console.groupEnd();
+
   this.addPoint = addPointToList;
+
+
 
   //calculate equation 1 coefficients
   // ax + by + c form
@@ -220,6 +230,11 @@ function Line(pt1, pt2) {
   this.c = result[2];
   this.eq = result[3];
 
+  log(`   a: ${this.a}`)
+  log(`   b: ${this.b}`)
+  log(`   c: ${this.c}`)
+  log(`  eq: ${this.eq}`)
+
   //calculate equation 1 coefficients
   // y = mx + n form
   // var bVal = getNumber(this.b);
@@ -242,6 +257,10 @@ function Line(pt1, pt2) {
     this.m = result[0];
     this.n = result[1];
     this.eq2 = result[2];
+
+    log(`   m: ${this.m}`)
+    log(`   n: ${this.n}`)
+    log(`   eq2: ${this.eq2}`)
 
   }
 
@@ -364,40 +383,103 @@ function lineIntersect (line, element) {
 }
 
 function intersectLineLine (line1, line2) {
-  // log("  > intersect: l1:" + line1.id + " l2:" + line2.id);
+  console.group("line:" + line1.id + " > line:" + line2.id);
   var x, y;
 
   if (line1.m == line2.m) {
     //lines are parallel;
+    log(`parallel: m eq: ${line1.m}`)
+    console.groupEnd();
     return;
   }
 
+  //TODO: not sure why this second test is in here
   var test1 = alg(`(${line1.a}) * (${line2.b})`)
   var test2 = alg(`(${line2.a}) * (${line1.b})`)
 
   if ( test1 == test2 ) {
     //lines are parallel;
+    log(`parallel: cross ab eq: ${test1}`)
+    console.groupEnd();
     return;
   }
 
-  //check if line1 is vertical
-  if ( line1.b !== "0") {
-    x = alg(`( (${line2.b}) * (${line1.c}) - (${line1.b}) * (${line2.c}) )/( (${line2.a}) * (${line1.b}) - (${line1.a}) * (${line2.b}) )`);
-    y = line1.getY(x);
-    addPoint(x, y, line1, line2);
+  // console.group("subtract");
+
+  var cmd = `
+  L1 = ${line1.eq}
+  L2 = ${line2.eq}
+  # subtract two line equations
+  S = L1 - L2
+  `;
+
+  log( alg(cmd) );
+  log("L1: " + alg("L1"));
+  log("L2: " + alg("L2"));
+  log(" S: " + alg("S"));
+
+  var degX = alg("deg(S, x)");
+  log(" deg(S, x): " + degX);
+
+  if (degX != "0") {
+
+    log(" Sx: " + alg("Sx = roots(S, x)\nSx") );
+    y = alg("y1 = roots( subst( Sx, x, L1 ), y ) \n y1")
+    log("  y = " + y );
+    x = alg(" roots( subst( y1, y, L1 ), x )")
+    log("  x = " + x );
+
   } else {
-    //line is vertical
-    // log("   l1:" + line1.id + " vertical\n");
-    x = '0'; //TODO: i think this needs to be a / c
-    y = line2.getY(x);
-    addPoint(x, y, line1, line2);
+
+    var degY = alg("deg(S, y)");
+    log(" deg(S, y): " + degY);
+
+    if (degY != "0") {
+
+      log(" Sy: " + alg("Sy = roots(S, y) \n Sy") );
+      x = alg("x1 = roots( subst( Sy, y, L1 ), x ) \n x1")
+      log("  x = " + x );
+      y = alg(" roots( subst( x1, x, L1 ), y )")
+      log("  y = " + y );
+
+    } else {
+      console.warn("no solution!")
+      // console.groupEnd(); //subtract
+      return
+    }
 
   }
+
+  // console.groupEnd(); //subtract
+
+  addPoint(x, y, line1, line2);
+
+
+  //check if line1 is vertical
+  // if ( line1.b !== "0") {
+  //
+  //   x = alg(`( (${line2.b}) * (${line1.c}) - (${line1.b}) * (${line2.c}) )/( (${line2.a}) * (${line1.b}) - (${line1.a}) * (${line2.b}) )`);
+  //   y = line1.getY(x);
+  //
+  //   addPoint(x, y, line1, line2);
+  //
+  // } else {
+  //   //line is vertical
+  //   // log("   l1:" + line1.id + " vertical\n");
+  //   x = '0'; //TODO: i think this needs to be a / c
+  //   y = line2.getY(x);
+  //
+  //   addPoint(x, y, line1, line2);
+  //
+  // }
+
+  console.groupEnd();
+
 }
 
 function intersectLineCircle (line, circle) {
 
-  // log("  > intersect: l:" + line.id + " c:" + circle.id);
+  console.group("line:" + line.id + " > circle:" + circle.id);
   var r = circle.r;
   var h = circle.h;
   var k = circle.k;
@@ -418,10 +500,10 @@ function intersectLineCircle (line, circle) {
       y = alg(`roots(S, y)[${i}]`);
       x = line.getX(y);
       if (checkValid(x) && checkValid(y)) {
-        log("    > add circle intersection: " + x + ", " + y);
+        // log("    > add circle intersection: " + x + ", " + y);
         addPoint(x, y, line, circle);
       } else {
-        log(`    not a valid point: [${x}, ${y}]`);
+        console.warn(`not a valid point: [${x}, ${y}]`);
       }
 
     }
@@ -443,13 +525,15 @@ function intersectLineCircle (line, circle) {
       y = line.getY(x);
 
       if (checkValid(x) && checkValid(y)) {
-        log("    > add circle intersection: " + x + ", " + y);
+        // log("    > add circle intersection: " + x + ", " + y);
         addPoint(x, y, line, circle);
       } else {
-        log(`    not a valid point: [${x}, ${y}]`);
+        console.warn(`not a valid point: [${x}, ${y}]`);
       }
     }
   }
+  console.groupEnd();
+
 }
 
 
@@ -566,7 +650,7 @@ function circleIntersect (circle, element) {
 }
 
 function intersectCircleCircle(c1, c2) {
-  log("  > intersect: c1:" + c1.id + " c2:" + c2.id);
+  console.group("circle: " + c1.id + " > circle:" + c2.id);
 
   // Algebrite Script
   var cmd = `
@@ -597,10 +681,10 @@ function intersectCircleCircle(c1, c2) {
 
       //check values
       if (checkValid(x) && checkValid(y)) {
-        log("    > add circle intersection: " + x + ", " + y);
+        // log("    > add circle intersection: " + x + ", " + y);
         addPoint(x, y, c1, c2);
       } else {
-        log(`    not a valid point: [${x}, ${y}]`);
+        console.warn(`    not a valid point: [${x}, ${y}]`);
       }
     })
 
@@ -628,15 +712,16 @@ function intersectCircleCircle(c1, c2) {
         var y = alg(`subst(${x}, x, Y)`);
         //check values
         if (checkValid(x) && checkValid(y)) {
-          log("    > add circle intersection: " + x + ", " + y);
+          // log("    > add circle intersection: " + x + ", " + y);
           addPoint(x, y, c1, c2);
         } else {
-          log(`    not a valid point: [${x}, ${y}]`);
+          console.warn(`    not a valid point: [${x}, ${y}]`);
         }
-      })
+      }) //forEach
+
     }
   }
-
+  console.groupEnd();
 }
 
 
