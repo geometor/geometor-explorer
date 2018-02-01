@@ -199,13 +199,14 @@ function Line(pt1, pt2) {
   this.points[0] = pt1;
   this.points[1] = pt2;
 
-  console.groupCollapsed("points")
-  console.dir(pt1);
-  console.dir(pt2);
+  console.group("point: " + pt1.id)
+  log(`x: ${pt1.x}`);
+  log(`y: ${pt1.y}`);
   console.groupEnd();
-
-  this.addPoint = addPointToList;
-
+  console.group("point: " + pt2.id)
+  log(`x: ${pt2.x}`);
+  log(`y: ${pt2.y}`);
+  console.groupEnd();
 
 
   //calculate equation 1 coefficients
@@ -260,7 +261,7 @@ function Line(pt1, pt2) {
 
     log(`   m: ${this.m}`)
     log(`   n: ${this.n}`)
-    log(`   eq2: ${this.eq2}`)
+    log(` eq2: ${this.eq2}`)
 
   }
 
@@ -279,6 +280,10 @@ function Line(pt1, pt2) {
   }
 
   //////////////////////////////////////////////
+  //methods
+
+  this.addPoint = addPointToList;
+
   // get y value for corresponding x
   this.getY = function(x) {
     var y, deg;
@@ -326,6 +331,7 @@ function Line(pt1, pt2) {
 
   setLine("#i" + this.id);
 
+  //////////////////////////////////////////////
   //check for intersections with existing elements
   // this.intersect = lineIntersect;
   elements.forEach(function(element) {
@@ -389,18 +395,19 @@ function intersectLineLine (line1, line2) {
   if (line1.m == line2.m) {
     //lines are parallel;
     log(`parallel: m eq: ${line1.m}`)
-    console.groupEnd();
+    console.groupEnd()
     return;
   }
 
-  //TODO: not sure why this second test is in here
+  //TODO: not sure why this second test is in here :)
+  // order of the points might have created +/- issue
   var test1 = alg(`(${line1.a}) * (${line2.b})`)
   var test2 = alg(`(${line2.a}) * (${line1.b})`)
 
   if ( test1 == test2 ) {
     //lines are parallel;
     log(`parallel: cross ab eq: ${test1}`)
-    console.groupEnd();
+    console.groupEnd()
     return;
   }
 
@@ -409,38 +416,38 @@ function intersectLineLine (line1, line2) {
   var cmd = `
   L1 = ${line1.eq}
   L2 = ${line2.eq}
-  # subtract two line equations
+  # subtract equations
   S = L1 - L2
   `;
+  alg(cmd)
 
-  log( alg(cmd) );
-  log("L1: " + alg("L1"));
-  log("L2: " + alg("L2"));
-  log(" S: " + alg("S"));
+  log("L1: " + alg("L1"))
+  log("L2: " + alg("L2"))
+  log(" S: " + alg("S"))
 
-  var degX = alg("deg(S, x)");
-  log(" deg(S, x): " + degX);
+  var degX = alg("deg(S, x)")
+  log(" deg(S, x): " + degX)
 
   if (degX != "0") {
 
-    log(" Sx: " + alg("Sx = roots(S, x)\nSx") );
-    y = alg("y1 = roots( subst( Sx, x, L1 ), y ) \n y1")
-    log("  y = " + y );
-    x = alg(" roots( subst( y1, y, L1 ), x )")
-    log("  x = " + x );
+    log(" Sx: " + alg("Sx = roots(S, x)\nSx") )
+    y = alg( "y1 = roots( subst( Sx, x, L1 ), y ) \n y1" )
+    log("  y = " + y )
+    x = alg( "roots( subst( y1, y, L1 ), x )" )
+    log("  x = " + x )
 
   } else {
 
-    var degY = alg("deg(S, y)");
-    log(" deg(S, y): " + degY);
+    var degY = alg("deg(S, y)")
+    log(" deg(S, y): " + degY)
 
     if (degY != "0") {
 
-      log(" Sy: " + alg("Sy = roots(S, y) \n Sy") );
+      log(" Sy: " + alg("Sy = roots(S, y) \n Sy") )
       x = alg("x1 = roots( subst( Sy, y, L1 ), x ) \n x1")
-      log("  x = " + x );
+      log("  x = " + x )
       y = alg(" roots( subst( x1, x, L1 ), y )")
-      log("  y = " + y );
+      log("  y = " + y )
 
     } else {
       console.warn("no solution!")
@@ -452,7 +459,7 @@ function intersectLineLine (line1, line2) {
 
   // console.groupEnd(); //subtract
 
-  addPoint(x, y, line1, line2);
+  addPoint( x, y, line1, line2 )
 
 
   //check if line1 is vertical
@@ -484,12 +491,17 @@ function intersectLineCircle (line, circle) {
   var h = circle.h;
   var k = circle.k;
 
+
   if ((line.xRoot)) {
     // if not vertical solve for y
     alg(`
     C = ${circle.eq}
     L = ${line.xRoot}
     S = subst(L,x,C)`);
+
+    log(" C: " + alg("L1"))
+    log(" L: " + alg("L2"))
+    log(" S: " + alg("S"))
 
     var deg = alg(`deg(S)`);
 
@@ -553,25 +565,41 @@ function Circle(centerPoint, radiusPoint) {
   this.points = [radiusPoint];
   this.addPoint = addPointToList;
 
+
   this.center = centerPoint;
+
+  console.group("center pt: " + centerPoint.id)
+  log(`x: ${centerPoint.x}`);
+  log(`y: ${centerPoint.y}`);
+  console.groupEnd();
+  console.group("radius pt: " + radiusPoint.id)
+  log(`x: ${radiusPoint.x}`);
+  log(`y: ${radiusPoint.y}`);
+  console.groupEnd();
+
 
   // x offest
   this.h = centerPoint.x;
+  log(`  h: ${this.h}`)
 
   // y offset
   this.k = centerPoint.y;
+  log(`  k: ${this.k}`)
 
   //get radius length
   this.r = centerPoint.distanceTo(radiusPoint);
+  log(`  r: ${this.r}`)
 
   // generate equation for circle
   // (x - h)^2 + (y - k)^2 + r^2
   this.eq = Algebrite.run( `clearall
     (x - (${this.h}))^2 + (y - (${this.k}))^2 - (${this.r})^2` );
   // log("   eq: " + this.eq);
+  log(` eq: ${this.eq}`)
 
 
 
+  ////////////////////////////////////////////////////////
   //TODO: whay does the radius need to be multiplied by 2??
   var cx = getNumber( centerPoint.x );
   var cy = getNumber( centerPoint.y );
@@ -588,6 +616,7 @@ function Circle(centerPoint, radiusPoint) {
 
   setCircle("#c" + this.id);
 
+  ////////////////////////////////////////////////////////
   // find all intersections with other elements
   elements.forEach(function(element) {
     circleIntersect (this, element) ;
@@ -652,6 +681,9 @@ function circleIntersect (circle, element) {
 function intersectCircleCircle(c1, c2) {
   console.group("circle: " + c1.id + " > circle:" + c2.id);
 
+
+  //TODO: check degree before running roots
+
   // Algebrite Script
   var cmd = `
   C1 = ${c1.eq}
@@ -669,6 +701,10 @@ function intersectCircleCircle(c1, c2) {
   # solve for y
   roots(Y, y)
 `;
+
+  log(`  C1: ${c1.eq}`)
+  log(`  C2: ${c2.eq}`)
+  log(`   S: ${ alg(`S`) }`)
 
   var result = alg(cmd);
 
