@@ -11,7 +11,7 @@ check out **Explorer** here:
 these two can take up to a few minutes to load
 
 - [root 3 example](http://geometor.com/explorer/root3.html)
-- [root 5 example](http://geometor.com/explorer/root5,html)
+- [root 5 example](http://geometor.com/explorer/root5.html)
 
 only tested with Chrome and Firefox - Chrome is significantly faster than Firefox.
 
