@@ -6,12 +6,12 @@ The purpose of **Explorer** is to find and catalogue unique instances of golden 
 
 check out **Explorer** here:
 
-- [default - 4 circles](http://geometor.com/explorer/)
+- [default - 4 circles](https://geometor.github.io/geometor-explorer/#)
 
 these two can take up to a few minutes to load
 
-- [root 3 example](http://geometor.com/explorer/root3.html)
-- [root 5 example](http://geometor.com/explorer/root5.html)
+- [root 3 example](https://geometor.github.io/geometor-explorer/root3.html)
+- [root 5 example](https://geometor.github.io/geometor-explorer/root5.html)
 
 only tested with Chrome and Firefox - Chrome is significantly faster than Firefox.
 
