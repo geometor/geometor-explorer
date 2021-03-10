@@ -97,6 +97,47 @@ body.explorer {
 
 }
 
+body.show {
+  color: white;
+  background-color: $bgcolor;
+
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 100vw;
+  grid-template-rows: 100vh;
+  grid-template-areas:  "main";
+  width: 100vw;
+  height: 100vh;
+
+  main {
+      grid-area: main;
+      background-color: $bgcolor;
+
+  }
+
+  aside {
+    display: block;
+  }
+
+
+  footer {
+    display: block;
+  }
+
+  a, a:visited {
+    color: white;
+  }
+
+  a:hover {
+    color: $color-segment;
+  }
+
+}
+
+
+
+
+
 // SVG element
 #drawing {
   width: 100%;

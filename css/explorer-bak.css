@@ -27,7 +27,7 @@ body.explorer {
     display: grid;
     grid-gap: .5em;
     grid-template-columns: 1fr;
-    grid-template-areas: "menu" "points" "lines" "circles" "segments" "info"; }
+    grid-template-areas: "points" "lines" "circles" "segments" "info"; }
     body.explorer aside #points {
       color: #FFF; }
     body.explorer aside #lines {
@@ -52,28 +52,6 @@ body.explorer {
   body.explorer a, body.explorer a:visited {
     color: white; }
   body.explorer a:hover {
-    color: #C90; }
-
-body.show {
-  color: white;
-  background-color: black;
-  display: grid;
-  grid-gap: 0px;
-  grid-template-columns: 100vw;
-  grid-template-rows: 100vh;
-  grid-template-areas: "main";
-  width: 100vw;
-  height: 100vh; }
-  body.show main {
-    grid-area: main;
-    background-color: black; }
-  body.show aside {
-    display: block; }
-  body.show footer {
-    display: block; }
-  body.show a, body.show a:visited {
-    color: white; }
-  body.show a:hover {
     color: #C90; }
 
 #drawing {

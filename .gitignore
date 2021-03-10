@@ -59,3 +59,7 @@ typings/
 
 # SASS
 .sass-cache
+
+node_modules
+
+tags

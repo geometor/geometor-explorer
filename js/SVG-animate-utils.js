@@ -1,3 +1,4 @@
+
 function hideAllElements() {
     // hide all elelemts
     TweenLite.set($('.Point'), {

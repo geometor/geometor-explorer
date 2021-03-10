@@ -1,0 +1,36 @@
+{
+  "name": "geometor-explorer",
+  "version": "1.0.0",
+  "description": "tools for studying proportional systems",
+  "main": "index.js",
+  "dependencies": {
+    "algebrite": "^1.1.2",
+    "eslint": "^4.18.0",
+    "filesaver": "^0.0.13",
+    "gsap": "^1.20.3",
+    "jquery": "^3.3.1",
+    "katex": "^0.9.0-beta",
+    "svg.js": "^2.6.3",
+    "svg.panzoom.js": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-am-phi/geometor-explorer.git"
+  },
+  "author": "phi architect <phi@geometor.com> (geometor.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/i-am-phi/geometor-explorer/issues"
+  },
+  "homepage": "https://github.com/i-am-phi/geometor-explorer#readme"
+}
