@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="geometor-explorer",
-    version="0.0.1",
+    name="geometor",
+    version="0.0.2",
     author="phi ARCHITECT",
     author_email="phi@geometor.com",
     description="model, render & analyze complex geometric constructions",
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://geometor.github.io/geomentor-explorer",
     project_urls={
-        "COde": "https://github.com/geometor/geometor-explorer",
+        "Code": "https://github.com/geometor/geometor-explorer",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -23,4 +23,5 @@ setuptools.setup(
     package_dir={"": "."},
     packages=setuptools.find_packages(where="."),
     python_requires=">=3.9",
+    install_requires=['sympy', 'matplotlib']
 )
