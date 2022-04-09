@@ -61,6 +61,9 @@ html_static_path = ['_static']
 html_theme_options = {
     'logo': 'logo.png',
     'github_user': 'geometor',
+    'github_repo': 'geometor-explorer',
+    'logo_name': 'true',
+    'logo_text_align': 'center',
     'base_bg': 'black',
     'base_text': 'white',
     'font_family': "'Fira Sans Condensed', sans-serif",

@@ -3,14 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to GEOMETOR's documentation!
-====================================
+
+GEOMETOR
+========
+
+Python library for exploring geometric constructions
+----------------------------------------------------
+
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   geometor
+   usage
    modules
 
 

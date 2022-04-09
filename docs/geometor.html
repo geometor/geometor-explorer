@@ -16,8 +16,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="geometor-explorer" href="modules.html" />
-    <link rel="prev" title="Welcome to GEOMETOR’s documentation!" href="index.html" />
+    <link rel="prev" title="geometor" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,7 +47,10 @@ see the Render module for plotting with matplotlib</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="geometor.model.add_element">
 <span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">add_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.add_element" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add <code class="docutils literal notranslate"><span class="pre">line</span></code> or <code class="docutils literal notranslate"><span class="pre">circle</span></code> to <code class="docutils literal notranslate"><span class="pre">elements</span></code> and <code class="docutils literal notranslate"><span class="pre">history</span></code> list. 
+check for duplicates in elements.
+find intersection points for new element with all precedng elements</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="geometor.model.add_intersection_points">
@@ -502,6 +504,7 @@ matplotlib.</p>
 </section>
 <section id="module-geometor">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-geometor" title="Permalink to this headline">¶</a></h2>
+<p>The GEOMETOR explorer module consists of two primary submodules: <code class="docutils literal notranslate"><span class="pre">model</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">render</span></code></p>
 </section>
 </section>
 
@@ -516,6 +519,8 @@ matplotlib.</p>
   <a href="index.html">
     <img class="logo" src="_static/logo.png" alt="Logo"/>
     
+    <h1 class="logo logo-name">GEOMETOR</h1>
+    
   </a>
 </p>
 
@@ -524,22 +529,20 @@ matplotlib.</p>
 
 
 
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=geometor&repo=geometor-explorer&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
 
 
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">geometor package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-geometor.model">geometor.model module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-geometor.pappus">geometor.pappus module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-geometor.render">geometor.render module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-geometor.spirals">geometor.spirals module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-geometor.utils">geometor.utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-geometor">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">geometor-explorer</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">geometor</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">geometor package</a></li>
 </ul>
 </li>
@@ -549,8 +552,9 @@ matplotlib.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to GEOMETOR’s documentation!</a></li>
-      <li>Next: <a href="modules.html" title="next chapter">geometor-explorer</a></li>
+  <li><a href="modules.html">geometor</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">geometor</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

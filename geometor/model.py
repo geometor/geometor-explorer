@@ -179,6 +179,9 @@ def add_intersection_points_mp(el):
 
 
 def add_element(el):
+    '''Add ``line`` or ``circle`` to ``elements`` and ``history`` list. 
+    check for duplicates in elements.
+    find intersection points for new element with all precedng elements'''
     print_log(f'* add_element: {el}')
     # check if el is in the element list
     if not elements.count(el):

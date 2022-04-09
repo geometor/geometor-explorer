@@ -1,5 +1,5 @@
-geometor-explorer
-=================
+geometor
+========
 
 .. toctree::
    :maxdepth: 4
