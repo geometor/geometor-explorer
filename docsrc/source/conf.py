@@ -66,6 +66,7 @@ html_theme_options = {
     'logo_text_align': 'center',
     'base_bg': 'black',
     'base_text': 'white',
+    'body_text': '#CCC',
     'font_family': "'Fira Sans Condensed', sans-serif",
 }
 
