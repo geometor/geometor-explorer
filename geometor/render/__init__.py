@@ -107,6 +107,11 @@ def build_sequence(folder, ax, ax_btm, sequence, bounds, margin=1):
         if isinstance(last_step, spg.Point):
             plot_selected_points(ax, [last_step])
             parents = list(last_step.parents)
+            for parent in parents:
+                if isinstance(parent, spg.Line):
+                    plot_line(ax, parent, bounds, linestyle='-')
+                if isinstance(parent, spg.Circle):
+                    plot_circle(ax, parent, linestyle='-')
 
             if not pt.classes.count('start'):
                 for el in parents:
