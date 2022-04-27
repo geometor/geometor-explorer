@@ -1,3 +1,9 @@
+import matplotlib as mp
+import matplotlib.pyplot as plt
+
+from ..utils import *
+from ..model import *
+
 FIG_W = 16
 FIG_H = 9
 
@@ -36,6 +42,25 @@ def ax_prep(ax, ax_btm, bounds, xlabel):
     #  ax.set_xlabel(xlabel, fontdict={'color': 'w', 'size':'20'})
     ax_btm.text(0.5, 0.5, xlabel, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
 
+
+def adjust_ratio(w, h, r=FIG_W/FIG_H):
+    if w / h < r:
+        w = r * h
+    if w / h > r:
+        h = w / r
+    return w, h
+
+def adjust_lims(limx, limy, r=FIG_W/(FIG_H-1)):
+    w = abs(limx[1] - limx[0])
+    h = abs(limy[1] - limy[0])
+    w2, h2 = adjust_ratio(w, h, r)
+    xdiff = abs(w2 - w) / 2
+    ydiff = abs(h2 - h) / 2
+    limx[0] -= xdiff
+    limx[1] += xdiff
+    limy[0] -= ydiff
+    limy[1] += ydiff
+    return limx, limy
 
 def get_limits_from_points(pts, margin=1):
     '''find x, y limits from a set of points'''

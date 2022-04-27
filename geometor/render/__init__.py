@@ -20,7 +20,7 @@ from ..utils import *
 
 from .utils import *
 from .styles import *
-from .elements import *
+from .plot_elements import *
 from .points import *
 from .segments import *
 from .polygons import *
@@ -107,13 +107,13 @@ def build_sequence(folder, ax, ax_btm, sequence, bounds, margin=1):
         if isinstance(last_step, spg.Point):
             plot_selected_points(ax, [last_step])
             parents = list(last_step.parents)
-            for parent in parents:
-                if isinstance(parent, spg.Line):
-                    plot_line(ax, parent, bounds, linestyle='-')
-                if isinstance(parent, spg.Circle):
-                    plot_circle(ax, parent, linestyle='-')
+            #  for parent in parents:
+                #  if isinstance(parent, spg.Line):
+                    #  plot_line(ax, parent, bounds, linestyle='-')
+                #  if isinstance(parent, spg.Circle):
+                    #  plot_circle(ax, parent, linestyle='-')
 
-            if not pt.classes.count('start'):
+            if not last_step.classes.count('start'):
                 for el in parents:
                     if type(el) == sp.Line2D:
                         plot_line(ax, el, bounds, linestyle='-')
@@ -242,25 +242,6 @@ def plot_all_sections(NAME, ax, ax_btm,  history, sections, bounds):
 
     snapshot(f'{NAME}/sections', f'all-zoom.png')
 
-
-def adjust_ratio(w, h, r=FIG_W/FIG_H):
-    if w / h < r:
-        w = r * h
-    if w / h > r:
-        h = w / r
-    return w, h
-
-def adjust_lims(limx, limy, r=FIG_W/(FIG_H-1)):
-    w = abs(limx[1] - limx[0])
-    h = abs(limy[1] - limy[0])
-    w2, h2 = adjust_ratio(w, h, r)
-    xdiff = abs(w2 - w) / 2
-    ydiff = abs(h2 - h) / 2
-    limx[0] -= xdiff
-    limx[1] += xdiff
-    limy[0] -= ydiff
-    limy[1] += ydiff
-    return limx, limy
 
 
 def plot_sections(NAME, ax, ax_btm,  history, sections, bounds):
