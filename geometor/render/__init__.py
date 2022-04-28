@@ -213,7 +213,7 @@ def plot_all_ranges(NAME, ax, ax_btm,  history, ranges, bounds):
         plot_segment2(ax, seg)
 
     plot_sequence(ax, history, bounds)
-    snapshot(f'{NAME}/ranges', f'all.png')
+    snapshot(f'{NAME}/ranges', f'summary.png')
 
 
 def plot_all_sections(NAME, ax, ax_btm,  history, sections, bounds):
@@ -232,7 +232,7 @@ def plot_all_sections(NAME, ax, ax_btm,  history, sections, bounds):
         plot_segments(ax, section)
 
     plot_sequence(ax, history, bounds)
-    snapshot(f'{NAME}/sections', f'all.png')
+    snapshot(f'{NAME}/sections', f'summary.png')
 
     # zoom around section points
     limx, limy = get_limits_from_points(all_pts, margin=.5)
@@ -240,7 +240,7 @@ def plot_all_sections(NAME, ax, ax_btm,  history, sections, bounds):
     ax.set_xlim(limx[0], limx[1])
     ax.set_ylim(limy[0], limy[1])
 
-    snapshot(f'{NAME}/sections', f'all-zoom.png')
+    snapshot(f'{NAME}/sections', f'summary-zoom.png')
 
 
 
