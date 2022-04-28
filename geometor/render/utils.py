@@ -12,8 +12,10 @@ def snapshot(folder, filename):
     sessions = os.path.expanduser('~') + '/Sessions'
     out = f'{sessions}/{folder}/'
     os.makedirs(out, exist_ok=True)
-    plt.savefig(out + filename, dpi=120)
-    print_log(f'    * {out + filename}')
+    filename = out + filename
+    plt.savefig(filename, dpi=120)
+    print_log(f'    * {filename}')
+    return filename
 
 
 def display(filename):
