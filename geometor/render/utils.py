@@ -17,6 +17,15 @@ def snapshot(folder, filename):
     print_log(f'    * {filename}')
     return filename
 
+def snapshot_2(folder, filename):
+    import os
+    folder = os.path.abspath(folder)
+    os.makedirs(folder, exist_ok=True)
+    filename = os.path.join(folder, filename)
+    plt.savefig(filename, dpi=120)
+    print_log(f'    * {filename}')
+    return filename
+
 
 def display(filename):
     from IPython import display

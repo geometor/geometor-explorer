@@ -36,17 +36,17 @@ def plot_title(title, folder, filename, color='w', size=44):
     :returns: TODO
 
     """
+    folder = os.path.abspath(folder)
+    os.makedirs(folder, exist_ok=True)
+
     fig, ax = plt.subplots(1, 1)
+    plt.tight_layout()
     ax.axis('off')
     ax.set_aspect('equal')
-    plt.tight_layout()
-
-
     ax.clear()
     ax.axis(False)
-
     ax.text(0.5, 0.5, title, ha='center', va='center', fontdict={'color': color, 'size': size})
 
-    return snapshot(folder, filename)
+    return snapshot_2(folder, filename)
     #  plt.show()
 
