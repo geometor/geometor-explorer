@@ -65,11 +65,12 @@ html_static_path = ['_static']
 
 # -- Extension configuration -------------------------------------------------
 html_theme_options = {
-    'logo': 'logo.png',
-    'logo_name': 'true',
-    'logo_text_align': 'center',
-    'github_user': 'geometor',
-    'github_repo': 'geometor-explorer',
+    #  'logo': 'logo.png',
+    'logo_name': True,
+    #  'logo_text_align': 'center',
+    #  'github_user': 'geometor',
+    #  'github_repo': 'geometor-explorer',
+    #  'github_button': True,
     #  'base_bg': 'black',
     #  'base_text': 'white',
     #  'body_text': '#CCC',
