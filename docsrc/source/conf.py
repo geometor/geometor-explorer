@@ -13,7 +13,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
-
+import photonsphinx
 
 # -- Project information -----------------------------------------------------
 
@@ -32,8 +32,13 @@ release = 'v0.0.2'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.intersphinx',
     'sphinx.ext.githubpages',
     'sphinx.ext.graphviz',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.todo',
+    'photonsphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -50,7 +55,8 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'photonsphinx'
+html_theme_path = [photonsphinx.get_path()]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -60,13 +66,13 @@ html_static_path = ['_static']
 # -- Extension configuration -------------------------------------------------
 html_theme_options = {
     'logo': 'logo.png',
-    'github_user': 'geometor',
-    'github_repo': 'geometor-explorer',
     'logo_name': 'true',
     'logo_text_align': 'center',
-    'base_bg': 'black',
-    'base_text': 'white',
-    'body_text': '#CCC',
-    'font_family': "'Fira Sans Condensed', sans-serif",
+    'github_user': 'geometor',
+    'github_repo': 'geometor-explorer',
+    #  'base_bg': 'black',
+    #  'base_text': 'white',
+    #  'body_text': '#CCC',
+    #  'font_family': "'Fira Sans Condensed', sans-serif",
 }
 
