@@ -1,8 +1,8 @@
 '''utils'''
 import logging
+import os as os
 
 def log_init(name):
-    import os
     sessions = os.path.expanduser('~') + '/Sessions'
     out = f'{sessions}/{name}/'
     os.makedirs(out, exist_ok=True)
@@ -30,7 +30,3 @@ from timeit import default_timer as timer
 def elapsed(start_time):
     secs = timer() - start_time
     return str(datetime.timedelta(seconds=secs))
-
-
-# files and folders **********************
-import os as os
