@@ -17,12 +17,12 @@ def snapshot(folder, filename):
     print_log(f'    * {filename}')
     return filename
 
-def snapshot_2(folder, filename):
+def snapshot_2(folder, filename, transparent=False):
     import os
     folder = os.path.abspath(folder)
     os.makedirs(folder, exist_ok=True)
     filename = os.path.join(folder, filename)
-    plt.savefig(filename, dpi=120)
+    plt.savefig(filename, dpi=120, transparent=transparent)
     print_log(f'    * {filename}')
     return filename
 
