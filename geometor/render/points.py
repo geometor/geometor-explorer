@@ -21,10 +21,13 @@ def plot_points(ax, pts,
 
     def on_add(sel):
         i = sel.index
-        sel.annotation.set_text(f'{i}:\nx: {pts[i].x}\ny: {pts[i].y}')
-        xval = str(pts[i].x).replace('GoldenRatio', 'Φ')
-        yval = str(pts[i].y).replace('GoldenRatio', 'Φ')
-        sel.annotation.set_text(f'{i}:\nx: {xval}\ny: {yval}')
+        #  sel.annotation.set_text(f'{i}:\nx: {pts[i].x}\ny: {pts[i].y}')
+        #  xval = str(pts[i].x).replace('GoldenRatio', 'Φ')
+        xval = sp.latex(pts[i].x)
+        #  yval = str(pts[i].y).replace('GoldenRatio', 'Φ')
+        yval = sp.latex(pts[i].y)
+        sel.annotation.set_text(f'{i}:\nx: ${xval}$\ny: ${yval}$')
+        sel.annotation.set(color='k', fontsize='x-large', bbox=dict(boxstyle='round,pad=0.5', fc='w'))
         sel.annotation.arrow_patch.set(arrowstyle="simple", ec="k", fc='w')
 
     point_plot = ax.plot(xs, ys,
