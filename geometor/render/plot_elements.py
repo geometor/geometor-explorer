@@ -7,7 +7,7 @@ import sympy.geometry as spg
 
 from .styles import *
 
-def plot_circle(ax, circle, color='', linestyle='', linewidth='', fill=''):
+def plot_circle(ax, circle, edgecolor='', facecolor='', linestyle='', linewidth='', fill=''):
     '''takes a sympy circle and plots with the matplotlib Circle patch'''
     center = (circle.center.x.evalf(), circle.center.y.evalf())
     radius = circle.radius
@@ -16,8 +16,10 @@ def plot_circle(ax, circle, color='', linestyle='', linewidth='', fill=''):
     for cl in circle.classes:
         if cl in classes:
             styles.update(classes[cl])
-    if color:
-        styles['color'] = color
+    if edgecolor:
+        styles['edgecolor'] = edgecolor
+    if facecolor:
+        styles['facecolor'] = facecolor
     if linestyle:
         styles['linestyle'] = linestyle
     if linewidth:

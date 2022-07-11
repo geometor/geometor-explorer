@@ -11,13 +11,14 @@ classes['default_line_segment'] = {
         'linewidth':5
         }
 classes['default_circle'] = {
-        'color':'#C09',
+        'edgecolor':'#C09',
+        'facecolor':'',
         'linestyle':':',
         'linewidth':1.5,
         'fill':False
         }
 classes['default_circle_segment'] = {
-        'color':'#C099',
+        'edgecolor':'#C099',
         'linestyle':'-',
         'linewidth':5,
         }
