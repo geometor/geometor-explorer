@@ -300,6 +300,8 @@ def point_value(pt):
     #  return pt.x.evalf()
     return (pt.x.evalf(), pt.y.evalf())
 
+def sort_points(pts):
+    return sorted(list(pts), key=point_value)
 
 
 def check_golden(section):
@@ -338,7 +340,8 @@ def analyze_golden_lines(lines):
 def analyze_golden(line):
     '''check all the points on a line for Golden Sections'''
     goldens = []
-    line_pts = sorted(list(line.pts), key=point_value)
+    #  line_pts = sorted(list(line.pts), key=point_value)
+    line_pts = sort_points(line.pts)
     sections = list(combinations(line_pts, 3))
     print_log(f'        coefficients: {line.coefficients})')
     print_log(f'        points:    {len(line_pts)}')
@@ -357,10 +360,13 @@ def analyze_golden(line):
     print_log(f'        goldens: { len(goldens) }')
     return goldens
     
+    
+
 def analyze_golden_pts(test_pts):
     '''check all the points on a line for Golden Sections'''
     goldens = []
-    test_pts = sorted(list(test_pts), key=point_value)
+    #  test_pts = sorted(list(test_pts), key=point_value)
+    test_pts = sort_points(test_pts)
     sections = list(combinations(test_pts, 3))
     print_log(f'        points:    {len(test_pts)}')
     print_log(f'        sections:  {len(sections)}')
@@ -407,7 +413,7 @@ def check_range(r):
     
 
 def analyze_harmonics(line):
-    line_pts = sorted(list(line.pts), key=point_value)
+    line_pts = sort_points(line.pts)
     #  for pt in line_pts:
         #  print(pt.x, pt.x.evalf(), pt.y, pt.y.evalf())
     ranges = list(combinations(line_pts, 4))

@@ -29,6 +29,30 @@ classes['default_segment'] = {
         'marker':'',
         'markersize':0,
         }
+classes['segment_1'] = {
+        'color':'#F009',
+        'linestyle':'-',
+        'linewidth':5,
+        'marker':'',
+        'markersize':0,
+        }
+
+classes['segment_2'] = {
+        'color':'#0F09',
+        'linestyle':'-',
+        'linewidth':5,
+        'marker':'',
+        'markersize':0,
+        }
+
+classes['segment_3'] = {
+        'color':'#00F9',
+        'linestyle':'-',
+        'linewidth':5,
+        'marker':'',
+        'markersize':0,
+        }
+
 
 classes['blue'] = {'color':'#66F', 'linestyle':':'}
 classes['red'] = {'color':'#F33', 'linestyle':':'}
