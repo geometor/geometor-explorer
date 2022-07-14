@@ -19,6 +19,7 @@ from ..model import *
 from ..utils import *
 
 from .utils import *
+from .colors import *
 from .styles import *
 from .plot_elements import *
 from .points import *
