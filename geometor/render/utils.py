@@ -145,13 +145,14 @@ def ax_prep_caption(bounds, xlabel):
 
     return fig, ax, ax_btm
 
-def ax_prep_square(bounds):
+def ax_prep_square(bounds=False):
     plt.rcParams['figure.figsize'] = [16, 16]
     plt.tight_layout()
     fig, ax = plt.subplots(1, 1)
     ax.clear()
     ax.axis(False)
-    ax_set_bounds(ax, bounds)
+    if bounds:
+        ax_set_bounds(ax, bounds)
     ax.invert_yaxis()
     return fig, ax
 
