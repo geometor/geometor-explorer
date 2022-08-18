@@ -12,6 +12,14 @@ Subpackages
 Submodules
 ----------
 
+geometor.render.colors module
+-----------------------------
+
+.. automodule:: geometor.render.colors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 geometor.render.plot\_elements module
 -------------------------------------
 
