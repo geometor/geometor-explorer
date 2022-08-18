@@ -1,6 +1,15 @@
 geometor package
 ================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   geometor.render
+   geometor.title
+
 Submodules
 ----------
 
@@ -20,10 +29,10 @@ geometor.pappus module
    :undoc-members:
    :show-inheritance:
 
-geometor.render module
-----------------------
+geometor.polynumbers module
+---------------------------
 
-.. automodule:: geometor.render
+.. automodule:: geometor.polynumbers
    :members:
    :undoc-members:
    :show-inheritance:
