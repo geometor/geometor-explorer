@@ -2,4 +2,4 @@
 polynomials module
 """
 
-from ..common import *
+from .common import *

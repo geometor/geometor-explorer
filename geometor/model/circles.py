@@ -2,7 +2,7 @@
 circles module
 """
 
-from ..common import *
+from .common import *
 
 def circle(pt_c, pt_r, classes=[], style={}):
     '''make sympy.geometry.Circle from two points'''

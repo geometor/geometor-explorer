@@ -2,7 +2,7 @@
 polygons module
 """
 
-from ..common import *
+from .common import *
 
 def polygon(poly_pts, classes=[], style={}):
     '''- takes array of points - make sympy.geometry.Polygon, Triangle or Segment'''

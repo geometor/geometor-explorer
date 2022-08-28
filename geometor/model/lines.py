@@ -2,7 +2,7 @@
 Line nodule
 '''
 
-from ..common import *
+from .common import *
 
 def line(pt_a, pt_b, classes=[], style={}):
     '''make sympy.geometry.Line'''

@@ -2,7 +2,7 @@
 points module
 """
 
-from ..common import *
+from .common import *
 
 # structural elements
 def point(x_val, y_val, parents=set(), classes=[], style={}):
@@ -14,7 +14,24 @@ def point(x_val, y_val, parents=set(), classes=[], style={}):
     pt.style = style
     return pt
 
+class Point(spg.Point):
 
+    """Docstring for Point. """
+
+    def __init__(self):
+        """TODO: to be defined. """
+        super().__init__(self)
+
+                
+class Points(list):
+
+    """Docstring for Points. """
+
+    def __init__(self):
+        """TODO: to be defined. """
+        super().__init__(self)
+
+        
 def find_pt_index(pt):
     if isinstance(pt, spg.Point2D):
         for i, prev_pt in enumerate(pts):
@@ -25,6 +42,7 @@ def find_pt_index(pt):
     else:
         return -1
     
+
 def add_point(pt):
     '''add point to pts list - check if exists first'''
     logging.info(f'* add_point: {pt}')
