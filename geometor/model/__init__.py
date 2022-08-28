@@ -4,21 +4,15 @@ It relies heavily on sympy for providing the algebraic infrastructure
 the functions here are for creating the abstract model, not the rendering
 see the Render module for plotting with matplotlib
 '''
-import sympy as sp
-import sympy.plotting as spp
-import sympy.geometry as spg
-from sympy.abc import x, y
+from .common import *
 
-import math as math
-import numpy as np
-from collections import defaultdict
-import logging
-
-from itertools import permutations, combinations
-from multiprocessing import Pool, cpu_count
-
-from geometor.utils import *
-#  from geometor.render import *
+from .points import *
+from .lines import *
+from .circles import *
+from .polygons import *
+from .polynomials import *
+from .elements import *
+from .history import *
 
 # constants
 num_workers = cpu_count()
@@ -43,34 +37,6 @@ def set_bounds(limx, limy):
         point(limx[1], limy[1])
         )
 
-# structural elements
-def point(x_val, y_val, parents=set(), classes=[], style={}):
-    '''make sympy.geometry.Point'''
-    pt = spg.Point(sp.simplify(x_val), sp.simplify(y_val))
-    pt.parents = parents
-    pt.elements = parents
-    pt.classes = classes
-    pt.style = style
-    return pt
-
-
-def line(pt_a, pt_b, classes=[], style={}):
-    '''make sympy.geometry.Line'''
-    el = spg.Line(pt_a, pt_b)
-    el.pts = {pt_a, pt_b}
-    el.classes = classes
-    el.style = style
-    return el
-
-
-def circle(pt_c, pt_r, classes=[], style={}):
-    '''make sympy.geometry.Circle from two points'''
-    el = spg.Circle(pt_c, pt_c.distance(pt_r))
-    el.radius_pt = pt_r
-    el.pts = {pt_r}
-    el.classes = classes
-    el.style = style
-    return el
 
 
 # graphical elements
@@ -82,73 +48,9 @@ def segment(pt_a, pt_b, classes=[], style={}):
     return el
 
 
-def polygon(poly_pts, classes=[], style={}):
-    '''- takes array of points - make sympy.geometry.Polygon, Triangle or Segment'''
-    el = spg.Polygon(*poly_pts)
-    el.classes = classes
-    el.style = style
-    return el
-
-
-def polygon_ids(ids, classes=[], style={}):
-    '''create polygon from list of point ids'''
-    return polygon([pts[i] for i in ids], classes=classes, style=style)
-
-
-def unit_square(pt, classes=[], style={}):
-    '''creates a unit square from the reference point
-    adds points and returns polygon'''
-    poly_pts = []
-    poly_pts.append(pt)
-    poly_pts.append(point(pt.x + 1, pt.y))
-    poly_pts.append(point(pt.x + 1, pt.y + 1))
-    poly_pts.append(point(pt.x, pt.y + 1))
-    return polygon(poly_pts, classes=classes, style=style)
-
 
 
 # model ******************************
-
-def find_pt_index(pt):
-    if isinstance(pt, spg.Point2D):
-        for i, prev_pt in enumerate(pts):
-            if pt.equals(prev_pt):
-                #  i = pts.index(prev_pt)
-                print_log(f'  ! {pt} found at index: {i}')
-                return i
-    else:
-        return -1
-    
-def add_point(pt):
-    '''add point to pts list - check if exists first'''
-    logging.info(f'* add_point: {pt}')
-    if isinstance(pt, spg.Point2D):
-        # make new point with simplified values 
-        x = sp.sqrtdenest(pt.x.simplify())
-        y = sp.sqrtdenest(pt.y.simplify())
-        pt = point(x, y, classes=pt.classes)
-        for prev_pt in pts:
-            if pt.equals(prev_pt):
-                i = pts.index(prev_pt)
-                logging.info(f'  ! {pt} found at index: {i}')
-                # merge parents of points
-                if hasattr(pt, 'elements'):
-                    if hasattr(prev_pt, 'elements'):
-                        prev_pt.elements.update(pt.elements)
-                return prev_pt
-        else:
-            pts.append(pt)
-            history.append(pt)
-            logging.info(f'  + {pt}')
-            return pt
-    else:
-        logging.info('    not a point')
-
-
-def add_points(pt_array):
-    '''add an array of points to pts list'''
-    for pt in pt_array:
-        add_point(pt)
 
 
 def add_intersection_points(el):
@@ -267,123 +169,6 @@ def get_elements_by_class(classname):
             elements_by_class.append(el)
     return elements_by_class
 
-
-def line_get_y(l1, x):
-    '''return y value for specific x'''
-    a, b, c = l1.coefficients
-    return (-a * x - c) / b
-
-
-def spread(l1, l2):
-    '''calculate the spread of two lines'''
-    a1, a2, a3 = l1.coefficients
-    b1, b2, b3 = l2.coefficients
-
-    spread = ((a1*b2 - a2*b1) ** 2) / ( (a1 ** 2 + b1 ** 2) * (a2 ** 2 + b2 ** 2) )
-    return spread
-
-
-def compare_points(pt1, pt2):
-    if pt1.x.evalf() > pt2.x.evalf():
-        return 1
-    elif pt1.x.evalf() < pt2.x.evalf():
-        return -1
-    else:
-        if pt1.y.evalf() > pt2.y.evalf():
-            return 1
-        elif pt1.y.evalf() < pt2.y.evalf():
-            return -1
-        else:
-            return 0
-
-def point_value(pt):
-    #  return pt.x.evalf()
-    return (pt.x.evalf(), pt.y.evalf())
-
-def sort_points(pts):
-    return sorted(list(pts), key=point_value)
-
-
-def check_golden(section):
-    '''check range of three points for golden section'''
-    ab = segment(section[0], section[1]).length.simplify()
-    bc = segment(section[1], section[2]).length.simplify()
-    #  print('            ', ab)
-    #  print('            ', bc)
-    #  ratio = ab ** 2 / bc ** 2
-    ratio = ab / bc 
-    #  ratio = sp.simplify(ratio)
-    #  print('            ', ratio)
-    chk1 = (ratio / phi).evalf()
-    #  print('            ', chk1)
-    chk2 = (ratio / (1 / phi)).evalf()
-    #  print('            ', chk2)
-    #  if ratio == (1 / phi) or ratio == (phi):
-    if chk1 == 1 or chk2 == 1:
-        return True
-    else:
-        return False
-    
-
-def analyze_golden_lines(lines):
-    sections = []
-
-    print_log(f'\n    analyze_golden_lines: {len(lines)}')
-
-    for i, el in enumerate(lines):
-        print_log(f'    {i} • {el.coefficients}')
-        sections.extend(analyze_golden(el))
-    
-    return sections
-
-
-def analyze_golden(line):
-    '''check all the points on a line for Golden Sections'''
-    goldens = []
-    #  line_pts = sorted(list(line.pts), key=point_value)
-    line_pts = sort_points(line.pts)
-    sections = list(combinations(line_pts, 3))
-    print_log(f'        coefficients: {line.coefficients})')
-    print_log(f'        points:    {len(line_pts)}')
-    print_log(f'        sections:  {len(sections)}')
-
-    with Pool(num_workers) as pool:
-        results = pool.map(check_golden, sections)
-        for index, result in enumerate(results):
-            if result:
-                section = sections[index]
-                ab = segment(section[0], section[1])
-                bc = segment(section[1], section[2])
-                goldens.append([ab, bc])
-                logging.info(f'            GOLDEN: {sections[index]}')
-            
-    print_log(f'        goldens: { len(goldens) }')
-    return goldens
-    
-    
-
-def analyze_golden_pts(test_pts):
-    '''check all the points on a line for Golden Sections'''
-    goldens = []
-    #  test_pts = sorted(list(test_pts), key=point_value)
-    test_pts = sort_points(test_pts)
-    sections = list(combinations(test_pts, 3))
-    print_log(f'        points:    {len(test_pts)}')
-    print_log(f'        sections:  {len(sections)}')
-
-    with Pool(num_workers) as pool:
-        results = pool.map(check_golden, sections)
-        for index, result in enumerate(results):
-            if result:
-                section = sections[index]
-                ab = segment(section[0], section[1])
-                bc = segment(section[1], section[2])
-                goldens.append([ab, bc])
-                logging.info(f'            GOLDEN: {sections[index]}')
-            
-    print_log(f'        goldens: { len(goldens) }')
-    return goldens
-    
 
 def get_elements_lines():
     return [el for el in elements if isinstance(el, spg.Line2D)]
