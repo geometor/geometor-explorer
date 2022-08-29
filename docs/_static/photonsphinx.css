@@ -6,12 +6,11 @@
 body {
     font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 17px;
-    background-color: #000;
+    background-color: #080808;
     color: #CCC;
     margin: 0;
     padding: 0;
 }
-
 
 div.document {
     width: 940px;
@@ -34,11 +33,11 @@ div.sphinxsidebar {
 }
 
 hr {
-    border: 1px solid #FFF;
+    border: 1px solid #999;
 }
 
 div.body {
-    background-color: #000;
+    background-color: #080808;
     color: ;
     padding: 0 30px 0 30px;
 }
@@ -71,13 +70,13 @@ div.relations {
 
 
 div.sphinxsidebar a {
-    color: #444;
+    color: #C90;
     text-decoration: none;
-    border-bottom: 1px dotted #444;
+    border-bottom: 1px dotted #FC0;
 }
 
 div.sphinxsidebar a:hover {
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #FC0;
 }
 
 div.sphinxsidebarwrapper {
@@ -121,7 +120,7 @@ div.sphinxsidebar h4 {
 }
 
 div.sphinxsidebar h3 a {
-    color: #444;
+    color: #C90;
 }
 
 div.sphinxsidebar p.logo a,
@@ -218,8 +217,8 @@ a.headerlink {
 }
 
 a.headerlink:hover {
-    color: #444;
-    background: #EAEAEA;
+    color: #FC0;
+    background: ;
 }
 
 div.body p, div.body dd, div.body li {
@@ -252,11 +251,11 @@ div.admonition p.last {
 }
 
 div.highlight {
-    background-color: #000;
+    background-color: #080808;
 }
 
 dt:target, .highlight {
-    background: #FAF3E8;
+    background: #000;
 }
 
 div.warning {
@@ -296,8 +295,8 @@ div.important {
 }
 
 div.note {
-    background-color: #EEE;
-    border: 1px solid #CCC;
+    background-color: #301;
+    border: 1px solid #101;
 }
 
 div.tip {
@@ -316,7 +315,17 @@ div.seealso {
 }
 
 div.topic {
-    background-color: #EEE;
+    background-color: #000;
+    float: right;
+    margin-left: 1em;
+    padding: .5em;
+    border: none;
+    font-size: .8em;
+}
+
+p.topic-title {
+    margin-top: 0;
+    margin-bottom: 1em;
 }
 
 p.admonition-title {
@@ -456,8 +465,8 @@ dl pre, blockquote pre, li pre {
 }
 
 tt, code {
-    background-color: #CCC;
-    color: #000;
+    background-color: #000;
+    color: #CCC;
     /* padding: 1px 2px; */
 }
 
@@ -565,7 +574,7 @@ a:hover tt, a:hover code {
 
     div.documentwrapper {
         float: none;
-        background: #000;
+        background: #080808;
     }
 
     div.sphinxsidebar {
@@ -580,7 +589,7 @@ a:hover tt, a:hover code {
 
     div.sphinxsidebar h3, div.sphinxsidebar h4, div.sphinxsidebar p,
     div.sphinxsidebar h3 a {
-        color: #000;
+        color: #080808;
     }
 
     div.sphinxsidebar a {

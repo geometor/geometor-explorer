@@ -1,0 +1,10 @@
+geometor.model.elements package
+===============================
+
+Module contents
+---------------
+
+.. automodule:: geometor.model.elements
+   :members:
+   :undoc-members:
+   :show-inheritance:

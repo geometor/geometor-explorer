@@ -1,0 +1,10 @@
+geometor.model.circles package
+==============================
+
+Module contents
+---------------
+
+.. automodule:: geometor.model.circles
+   :members:
+   :undoc-members:
+   :show-inheritance:

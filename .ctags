@@ -1,0 +1,4 @@
+--exclude=.git
+--exclude=logs
+--exclude=**/.ipynb_checkpoints
+--exclude=**/__pycache__/

@@ -1,7 +1,7 @@
-geometor.render package
-=======================
+geometor.model package
+======================
 
-.. automodule:: geometor.render
+.. automodule:: geometor.model
    :members:
    :undoc-members:
    :show-inheritance:
@@ -10,55 +10,49 @@ Submodules
 ----------
 
 
-.. automodule:: geometor.render.colors
+.. automodule:: geometor.model.circles
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.common
+.. automodule:: geometor.model.common
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.plot_elements
+.. automodule:: geometor.model.elements
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.points
+.. automodule:: geometor.model.history
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.polygons
+.. automodule:: geometor.model.lines
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.segments
+.. automodule:: geometor.model.points
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.styles
+.. automodule:: geometor.model.polygons
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: geometor.render.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: geometor.render.wedges
+.. automodule:: geometor.model.polynomials
    :members:
    :undoc-members:
    :show-inheritance:
