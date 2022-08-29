@@ -1,3 +1,9 @@
+"""
+styles module
+=============
+
+functions to plot styles
+"""
 
 classes = {}
 classes['default_line'] = {

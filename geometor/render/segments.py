@@ -1,10 +1,10 @@
-import matplotlib as mp
-import matplotlib.pyplot as plt
-import mplcursors
+"""
+segments module
+===============
 
-import sympy as sp
-import sympy.geometry as spg
-
+functions to plot segments
+"""
+from .common import *
 from .styles import *
 
 

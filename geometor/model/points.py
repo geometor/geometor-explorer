@@ -1,8 +1,11 @@
 """
 points module
+=============
 """
 
 from .common import *
+
+pts = []
 
 # structural elements
 def point(x_val, y_val, parents=set(), classes=[], style={}):
@@ -18,9 +21,10 @@ class Point(spg.Point):
 
     """Docstring for Point. """
 
-    def __init__(self):
+    def __init__(self, x_val, y_val, classes=[]):
         """TODO: to be defined. """
-        super().__init__(self)
+        super().__init__(self, x_val, y_val)
+        self.classes = classes
 
                 
 class Points(list):
@@ -94,4 +98,13 @@ def point_value(pt):
 
 def sort_points(pts):
     return sorted(list(pts), key=point_value)
+
+
+def get_pts_by_class(classname):
+    '''find all points with specifdied classname'''
+    pts_by_class = []
+    for pt in pts:
+        if pt.classes.count(classname):
+            pts_by_class.append(pt)
+    return pts_by_class
 

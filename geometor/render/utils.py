@@ -1,6 +1,10 @@
-import matplotlib as mp
-import matplotlib.pyplot as plt
+"""
+utils module
+=============
 
+functions to plot utils
+"""
+from .common import *
 from ..utils import *
 from ..model import *
 

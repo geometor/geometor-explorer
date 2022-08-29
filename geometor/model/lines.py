@@ -1,5 +1,6 @@
 '''
-Line nodule
+lines module
+============
 '''
 
 from .common import *

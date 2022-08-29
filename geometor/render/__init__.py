@@ -4,16 +4,7 @@ provides functions for plotting elements from the geoemtric model to
 matplotlib.
 '''
 
-import matplotlib as mp
-import matplotlib.pyplot as plt
-import mplcursors
-
-import sympy as sp
-import sympy.plotting as spp
-import sympy.geometry as spg
-
-import logging
-import math as math
+from .common import *
 
 from ..model import *
 from ..utils import *

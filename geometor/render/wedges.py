@@ -1,10 +1,10 @@
-import matplotlib as mp
-import matplotlib.pyplot as plt
-import mplcursors
+"""
+wedges module
+=============
 
-import sympy as sp
-import sympy.geometry as spg
-
+functions to plot wedges
+"""
+from .common import *
 from .styles import *
 
 def plot_wedge(ax, ctr_pt, rad_pt, sweep_pt, color='#0f03', linestyle='', linewidth=6, fill=True):

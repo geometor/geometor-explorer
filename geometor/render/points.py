@@ -1,10 +1,10 @@
-import matplotlib as mp
-import matplotlib.pyplot as plt
-import mplcursors
+"""
+points module
+=============
 
-import sympy as sp
-import sympy.geometry as spg
-
+functions to plot points
+"""
+from .common import *
 from .styles import *
 
 def plot_points(ax, pts,

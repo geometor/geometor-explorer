@@ -1,4 +1,8 @@
 '''
+Model Package
+=============
+
+
 The Model module provides a set of tools for constructing geometric models.
 It relies heavily on sympy for providing the algebraic infrastructure
 the functions here are for creating the abstract model, not the rendering
@@ -22,7 +26,6 @@ phi = sp.Rational(1, 2) + (sp.sqrt(5) / 2)
 
 # globals
 history = []
-pts = []
 elements = []
 polygons = []
 goldens = []
@@ -53,69 +56,7 @@ def segment(pt_a, pt_b, classes=[], style={}):
 # model ******************************
 
 
-def add_intersection_points(el):
-    logging.info(f'* add_intersection_points: {el}')
-    for prev in elements:
-        for pt in el.intersection(prev):
-            pt.classes = []
-            pt.elements = {el, elements[index]}
-            add_point(pt)
 
-            
-def add_intersection_points_mp(el):
-    logging.info(f'* add_intersection_points: {el}')
-    with Pool(num_workers) as pool:
-        results = pool.map(el.intersection, elements)
-        for index, result in enumerate(results):
-            for pt in result:
-                pt.classes = []
-                pt.elements = set()
-                pt.elements.update({el, elements[index]})
-                if not hasattr(pt, 'parents'):
-                    if not pt.classes.count('start'):
-                        pt.parents = set()
-                        pt.parents.update({el, elements[index]})
-                pt = add_point(pt)
-                el.pts.add(pt)
-                elements[index].pts.add(pt)
-
-
-def add_element(el):
-    '''Add ``line`` or ``circle`` to ``elements`` and ``history`` list. 
-    check for duplicates in elements.
-    find intersection points for new element with all precedng elements'''
-    print_log(f'* add_element: {el}')
-    # check if el is in the element list
-    if not elements.count(el):
-        # if not found by count, test each element anyway
-        for prev in elements:
-
-            #TODO: refine test of elements
-            diff = (prev.equation().simplify() - el.equation().simplify()).simplify()
-            #  logging.info(f'    > diff: {diff}')
-            if not diff:
-                logging.info(f'''
-            ! COINCIDENT
-                {el}
-                {prev}
-                ''')
-                return prev
-        else:
-            history.append(el)
-            add_intersection_points_mp(el)
-            elements.append(el)
-            logging.info(f'  + {el}')
-            return el
-    else:
-        i = elements.index(el)
-        logging.info(f'  ! {el} found at index: {i}')
-        return elements[i]
-
-def add_polygon(poly):
-    polygons.append(poly)
-    history.append(poly)
-    return poly
-    
 # helpers ******************************
 def begin():
     '''create inital two points -
@@ -153,79 +94,6 @@ def bisector(pt1, pt2):
     add_element(el)
 
     
-def get_pts_by_class(classname):
-    '''find all points with specifdied classname'''
-    pts_by_class = []
-    for pt in pts:
-        if pt.classes.count(classname):
-            pts_by_class.append(pt)
-    return pts_by_class
-
-def get_elements_by_class(classname):
-    '''find all elements with specifdied classname'''
-    elements_by_class = []
-    for el in elements:
-        if el.classes.count(classname):
-            elements_by_class.append(el)
-    return elements_by_class
-
-
-def get_elements_lines():
-    return [el for el in elements if isinstance(el, spg.Line2D)]
-
-
-def get_elements_circles():
-    return [el for el in elements if isinstance(el, spg.Circle)]
-
-
-def analyze_model():
-    '''Analyze all lines in model for golden sections'''
-    print_log(f'\nanalyze_model:')
-
-    lines = get_elements_lines()
-    goldens = analyze_golden_lines(lines)
-    groups = group_sections(goldens)
-
-    return goldens, groups
-
-
-def check_range(r):
-    ad = segment(r[0], r[3]).length
-    cd = segment(r[2], r[3]).length
-    ac = segment(r[0], r[2]).length
-    bc = segment(r[1], r[2]).length
-    return sp.simplify((ad / cd) - (ac / bc))
-    
-
-def analyze_harmonics(line):
-    line_pts = sort_points(line.pts)
-    #  for pt in line_pts:
-        #  print(pt.x, pt.x.evalf(), pt.y, pt.y.evalf())
-    ranges = list(combinations(line_pts, 4))
-    harmonics = []
-    for i, r in enumerate(ranges):
-        chk = check_range(r)
-        #  if chk == 1 or chk == -1:
-        #  if chk == 0 or chk == -1:
-        if chk == 0:
-            print(i, chk)
-            print(f'    {r}')
-            harmonics.append(r)
-    return harmonics
-    
-
-def group_sections(sections):
-    groups = {}
-    for section in sections:
-        for seg in section:
-            seg_len = seg.length.simplify()
-            seg_len = sp.sqrtdenest(seg_len)
-            if seg_len in groups:
-                groups[seg_len].append(section)
-            else:
-                groups[seg_len] = [section]
-    return groups
-
 
 
 def model_summary(NAME, start_time):

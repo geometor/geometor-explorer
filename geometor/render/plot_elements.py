@@ -1,10 +1,11 @@
-import matplotlib as mp
-import matplotlib.pyplot as plt
-import mplcursors
+"""
+plot_elements module
+====================
 
-import sympy as sp
-import sympy.geometry as spg
+functions for rendering elements
+"""
 
+from .common import *
 from .styles import *
 
 def plot_circle(ax, circle, edgecolor='', facecolor='', linestyle='', linewidth='', fill=''):

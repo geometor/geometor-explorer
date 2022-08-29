@@ -1,7 +1,10 @@
 '''
+colors module
+=============
+
 functions for working with color
 '''
-import matplotlib as mp
+from .common import *
 
 def get_colors(cmap_name, steps):
     '''

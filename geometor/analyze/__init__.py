@@ -96,3 +96,52 @@ def analyze_golden_pts(test_pts):
     return goldens
     
 
+def analyze_model():
+    '''Analyze all lines in model for golden sections'''
+    print_log(f'\nanalyze_model:')
+
+    lines = get_elements_lines()
+    goldens = analyze_golden_lines(lines)
+    groups = group_sections(goldens)
+
+    return goldens, groups
+
+
+def check_range(r):
+    ad = segment(r[0], r[3]).length
+    cd = segment(r[2], r[3]).length
+    ac = segment(r[0], r[2]).length
+    bc = segment(r[1], r[2]).length
+    return sp.simplify((ad / cd) - (ac / bc))
+    
+
+def analyze_harmonics(line):
+    line_pts = sort_points(line.pts)
+    #  for pt in line_pts:
+        #  print(pt.x, pt.x.evalf(), pt.y, pt.y.evalf())
+    ranges = list(combinations(line_pts, 4))
+    harmonics = []
+    for i, r in enumerate(ranges):
+        chk = check_range(r)
+        #  if chk == 1 or chk == -1:
+        #  if chk == 0 or chk == -1:
+        if chk == 0:
+            print(i, chk)
+            print(f'    {r}')
+            harmonics.append(r)
+    return harmonics
+    
+
+def group_sections(sections):
+    groups = {}
+    for section in sections:
+        for seg in section:
+            seg_len = seg.length.simplify()
+            seg_len = sp.sqrtdenest(seg_len)
+            if seg_len in groups:
+                groups[seg_len].append(section)
+            else:
+                groups[seg_len] = [section]
+    return groups
+
+
