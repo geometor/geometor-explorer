@@ -17,24 +17,6 @@ def point(x_val, y_val, parents=set(), classes=[], style={}):
     pt.style = style
     return pt
 
-class Point(spg.Point):
-
-    """Docstring for Point. """
-
-    def __init__(self, x_val, y_val, classes=[]):
-        """TODO: to be defined. """
-        super().__init__(self, x_val, y_val)
-        self.classes = classes
-
-                
-class Points(list):
-
-    """Docstring for Points. """
-
-    def __init__(self):
-        """TODO: to be defined. """
-        super().__init__(self)
-
         
 def find_pt_index(pt):
     if isinstance(pt, spg.Point2D):
