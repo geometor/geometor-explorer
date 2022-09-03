@@ -2,7 +2,6 @@
 Model Package
 =============
 
-
 The Model module provides a set of tools for constructing geometric models.
 It relies heavily on sympy for providing the algebraic infrastructure
 the functions here are for creating the abstract model, not the rendering
@@ -24,15 +23,6 @@ num_workers = cpu_count()
 phi = sp.Rational(1, 2) + (sp.sqrt(5) / 2)
 
 # globals
-goldens = []
-groups = {}
-
-def analyze_summary(NAME, start_time, goldens, groups):
-    print_log(f'\nANALYZE Summary: {NAME}')
-    print_log(f'    goldens: {len(goldens)}')
-    print_log(f'    groups: {len(groups)}')
-    print_log(f'\nelapsed: {elapsed(start_time)}')
-
 
 
 
