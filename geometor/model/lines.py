@@ -5,12 +5,10 @@ lines module
 
 from .common import *
 
-def line(pt_a, pt_b, classes=[], style={}):
+
+def line(pt_a, pt_b):
     '''make sympy.geometry.Line'''
     el = spg.Line(pt_a, pt_b)
-    el.pts = {pt_a, pt_b}
-    el.classes = classes
-    el.style = style
     return el
 
 

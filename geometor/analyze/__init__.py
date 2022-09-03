@@ -4,8 +4,16 @@ GEOMETOR Analyze module
 find patterns within a model.
 '''
 
+import sympy as sp
+import sympy.geometry as spg
 
-def spread(l1, l2):
+from geometor.model import *
+
+goldens = []
+groups = {}
+
+
+def spread(l1: spg.Line, l2: spg.Line):
     '''calculate the spread of two lines'''
     a1, a2, a3 = l1.coefficients
     b1, b2, b3 = l2.coefficients
@@ -13,6 +21,12 @@ def spread(l1, l2):
     spread = ((a1*b2 - a2*b1) ** 2) / ( (a1 ** 2 + b1 ** 2) * (a2 ** 2 + b2 ** 2) )
     return spread
 
+
+def analyze_summary(NAME, start_time, goldens, groups):
+    print_log(f'\nANALYZE Summary: {NAME}')
+    print_log(f'    goldens: {len(goldens)}')
+    print_log(f'    groups: {len(groups)}')
+    print_log(f'\nelapsed: {elapsed(start_time)}')
 
 
 def check_golden(section):
@@ -96,12 +110,11 @@ def analyze_golden_pts(test_pts):
     return goldens
     
 
-def analyze_model():
+def analyze_model(m: Model):
     '''Analyze all lines in model for golden sections'''
     print_log(f'\nanalyze_model:')
 
-    lines = get_elements_lines()
-    goldens = analyze_golden_lines(lines)
+    goldens = analyze_golden_lines(m.lines())
     groups = group_sections(goldens)
 
     return goldens, groups

@@ -2,7 +2,6 @@
 Model Package
 =============
 
-
 The Model module provides a set of tools for constructing geometric models.
 It relies heavily on sympy for providing the algebraic infrastructure
 the functions here are for creating the abstract model, not the rendering
@@ -15,8 +14,7 @@ from .lines import *
 from .circles import *
 from .polygons import *
 from .polynomials import *
-from .elements import *
-from .history import *
+from .model import *
 
 # constants
 num_workers = cpu_count()
@@ -25,11 +23,7 @@ num_workers = cpu_count()
 phi = sp.Rational(1, 2) + (sp.sqrt(5) / 2)
 
 # globals
-history = []
-elements = []
-polygons = []
-goldens = []
-groups = {}
+
 
 
 def set_bounds(limx, limy):
@@ -41,7 +35,6 @@ def set_bounds(limx, limy):
         )
 
 
-
 # graphical elements
 def segment(pt_a, pt_b, classes=[], style={}):
     '''make sympy.geometry.Segment'''
@@ -49,12 +42,6 @@ def segment(pt_a, pt_b, classes=[], style={}):
     el.classes = classes
     el.style = style
     return el
-
-
-
-
-# model ******************************
-
 
 
 # helpers ******************************
@@ -96,38 +83,7 @@ def bisector(pt1, pt2):
     
 
 
-def model_summary(NAME, start_time):
-    print_log(f'\nMODEL Summary: {NAME}')
-    print_log(f'    history: {len(history)}')
-    print_log(f'    elements: {len(elements)}')
-    lines = get_elements_lines()
-    print_log(f'        lines: {len(lines)}')
-    circles = get_elements_circles()
-    print_log(f'        circles: {len(circles)}')
-    print_log(f'    points: {len(pts)}')
-    print_log(f'\nelapsed: {elapsed(start_time)}')
 
-
-def analyze_summary(NAME, start_time, goldens, groups):
-    print_log(f'\nANALYZE Summary: {NAME}')
-    print_log(f'    goldens: {len(goldens)}')
-    print_log(f'    groups: {len(groups)}')
-    print_log(f'\nelapsed: {elapsed(start_time)}')
-
-
-def complete_summary(NAME, start_time, goldens, groups): 
-    print_log(f'\nCOMPLETE: {NAME}')
-    print_log(f'    elements: {len(elements)}')
-    lines = get_elements_lines()
-    print_log(f'        lines: {len(lines)}')
-    circles = get_elements_circles()
-    print_log(f'        circles: {len(circles)}')
-    print_log(f'    points:   {len(pts)}')
-    print_log(f'    ---')
-    print_log(f'    goldens: {len(goldens)}')
-    print_log(f'    groups: {len(groups)}')
-    print_log(f'\nelapsed: {elapsed(start_time)}')
-          
 
 def bisect_pts(pt1, pt2):
     '''use sympy function
