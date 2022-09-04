@@ -5,13 +5,13 @@ elements module
 
 from .common import *
 
-def add_intersection_points(el):
-    logging.info(f'* add_intersection_points: {el}')
-    for prev in elements:
-        for pt in el.intersection(prev):
-            pt.classes = []
-            pt.elements = {el, elements[index]}
-            add_point(pt)
+#  def add_intersection_points(el):
+    #  logging.info(f'* add_intersection_points: {el}')
+    #  for prev in elements:
+        #  for pt in el.intersection(prev):
+            #  pt.classes = []
+            #  pt.elements = {el, elements[index]}
+            #  add_point(pt)
 
             
 def add_intersection_points_mp(el):
@@ -32,15 +32,13 @@ def add_intersection_points_mp(el):
                 elements[index].pts.add(pt)
 
 
-
-
-def get_elements_by_class(classname):
-    '''find all elements with specifdied classname'''
-    elements_by_class = []
-    for el in elements:
-        if el.classes.count(classname):
-            elements_by_class.append(el)
-    return elements_by_class
+#  def get_elements_by_class(classname):
+    #  '''find all elements with specifdied classname'''
+    #  elements_by_class = []
+    #  for el in elements:
+        #  if el.classes.count(classname):
+            #  elements_by_class.append(el)
+    #  return elements_by_class
 
 
 

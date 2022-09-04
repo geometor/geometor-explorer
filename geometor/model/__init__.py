@@ -22,18 +22,6 @@ num_workers = cpu_count()
 Φ = sp.GoldenRatio
 phi = sp.Rational(1, 2) + (sp.sqrt(5) / 2)
 
-# globals
-
-
-
-def set_bounds(limx, limy):
-    return sp.Polygon(
-        point(limx[0], limy[1]),
-        point(limx[0], limy[0]),
-        point(limx[1], limy[0]),
-        point(limx[1], limy[1])
-        )
-
 
 # graphical elements
 def segment(pt_a, pt_b, classes=[], style={}):
@@ -53,6 +41,7 @@ def begin():
     B = point(sp.Rational(1, 2), 0, classes=['start'])
     add_point(B)
     return A, B
+
 
 def begin_zero():
     '''create inital two points -
@@ -80,10 +69,6 @@ def bisector(pt1, pt2):
     el = line(pts[-1], pts[-2], classes=['bisector'])
     add_element(el)
 
-    
-
-
-
 
 def bisect_pts(pt1, pt2):
     '''use sympy function
@@ -96,6 +81,7 @@ def bisect_pts(pt1, pt2):
     ln.pts = set()
     return ln
 
+
 def bisect_pts2(pt1, pt2):
     '''use circles but don't add to model'''
     c1 = circle(pt1, pt2)
@@ -106,6 +92,7 @@ def bisect_pts2(pt1, pt2):
     ln.parents = {pt1, pt2, ints[0], ints[1]}
     ln.pts = set()
     return ln
+
 
 def bisect_lines(ln1, ln2):
     lns = ln1.bisectors(ln2)
