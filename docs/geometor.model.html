@@ -34,19 +34,216 @@
 
           <div class="body" role="main">
             
-  <section id="module-geometor.model">
-<span id="geometor-model-package"></span><h1>geometor.model package<a class="headerlink" href="#module-geometor.model" title="Permalink to this headline">¶</a></h1>
+  <section id="geometor-model-package">
+<h1>geometor.model package<a class="headerlink" href="#geometor-model-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-geometor.model.circles">
+<span id="geometor-model-circles-module"></span><h2>geometor.model.circles module<a class="headerlink" href="#module-geometor.model.circles" title="Permalink to this headline">¶</a></h2>
+<section id="circles-module">
+<h3>circles module<a class="headerlink" href="#circles-module" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.circles.circle">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.circles.</span></span><span class="sig-name descname"><span class="pre">circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.circles.circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>make sympy.geometry.Circle from two points</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-geometor.model.common">
+<span id="geometor-model-common-module"></span><h2>geometor.model.common module<a class="headerlink" href="#module-geometor.model.common" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-geometor.model.elements">
+<span id="geometor-model-elements-module"></span><h2>geometor.model.elements module<a class="headerlink" href="#module-geometor.model.elements" title="Permalink to this headline">¶</a></h2>
+<section id="elements-module">
+<h3>elements module<a class="headerlink" href="#elements-module" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.elements.add_intersection_points_mp">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">add_intersection_points_mp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.add_intersection_points_mp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="module-geometor.model.lines">
+<span id="geometor-model-lines-module"></span><h2>geometor.model.lines module<a class="headerlink" href="#module-geometor.model.lines" title="Permalink to this headline">¶</a></h2>
+<section id="lines-module">
+<h3>lines module<a class="headerlink" href="#lines-module" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.lines.line">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.lines.</span></span><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.lines.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>make sympy.geometry.Line</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.lines.line_get_y">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.lines.</span></span><span class="sig-name descname"><span class="pre">line_get_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.lines.line_get_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>return y value for specific x</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-geometor.model.model">
+<span id="geometor-model-model-module"></span><h2>geometor.model.model module<a class="headerlink" href="#module-geometor.model.model" title="Permalink to this headline">¶</a></h2>
+<section id="model-module">
+<h3>Model module<a class="headerlink" href="#model-module" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="geometor.model.model.Model">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.model.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#geometor.model.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>Docstring for Model.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.add_circle">
+<span class="sig-name descname"><span class="pre">add_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.ellipse.Circle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">sympy.geometry.ellipse.Circle</span></span></span><a class="headerlink" href="#geometor.model.model.Model.add_circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>add circle to model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.add_line">
+<span class="sig-name descname"><span class="pre">add_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.line.Line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">sympy.geometry.line.Line</span></span></span><a class="headerlink" href="#geometor.model.model.Model.add_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add <code class="docutils literal notranslate"><span class="pre">line</span></code> to list. 
+check for duplicates in elements.
+find intersection points for new element with all precedng elements</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.add_point">
+<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">sympy.geometry.point.Point</span></span></span><a class="headerlink" href="#geometor.model.model.Model.add_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>add point to model
+find duplicates
+clean values
+set parents and classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.circles">
+<span class="sig-name descname"><span class="pre">circles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.model.Model.circles" title="Permalink to this definition">¶</a></dt>
+<dd><p>filtered list of circles</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.gen_circle">
+<span class="sig-name descname"><span class="pre">gen_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">sympy.geometry.ellipse.Circle</span></span></span><a class="headerlink" href="#geometor.model.model.Model.gen_circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>create line object from points
+add_circle</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.gen_line">
+<span class="sig-name descname"><span class="pre">gen_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">sympy.geometry.line.Line</span></span></span><a class="headerlink" href="#geometor.model.model.Model.gen_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>create <cite>spg.Line</cite> object
+add <cite>add_line</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.gen_point">
+<span class="sig-name descname"><span class="pre">gen_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">sympy.geometry.point.Point</span></span></span><a class="headerlink" href="#geometor.model.model.Model.gen_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate a sympy.geometry.Point</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.lines">
+<span class="sig-name descname"><span class="pre">lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.model.Model.lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>filtered list of lines</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#geometor.model.model.Model.points" title="Permalink to this definition">¶</a></dt>
+<dd><p>filter points from model
+:returns: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.structs">
+<span class="sig-name descname"><span class="pre">structs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.model.Model.structs" title="Permalink to this definition">¶</a></dt>
+<dd><p>filtered list of structs 
+currently lines and circles</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.model.model.Model.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.model.Model.summary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-geometor.model.points">
+<span id="geometor-model-points-module"></span><h2>geometor.model.points module<a class="headerlink" href="#module-geometor.model.points" title="Permalink to this headline">¶</a></h2>
+<section id="points-module">
+<h3>points module<a class="headerlink" href="#points-module" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.points.compare_points">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">compare_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.compare_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.points.get_pts_by_class">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">get_pts_by_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.get_pts_by_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>find all points with specified classname</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.points.point">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.point" title="Permalink to this definition">¶</a></dt>
+<dd><p>make sympy.geometry.Point</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.points.point_value">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">point_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.point_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.points.sort_points">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">sort_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.sort_points" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<section id="module-geometor.model.polygons">
+<span id="geometor-model-polygons-module"></span><h2>geometor.model.polygons module<a class="headerlink" href="#module-geometor.model.polygons" title="Permalink to this headline">¶</a></h2>
+<section id="polygons-module">
+<h3>polygons module<a class="headerlink" href="#polygons-module" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.polygons.polygon">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.polygons.</span></span><span class="sig-name descname"><span class="pre">polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poly_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.polygons.polygon" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>takes array of points - make sympy.geometry.Polygon, Triangle or Segment</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.polygons.polygon_ids">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.polygons.</span></span><span class="sig-name descname"><span class="pre">polygon_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.polygons.polygon_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>create polygon from list of point ids</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometor.model.polygons.unit_square">
+<span class="sig-prename descclassname"><span class="pre">geometor.model.polygons.</span></span><span class="sig-name descname"><span class="pre">unit_square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.polygons.unit_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>creates a unit square from the reference point
+adds points and returns polygon</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-geometor.model.polynomials">
+<span id="geometor-model-polynomials-module"></span><h2>geometor.model.polynomials module<a class="headerlink" href="#module-geometor.model.polynomials" title="Permalink to this headline">¶</a></h2>
+<section id="polynomials-module">
+<h3>polynomials module<a class="headerlink" href="#polynomials-module" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="module-geometor.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-geometor.model" title="Permalink to this headline">¶</a></h2>
 <section id="model-package">
-<h2>Model Package<a class="headerlink" href="#model-package" title="Permalink to this headline">¶</a></h2>
+<h3>Model Package<a class="headerlink" href="#model-package" title="Permalink to this headline">¶</a></h3>
 <p>The Model module provides a set of tools for constructing geometric models.
 It relies heavily on sympy for providing the algebraic infrastructure
 the functions here are for creating the abstract model, not the rendering
 see the Render module for plotting with matplotlib</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.analyze_summary">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">analyze_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NAME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goldens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.analyze_summary" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="geometor.model.begin">
 <span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.begin" title="Permalink to this definition">¶</a></dt>
@@ -88,198 +285,11 @@ and add perpendicular bisector</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.complete_summary">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">complete_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NAME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goldens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.complete_summary" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.model_summary">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">model_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NAME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.model_summary" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="geometor.model.segment">
 <span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.segment" title="Permalink to this definition">¶</a></dt>
 <dd><p>make sympy.geometry.Segment</p>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.set_bounds">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.</span></span><span class="sig-name descname"><span class="pre">set_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.set_bounds" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-geometor.model.circles">
-<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-geometor.model.circles" title="Permalink to this headline">¶</a></h2>
-<section id="circles-module">
-<h3>circles module<a class="headerlink" href="#circles-module" title="Permalink to this headline">¶</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.circles.circle">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.circles.</span></span><span class="sig-name descname"><span class="pre">circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.circles.circle" title="Permalink to this definition">¶</a></dt>
-<dd><p>make sympy.geometry.Circle from two points</p>
-</dd></dl>
-
-</section>
-<span class="target" id="module-geometor.model.common"></span><span class="target" id="module-geometor.model.elements"></span><section id="elements-module">
-<h3>elements module<a class="headerlink" href="#elements-module" title="Permalink to this headline">¶</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.elements.add_element">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">add_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.add_element" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add <code class="docutils literal notranslate"><span class="pre">line</span></code> or <code class="docutils literal notranslate"><span class="pre">circle</span></code> to <code class="docutils literal notranslate"><span class="pre">elements</span></code> and <code class="docutils literal notranslate"><span class="pre">history</span></code> list. 
-check for duplicates in elements.
-find intersection points for new element with all precedng elements</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.elements.add_intersection_points">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">add_intersection_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.add_intersection_points" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.elements.add_intersection_points_mp">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">add_intersection_points_mp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">el</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.add_intersection_points_mp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.elements.get_elements_by_class">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">get_elements_by_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.get_elements_by_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>find all elements with specifdied classname</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.elements.get_elements_circles">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">get_elements_circles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.get_elements_circles" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.elements.get_elements_lines">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.elements.</span></span><span class="sig-name descname"><span class="pre">get_elements_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.elements.get_elements_lines" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</section>
-<span class="target" id="module-geometor.model.history"></span><section id="model-module">
-<h3>model module<a class="headerlink" href="#model-module" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt class="sig sig-object py" id="geometor.model.history.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.model.history.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#geometor.model.history.Model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
-<p>Docstring for Model.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="geometor.model.history.Model.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.history.Model.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>add structs and points to model</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<span class="target" id="module-geometor.model.lines"></span><section id="lines-module">
-<h3>lines module<a class="headerlink" href="#lines-module" title="Permalink to this headline">¶</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.lines.line">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.lines.</span></span><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.lines.line" title="Permalink to this definition">¶</a></dt>
-<dd><p>make sympy.geometry.Line</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.lines.line_get_y">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.lines.</span></span><span class="sig-name descname"><span class="pre">line_get_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.lines.line_get_y" title="Permalink to this definition">¶</a></dt>
-<dd><p>return y value for specific x</p>
-</dd></dl>
-
-</section>
-<span class="target" id="module-geometor.model.points"></span><section id="points-module">
-<h3>points module<a class="headerlink" href="#points-module" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt class="sig sig-object py" id="geometor.model.points.Point">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.Point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sympy.geometry.point.Point</span></code></p>
-<p>Docstring for Point.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="geometor.model.points.Point.default_assumptions">
-<span class="sig-name descname"><span class="pre">default_assumptions</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#geometor.model.points.Point.default_assumptions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="geometor.model.points.Points">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">Points</span></span><a class="headerlink" href="#geometor.model.points.Points" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
-<p>Docstring for Points.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.add_point">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.add_point" title="Permalink to this definition">¶</a></dt>
-<dd><p>add point to pts list - check if exists first</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.add_points">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">add_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.add_points" title="Permalink to this definition">¶</a></dt>
-<dd><p>add an array of points to pts list</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.compare_points">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">compare_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.compare_points" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.find_pt_index">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">find_pt_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.find_pt_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.get_pts_by_class">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">get_pts_by_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.get_pts_by_class" title="Permalink to this definition">¶</a></dt>
-<dd><p>find all points with specifdied classname</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.point">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.point" title="Permalink to this definition">¶</a></dt>
-<dd><p>make sympy.geometry.Point</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.point_value">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">point_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.point_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.points.sort_points">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.points.</span></span><span class="sig-name descname"><span class="pre">sort_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.points.sort_points" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</section>
-<span class="target" id="module-geometor.model.polygons"></span><section id="polygons-module">
-<h3>polygons module<a class="headerlink" href="#polygons-module" title="Permalink to this headline">¶</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.polygons.polygon">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.polygons.</span></span><span class="sig-name descname"><span class="pre">polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poly_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.polygons.polygon" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li><p>takes array of points - make sympy.geometry.Polygon, Triangle or Segment</p></li>
-</ul>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.polygons.polygon_ids">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.polygons.</span></span><span class="sig-name descname"><span class="pre">polygon_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.polygons.polygon_ids" title="Permalink to this definition">¶</a></dt>
-<dd><p>create polygon from list of point ids</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="geometor.model.polygons.unit_square">
-<span class="sig-prename descclassname"><span class="pre">geometor.model.polygons.</span></span><span class="sig-name descname"><span class="pre">unit_square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geometor.model.polygons.unit_square" title="Permalink to this definition">¶</a></dt>
-<dd><p>creates a unit square from the reference point
-adds points and returns polygon</p>
-</dd></dl>
-
-</section>
-<span class="target" id="module-geometor.model.polynomials"></span><section id="polynomials-module">
-<h3>polynomials module<a class="headerlink" href="#polynomials-module" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 </section>
@@ -295,15 +305,38 @@ adds points and returns polygon</p>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">geometor.model package</a><ul>
-<li><a class="reference internal" href="#model-package">Model Package</a></li>
-<li><a class="reference internal" href="#module-geometor.model.circles">Submodules</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-geometor.model.circles">geometor.model.circles module</a><ul>
 <li><a class="reference internal" href="#circles-module">circles module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model.common">geometor.model.common module</a></li>
+<li><a class="reference internal" href="#module-geometor.model.elements">geometor.model.elements module</a><ul>
 <li><a class="reference internal" href="#elements-module">elements module</a></li>
-<li><a class="reference internal" href="#model-module">model module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model.lines">geometor.model.lines module</a><ul>
 <li><a class="reference internal" href="#lines-module">lines module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model.model">geometor.model.model module</a><ul>
+<li><a class="reference internal" href="#model-module">Model module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model.points">geometor.model.points module</a><ul>
 <li><a class="reference internal" href="#points-module">points module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model.polygons">geometor.model.polygons module</a><ul>
 <li><a class="reference internal" href="#polygons-module">polygons module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model.polynomials">geometor.model.polynomials module</a><ul>
 <li><a class="reference internal" href="#polynomials-module">polynomials module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-geometor.model">Module contents</a><ul>
+<li><a class="reference internal" href="#model-package">Model Package</a></li>
 </ul>
 </li>
 </ul>
