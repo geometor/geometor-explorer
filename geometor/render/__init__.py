@@ -21,10 +21,6 @@ from .wedges import *
 plt.rcParams['figure.figsize'] = [FIG_W, FIG_H]
 plt.style.use('dark_background')
 
-def plt_init_polar():
-    '''configure the MatPlotLib stateful plot engine'''
-    #  mp.style.use('dark_background')
-
 
 def set_bounds(limx, limy):
     return sp.Polygon(
@@ -241,7 +237,6 @@ def plot_all_sections(NAME, ax, ax_btm,  history, sections, bounds):
     ax.set_ylim(limy[0], limy[1])
 
     snapshot(f'{NAME}/sections', f'summary-zoom.png')
-
 
 
 def plot_sections(NAME, ax, ax_btm,  history, sections, bounds):
