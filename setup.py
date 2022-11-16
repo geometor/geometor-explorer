@@ -11,7 +11,7 @@ setuptools.setup(
     description="model, render & analyze complex geometric constructions",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://geometor.github.io/geomentor-explorer",
+    url="https://geometor.github.io/geometor-explorer",
     project_urls={
         "Code": "https://github.com/geometor/geometor-explorer",
     },
