@@ -22,14 +22,6 @@ plt.rcParams['figure.figsize'] = [FIG_W, FIG_H]
 plt.style.use('dark_background')
 
 
-def set_bounds(limx, limy):
-    return sp.Polygon(
-        point(limx[0], limy[1]),
-        point(limx[0], limy[0]),
-        point(limx[1], limy[0]),
-        point(limx[1], limy[1])
-        )
-
 
 def plot_sequence(ax, sequence, bounds):
     '''plot sequence of all types of elements in layers'''
