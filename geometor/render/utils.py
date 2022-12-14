@@ -11,6 +11,14 @@ from ..model import *
 FIG_W = 16
 FIG_H = 9
 
+def set_bounds(limx, limy):
+    return sp.Polygon(
+        point(limx[0], limy[1]),
+        point(limx[0], limy[0]),
+        point(limx[1], limy[0]),
+        point(limx[1], limy[1])
+        )
+
 def snapshot(folder, filename):
     import os
     sessions = os.path.expanduser('~') + '/Sessions'
@@ -20,6 +28,7 @@ def snapshot(folder, filename):
     plt.savefig(filename, dpi=120)
     print_log(f'    * {filename}')
     return filename
+
 
 def snapshot_2(folder, filename, transparent=False):
     import os
@@ -34,7 +43,6 @@ def snapshot_2(folder, filename, transparent=False):
 def display(filename):
     from IPython import display
     display.Image(filename)
-
 
 
 def ax_prep(ax, ax_btm, bounds, xlabel):
