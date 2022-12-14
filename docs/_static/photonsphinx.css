@@ -228,8 +228,8 @@ div.body p, div.body dd, div.body li {
 div.admonition {
     margin: 20px 0px;
     padding: 10px 30px;
-    background-color: #EEE;
-    border: 1px solid #CCC;
+    background-color: #111;
+    border: 1px solid #000;
 }
 
 div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
@@ -295,8 +295,8 @@ div.important {
 }
 
 div.note {
-    background-color: #301;
-    border: 1px solid #101;
+    background-color: #110;
+    border: 1px solid #000;
 }
 
 div.tip {
@@ -708,4 +708,25 @@ nav#breadcrumbs li+li:before {
     div.related {
         display: none;
     }
+}
+
+.ablog-post-title {
+  margin-bottom: 0;
+}
+
+.ablog-post-excerpt {
+  margin-top: 0;
+  margin-left: 3em;
+}
+
+div.sphinxsidebarwrapper h1.logo  {
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  line-height: 1.1em;
+}
+div.sphinxsidebarwrapper h1.logo a:link {
+  text-align: center;
+  color: white;
+  text-decoration: none;
 }

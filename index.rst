@@ -5,8 +5,11 @@ Python library for exploring geometric constructions
 ----------------------------------------------------
 
 
+.. image:: _static/all-zoom.png
+
 
 .. toctree::
+   :hidden:
    :maxdepth: 3
    :caption: Contents:
 
