@@ -730,3 +730,7 @@ div.sphinxsidebarwrapper h1.logo a:link {
   color: white;
   text-decoration: none;
 }
+
+pre {
+  background: #000;
+  }
