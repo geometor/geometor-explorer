@@ -20,11 +20,10 @@ urgent todos:
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
-   :caption: Contents:
+   :maxdepth: 2
 
-   docsrc/usage.rst
-   docsrc/modules.rst
+   usage.rst
+   modules/index.rst
 
 
 
