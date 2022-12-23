@@ -1,12 +1,7 @@
-GEOMETOR explorer
-=================
+GEOMETOR • explorer
+===================
 
-Python library for exploring geometric constructions
-----------------------------------------------------
-
-
-.. image:: _static/all-zoom.png
-
+.. include:: README.rst
 
 recent logs:
 ------------
@@ -25,11 +20,10 @@ urgent todos:
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
-   :caption: Contents:
+   :maxdepth: 2
 
-   docsrc/usage.rst
-   docsrc/modules.rst
+   usage.rst
+   modules/index.rst
 
 
 
