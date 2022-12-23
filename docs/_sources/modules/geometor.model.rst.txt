@@ -32,8 +32,6 @@ geometor.model.lines module
 ---------------------------
 
 .. automodule:: geometor.model.lines
-<<<<<<< HEAD:docsrc/geometor.model.rst
-=======
    :members:
    :undoc-members:
    :show-inheritance:
@@ -42,7 +40,6 @@ geometor.model.model module
 ---------------------------
 
 .. automodule:: geometor.model.model
->>>>>>> ff31a08726384102a5c31dc07e0e3d4d9f4245c9:docsrc/source/geometor.model.rst
    :members:
    :undoc-members:
    :show-inheritance:
