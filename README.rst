@@ -1,14 +1,12 @@
-# GEOMETOR • explorer
-
-GEOMETOR Explorer is a Python library for modelling, analyzing and rendering
+**GEOMETOR • explorer** is a Python library for modelling, analyzing and rendering
 complex geometric constructions using symbolic algebra. Of course, Sympy is at
 the heart of it. 
 
-**GEOMETOR Explorer** is an essential tool of the GEOMETOR Project. You can
+**GEOMETOR • explorer** is an essential tool of the GEOMETOR Project. You can
 learn more about our collaborative research project on
 [geometor.com](http://geometor.com)
 
-The purpose of **Explorer** is to find and catalogue unique instances of golden
+The purpose of **explorer** is to find and catalogue unique instances of golden
 sections within geometric constructions with algebraic proofs.  But first, an
 introduction. My friends call me phi, as in φ, the Greek letter, for reasons
 that will be obvious. I am not a mathematician, but I have had a career as an
