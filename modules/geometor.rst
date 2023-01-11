@@ -7,8 +7,8 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   geometor.analyze
    geometor.model
+   geometor.analyze
    geometor.render
    geometor.title
 
