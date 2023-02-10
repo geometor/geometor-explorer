@@ -1,0 +1,10 @@
+geometor.model.polygons package
+===============================
+
+Module contents
+---------------
+
+.. automodule:: geometor.model.polygons
+   :members:
+   :undoc-members:
+   :show-inheritance:

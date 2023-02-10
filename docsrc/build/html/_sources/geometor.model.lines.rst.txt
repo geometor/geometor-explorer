@@ -1,0 +1,10 @@
+geometor.model.lines package
+============================
+
+Module contents
+---------------
+
+.. automodule:: geometor.model.lines
+   :members:
+   :undoc-members:
+   :show-inheritance:

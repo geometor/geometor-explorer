@@ -1,0 +1,10 @@
+geometor.model.polynomials package
+==================================
+
+Module contents
+---------------
+
+.. automodule:: geometor.model.polynomials
+   :members:
+   :undoc-members:
+   :show-inheritance:

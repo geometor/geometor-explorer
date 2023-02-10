@@ -64,7 +64,7 @@ if __name__ == '__main__':
     fig.suptitle(title, fontdict={'color': '#960', 'size':'small'})
 
     print_log('\nPlot Summary')
-    xlabel = f'elements: {len(elements)} | points: {len(pts)}'
+    xlabel = f'elements: {len(m)} | points: {len(m.points())}'
     ax_prep(ax, ax_btm, bounds, xlabel)
     plot_sequence(ax, m, bounds)
     snapshot(NAME + '/sequences', 'summary.png')
