@@ -1,6 +1,8 @@
 """
-Model module
-============
+Model class
+===========
+
+
 
 """
 

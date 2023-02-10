@@ -14,29 +14,39 @@ if __name__ == '__main__':
 
     print_log(f'\nMODEL: {NAME}')
 
-    begin()
-    add_element(line(pts[0], pts[1]))
-    #  add_element(line(pts[1], pts[0]))
+    m = Model()
+    a = m.gen_point(0, 0)
+    b = m.gen_point(1, 0)
+    m.gen_line(a, b)
+    m.gen_circle(a, b)
+    m.gen_circle(b, a)
+    print(m)
+    m.summary()
 
-    add_element(circle(pts[0], pts[1]))
-    add_element(circle(pts[1], pts[0]))
 
-    bl = add_element(line(pts[4], pts[5], classes=['bisector']))
+    #  begin()
+    #  add_element(line(pts[0], pts[1]))
+    #  #  add_element(line(pts[1], pts[0]))
 
-    add_element(circle(pts[0], pts[3]))
-    add_element(circle(pts[1], pts[2]))
+    #  add_element(circle(pts[0], pts[1]))
+    #  add_element(circle(pts[1], pts[0]))
 
-    model_summary(NAME, start_time)
+    #  bl = add_element(line(pts[4], pts[5], classes=['bisector']))
+
+    #  add_element(circle(pts[0], pts[3]))
+    #  add_element(circle(pts[1], pts[2]))
+
+    #  model_summary(NAME, start_time)
 
     # ANALYZE ***************************
-    print_log(f'\nANALYZE: {NAME}')
-    goldens, groups = analyze_model()
+    #  print_log(f'\nANALYZE: {NAME}')
+    #  goldens, groups = analyze_model(m)
 
-    analyze_summary(NAME, start_time, goldens, groups)
+    #  analyze_summary(NAME, start_time, goldens, groups)
 
     # PLOT *********************************
     print_log(f'\nPLOT: {NAME}')
-    limx, limy = get_limits_from_points(pts, margin=.25)
+    limx, limy = get_limits_from_points(m.points(), margin=.25)
     limx, limy = adjust_lims(limx, limy)
     bounds = set_bounds(limx, limy)
     print_log()
@@ -56,25 +66,24 @@ if __name__ == '__main__':
     print_log('\nPlot Summary')
     xlabel = f'elements: {len(elements)} | points: {len(pts)}'
     ax_prep(ax, ax_btm, bounds, xlabel)
-    plot_sequence(ax, history, bounds)
+    plot_sequence(ax, m, bounds)
     snapshot(NAME + '/sequences', 'summary.png')
     #  plt.show()
 
     print_log('\nPlot Build')
-    build_sequence(NAME, ax, ax_btm, history, bounds)
+    build_sequence(NAME, ax, ax_btm, m, bounds)
 
+    #  bounds = get_bounds_from_sections(goldens)
 
-    bounds = get_bounds_from_sections(goldens)
+    #  print_log('\nPlot Goldens')
+    #  plot_sections(NAME, ax, ax_btm, history, goldens, bounds)
 
-    print_log('\nPlot Goldens')
-    plot_sections(NAME, ax, ax_btm, history, goldens, bounds)
+    #  print_log('\nPlot Golden Groups')
+    #  plot_all_groups(NAME, ax, ax_btm, history, groups, bounds)
 
-    print_log('\nPlot Golden Groups')
-    plot_all_groups(NAME, ax, ax_btm, history, groups, bounds)
+    #  plot_all_sections(NAME, ax, ax_btm, history, goldens, bounds)
 
-    plot_all_sections(NAME, ax, ax_btm, history, goldens, bounds)
-
-    complete_summary(NAME, start_time, goldens, groups)
+    #  complete_summary(NAME, start_time, goldens, groups)
 
 
     plt.show()

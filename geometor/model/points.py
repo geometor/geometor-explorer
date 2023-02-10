@@ -6,9 +6,11 @@ points module
 from .common import *
 
 # structural elements
-def point(x_val, y_val):
+def point(x_val, y_val, classes=[]):
     '''make sympy.geometry.Point'''
     pt = spg.Point(sp.simplify(x_val), sp.simplify(y_val))
+    # TODO: put classes elsewhere
+    pt.classes = classes
     return pt
 
         
