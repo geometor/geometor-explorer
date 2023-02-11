@@ -19,3 +19,6 @@ from multiprocessing import Pool, cpu_count
 from geometor.utils import *
 #  from geometor.render import *
 
+Z_POINT_HILITE = 1  #hilite under everything
+Z_POINT_OUTER = 50  #dark ring
+Z_POINT_INNER = 51  #light dot

@@ -7,6 +7,7 @@ functions to plot points
 from .common import *
 from .styles import *
 
+
 def plot_points(ax, pts,
                color='w',
                linestyle='',
@@ -30,6 +31,7 @@ def plot_points(ax, pts,
         sel.annotation.set(color='k', fontsize='x-large', bbox=dict(boxstyle='round,pad=0.5', fc='w'))
         sel.annotation.arrow_patch.set(arrowstyle="simple", ec="k", fc='w')
 
+    # dark background
     point_plot = ax.plot(xs, ys,
             color='k',
             linestyle=linestyle,
@@ -68,6 +70,26 @@ def highlight_points(ax, pts,
                 ys = [pt.y.evalf()]
 
                 ax.plot(xs, ys, **styles)
+
+def highlight_point(ax, pt,
+               pt_classes=[],
+               color='y',
+               linestyle='',
+               marker='o',
+               markersize=7,
+               ):
+    '''plot all the points in pts'''
+    if isinstance(pt, spg.Point2D):
+        styles = {'color':color, 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
+        if len(classes):
+            for cl in pt_classes:
+                if cl in classes:
+                    styles.update(classes[cl])
+            # collect x, y values into separate arrays
+            xs = [pt.x.evalf()]
+            ys = [pt.y.evalf()]
+
+            ax.plot(xs, ys, **styles)
 
 
 def plot_selected_points(ax, pts,
