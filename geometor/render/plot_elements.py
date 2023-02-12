@@ -32,15 +32,16 @@ def plot_circle(ax, circle, edgecolor='', facecolor='', linestyle='', linewidth=
     ax.add_patch(patch)
 
 
-def plot_line(ax, el, bounds, color='', linestyle='', linewidth=''):
+def plot_line(ax, el, classes, bounds, color='', linestyle='', linewidth=''):
     ends = bounds.intersection(el)
     xs = [pt.x.evalf() for pt in ends]
     ys = [pt.y.evalf() for pt in ends]
 
-    styles = classes['default_line'].copy()
-    for cl in el.classes:
-        if cl in classes:
+    styles = STYLES['default_line'].copy()
+    for cl in classes:
+        if cl in STYLES:
             styles.update(classes[cl])
+    # override defaults
     if color:
         styles['color'] = color
     if linestyle:
@@ -48,7 +49,7 @@ def plot_line(ax, el, bounds, color='', linestyle='', linewidth=''):
     if linewidth:
         styles['linewidth'] = linewidth
 
-    ax.plot(xs, ys, **styles)
+    return ax.plot(xs, ys, **styles)
 
 
 def plot_elements(ax, elements, bounds):

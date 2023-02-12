@@ -22,65 +22,86 @@ plt.rcParams['figure.figsize'] = [FIG_W, FIG_H]
 plt.style.use('dark_background')
 
 
-
-def plot_model(ax, model, bounds):
+def plot_model(plot_name, ax, ax_label, model, margin=1):
     '''\
     plot sequence of all types of elements in layers
 
     '''
 
-    for el in model:
+    # clear the axis - add the label
+    ax.clear()
+    ax.axis(False)
+    ax.set_aspect('equal')
+    ax.invert_yaxis()
+
+    ax_label.clear()
+    ax_label.axis(False)
+
+    # find boundary
+    # TODO: bounds are rquired for extents of lines
+    limx, limy = get_limits_from_points(model.points(), margin=margin)
+    limx, limy = adjust_lims(limx, limy)
+    bounds = set_bounds(limx, limy)
+
+    vmin = bounds.vertices[0]
+    vmax = bounds.vertices[2]
+    ax.set_xlim(float(vmin.x.evalf()), float(vmax.x.evalf()))
+    ax.set_ylim(float(vmin.y.evalf()), float(vmax.y.evalf()))
+
+
+    for i, el in enumerate(model):
         el_classes = model.classes[el]
         el_parents = model.parents[el]
 
         # gather info for xlabel
         # point
         if isinstance(el, spg.Point):
+            typ = 'point'
             ptx = sp.sqrtdenest(el.x.simplify())
             pty = sp.sqrtdenest(el.y.simplify())
-            typ = 'point'
             xlabel = f'$\\left( \\ {sp.latex(ptx)}, \\ {sp.latex(pty)} \\ \\right)$'
 
         # line
         if isinstance(el, spg.Line):
+            typ = 'line'
             a, b, c = el.coefficients
             a = a.simplify()
             b = b.simplify()
             c = c.simplify()
             seg = segment(el.p1, el.p2)
             seg = sp.sqrtdenest(seg.length.simplify())
-            typ = 'line'
+
             xlabel = f'$\\left[ \\ {sp.latex(a)} \\ : \\ {sp.latex(b)} \\ : \\ {sp.latex(c)} \\ \\right]$'
             xlabel += f' • seg: ${sp.latex(seg)}$'
 
         # circle
         if isinstance(el, spg.Circle):
+            typ = 'circle'
             eq = el.equation().simplify()
             rad = sp.sqrtdenest(el.radius.simplify())
             area = sp.sqrtdenest(el.area.simplify())
-            typ = 'circle'
-            #  areaf = str(float(area.evalf()))[0:6]
             areaf = str(round(float(area.evalf()), 4))
+
             xlabel = f'${sp.latex(eq)}$ • r: ${sp.latex(rad)}$ • A: ${sp.latex(area)}$'
             xlabel += ' $ \\approx ' + areaf + '$'
 
         # polygon
         if isinstance(el, spg.Polygon):
-            area = sp.sqrtdenest(el.area.simplify())
-            perim = sp.sqrtdenest(el.perimeter.simplify())
-            #  areaf = str(float(area.evalf()))[0:6]
-            areaf = str(round(float(area.evalf()), 4))
-            #  perimf = str(float(perim.evalf()))[0:6]
-            perimf = str(round(float(perim.evalf()), 4))
             typ = 'polygon'
+            area = sp.sqrtdenest(el.area.simplify())
+            areaf = str(round(float(area.evalf()), 4))
+            perim = sp.sqrtdenest(el.perimeter.simplify())
+            perimf = str(round(float(perim.evalf()), 4))
+
             xlabel = f'area: ${sp.latex(area)}$ • perim: ${sp.latex(perim)}$'
             xlabel += ' $ \\approx ' + perimf + '$'
 
         # segment
         if isinstance(el, spg.Segment):
+            typ = 'segment'
             seg = sp.sqrtdenest(el.length.simplify())
             segf = str(round(float(seg.evalf()), 4))
-            typ = 'segment'
+
             xlabel = f'seg: ${sp.latex(seg)}$'
             xlabel += ' $ \\approx ' + segf + '$'
 
@@ -89,44 +110,73 @@ def plot_model(ax, model, bounds):
             typ += '-'
             typ += '_'.join(el_classes)
 
-        # clear the axis - add the label
-        ax_prep(ax, ax_btm, bounds, xlabel)
+        print(typ)
+        print(xlabel)
+        print()
+
+        selected = []
 
         # point
         if isinstance(el, spg.Point):
-            plot_selected_points(ax, [el])
-            if not el_classes.count('start'):
-                for parent in el_parents:
-                    if isinstance(parent, spg.Line):
-                        plot_line(ax, parent, bounds, linestyle='-')
-                    if isinstance(parent, spg.Circle):
-                        plot_circle(ax, parent, linestyle='-')
+            plot_point(ax, el, el_classes)
+            selected.append(plot_selected_points(ax, [el]))
+            #  for parent in el_parents:
+                #  if isinstance(parent, spg.Line):
+                    #  plot_line(ax, parent, bounds, linestyle='-')
+                #  if isinstance(parent, spg.Circle):
+                    #  plot_circle(ax, parent, linestyle='-')
 
         # line
         if isinstance(el, spg.Line):
-            seg = segment(el.p1, el.p2, classes=['default_line_segment'])
-            seg.classes.extend(el.classes)
+            plot_line(ax, el, el_classes, bounds)
 
-            plot_segment2(ax, seg, linestyle='-')
-            plot_selected_points(ax, el.points)
-            plot_line(ax, el, bounds, linestyle='-')
+            selected.append(plot_selected_points(ax, [el.points]))
+            #  seg = segment(el.p1, el.p2, classes=['default_line_segment'])
+            #  seg.classes.extend(el.classes)
 
-        # circle
-        if isinstance(el, spg.Circle):
-            seg = segment(el.center, el.radius_pt, classes=['default_circle_segment'])
-            seg.classes.extend(el.classes)
-
-            plot_segment2(ax, seg, linestyle='-')
-            plot_selected_points(ax, [el.center, el.radius_pt])
-            plot_circle(ax, el, linestyle='-')
+            #  plot_segment2(ax, seg, linestyle='-')
+            #  plot_line(ax, el, bounds, linestyle='-')
 
 
-        if isinstance(el, spg.Segment):
-            plot_selected_points(ax, el.points)
-        if isinstance(el, spg.Polygon):
-            plot_selected_points(ax, el.vertices)
+        if False:
 
-        plot_sequence(ax, sequence[0:i], bounds)
+            # circle
+            if isinstance(el, spg.Circle):
+                seg = segment(el.center, el.radius_pt, classes=['default_circle_segment'])
+                seg.classes.extend(el.classes)
+
+                plot_segment2(ax, seg, linestyle='-')
+                plot_selected_points(ax, [el.center, el.radius_pt])
+                plot_circle(ax, el, linestyle='-')
+
+            # segment
+            if isinstance(el, spg.Segment):
+                plot_selected_points(ax, el.points)
+
+            # polygon
+            if isinstance(el, spg.Polygon):
+                plot_selected_points(ax, el.vertices)
+
+        ax_label.clear()
+        ax_label.axis(False)
+        ax_label.text(0.5, 0.5, xlabel, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
+
+        filename = f'{str(i).zfill(5)}-{typ}'
+        snapshot(plot_name + '/sequences', f'{filename}.png')
+
+        for select in selected:
+            selected_el = select.pop(0)
+            selected_el.remove()
+
+
+    xlabel = f'elements: {len(model)} | points: {len(model.points())}'
+    ax_label.clear()
+    ax_label.axis(False)
+    ax_label.text(0.5, 0.5, xlabel, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
+
+    print(xlabel)
+
+    snapshot(plot_name + '/sequences', 'summary.png')
 
     #  highlight_points(ax, seq_pts)
     #  plot_polygons(ax, seq_polys)

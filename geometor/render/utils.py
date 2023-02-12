@@ -11,7 +11,7 @@ from ..model import *
 FIG_W = 16
 FIG_H = 9
 
-def set_bounds(limx, limy):
+def set_bounds(limx, limy) -> sp.Polygon:
     return sp.Polygon(
         point(limx[0], limy[1]),
         point(limx[0], limy[0]),
