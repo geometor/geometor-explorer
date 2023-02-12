@@ -95,14 +95,12 @@ def plot_selected_points(ax, pts,
                marker='o',
                markersize=15,
                ):
-    for pt in pts:
-        #  styles = {'color':color, 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
-        styles = {'markeredgecolor':color, 'fillstyle':'none', 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
-        # collect x, y values into separate arrays
-        xs = [pt.x.evalf()]
-        ys = [pt.y.evalf()]
+    styles = {'markeredgecolor':color, 'fillstyle':'none', 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
 
-        return ax.plot(xs, ys, **styles)
+    xs = [pt.x.evalf() for pt in pts]
+    ys = [pt.y.evalf() for pt in pts]
+
+    return ax.plot(xs, ys, **styles)
 
 
 def gold_points(ax, pts,

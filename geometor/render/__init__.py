@@ -130,24 +130,29 @@ def plot_model(plot_name, ax, ax_label, model, margin=1):
         if isinstance(el, spg.Line):
             plot_line(ax, el, el_classes, bounds)
 
-            selected.append(plot_selected_points(ax, [el.points]))
-            #  seg = segment(el.p1, el.p2, classes=['default_line_segment'])
-            #  seg.classes.extend(el.classes)
+            selected.append(plot_selected_points(ax, el.points))
 
-            #  plot_segment2(ax, seg, linestyle='-')
-            #  plot_line(ax, el, bounds, linestyle='-')
+            seg = segment(el.p1, el.p2)
+            seg_classes=['default_line_segment']
+            seg_classes.extend(el_classes)
+
+            selected.append(plot_segment2(ax, seg, seg_classes, linestyle='-'))
+            selected.append(plot_line(ax, el, el_classes, bounds, linestyle='-'))
+
+        # circle
+        if isinstance(el, spg.Circle):
+            plot_circle(ax, el, el_classes, linestyle='-')
+
+            seg = segment(el.center, el.radius_pt)
+            seg_classes=['default_line_segment']
+            seg_classes.extend(el_classes)
+
+            selected.append(plot_segment2(ax, seg, seg_classes, linestyle='-'))
+            selected.append(plot_selected_points(ax, [el.center, el.radius_pt]))
+            selected.append(plot_circle(ax, el, el_classes, linestyle='-'))
 
 
         if False:
-
-            # circle
-            if isinstance(el, spg.Circle):
-                seg = segment(el.center, el.radius_pt, classes=['default_circle_segment'])
-                seg.classes.extend(el.classes)
-
-                plot_segment2(ax, seg, linestyle='-')
-                plot_selected_points(ax, [el.center, el.radius_pt])
-                plot_circle(ax, el, linestyle='-')
 
             # segment
             if isinstance(el, spg.Segment):

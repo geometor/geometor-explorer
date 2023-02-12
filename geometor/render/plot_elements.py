@@ -8,15 +8,15 @@ functions for rendering elements
 from .common import *
 from .styles import *
 
-def plot_circle(ax, circle, edgecolor='', facecolor='', linestyle='', linewidth='', fill=''):
+def plot_circle(ax, circle, classes, edgecolor='', facecolor='', linestyle='', linewidth='', fill=''):
     '''takes a sympy circle and plots with the matplotlib Circle patch'''
     center = (circle.center.x.evalf(), circle.center.y.evalf())
     radius = circle.radius
 
-    styles = classes['default_circle'].copy()
-    for cl in circle.classes:
-        if cl in classes:
-            styles.update(classes[cl])
+    styles = STYLES['default_circle'].copy()
+    for cl in classes:
+        if cl in STYLES:
+            styles.update(STYLES[cl])
     if edgecolor:
         styles['edgecolor'] = edgecolor
     if facecolor:
@@ -29,7 +29,7 @@ def plot_circle(ax, circle, edgecolor='', facecolor='', linestyle='', linewidth=
         styles['fill'] = fill
 
     patch = plt.Circle(center, radius, **styles)
-    ax.add_patch(patch)
+    return ax.add_patch(patch)
 
 
 def plot_line(ax, el, classes, bounds, color='', linestyle='', linewidth=''):
@@ -40,7 +40,7 @@ def plot_line(ax, el, classes, bounds, color='', linestyle='', linewidth=''):
     styles = STYLES['default_line'].copy()
     for cl in classes:
         if cl in STYLES:
-            styles.update(classes[cl])
+            styles.update(STYLES[cl])
     # override defaults
     if color:
         styles['color'] = color

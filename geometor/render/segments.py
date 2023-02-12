@@ -17,17 +17,17 @@ def plot_segment(ax, pt1, pt2, color='#fc09', linestyle='-', linewidth=3, marker
     ax.plot( [x1, x2], [y1, y2], **styles )
 
 
-def plot_segment2(ax, seg, color='', linestyle='-', linewidth=0, marker='', markersize=0):
+def plot_segment2(ax, seg, classes, color='', linestyle='-', linewidth=0, marker='', markersize=0):
     x1 = seg.points[0].x.evalf()
     x2 = seg.points[1].x.evalf()
     y1 = seg.points[0].y.evalf()
     y2 = seg.points[1].y.evalf()
-    #  styles = {'color':color, 'linestyle':linestyle, 'linewidth':linewidth, 'marker':marker, 'markersize':markersize}
 
-    styles = classes['default_segment'].copy()
-    for cl in seg.classes:
-        if cl in classes:
-            styles.update(classes[cl])
+    styles = STYLES['default_segment'].copy()
+    for cl in classes:
+        if cl in STYLES:
+            styles.update(STYLES[cl])
+
     if color:
         styles['color'] = color
     if linestyle:
@@ -39,7 +39,8 @@ def plot_segment2(ax, seg, color='', linestyle='-', linewidth=0, marker='', mark
         styles.pop('edgecolor')
     if 'facecolor' in styles:
         styles.pop('facecolor')
-    ax.plot( [x1, x2], [y1, y2], **styles )
+
+    return ax.plot( [x1, x2], [y1, y2], **styles )
 
 
 def plot_segments(ax, segs):

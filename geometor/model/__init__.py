@@ -24,11 +24,9 @@ phi = sp.Rational(1, 2) + (sp.sqrt(5) / 2)
 
 
 # graphical elements
-def segment(pt_a, pt_b, classes=[], style={}):
+def segment(pt_a, pt_b):
     '''make sympy.geometry.Segment'''
     el = spg.Segment(pt_a, pt_b)
-    el.classes = classes
-    el.style = style
     return el
 
 
