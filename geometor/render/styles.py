@@ -18,7 +18,7 @@ STYLES['default_line_segment'] = {
         }
 STYLES['default_circle'] = {
         'edgecolor':'#C09',
-        'facecolor':'',
+        'facecolor':'#00000000',
         'linestyle':':',
         'linewidth':1.5,
         'fill':False

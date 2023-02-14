@@ -4,6 +4,8 @@ GEOMETOR Analyze module
 find patterns within a model.
 '''
 
+from rich import print
+
 import sympy as sp
 import sympy.geometry as spg
 
@@ -29,6 +31,15 @@ def analyze_summary(NAME, start_time, goldens, groups):
     print_log(f'\nelapsed: {elapsed(start_time)}')
 
 
+def find_golden_sections(model):
+    """TODO: Docstring for find_golden_sections.
+
+    :model: TODO
+    :returns: TODO
+
+    """
+    pass
+
 def check_golden(section):
     '''check range of three points for golden section'''
     ab = segment(section[0], section[1]).length.simplify()
@@ -36,7 +47,7 @@ def check_golden(section):
     #  print('            ', ab)
     #  print('            ', bc)
     #  ratio = ab ** 2 / bc ** 2
-    ratio = ab / bc 
+    ratio = ab / bc
     #  ratio = sp.simplify(ratio)
     #  print('            ', ratio)
     chk1 = (ratio / phi).evalf()
@@ -48,27 +59,36 @@ def check_golden(section):
         return True
     else:
         return False
-    
 
-def analyze_golden_lines(lines):
+
+def analyze_golden(model):
     sections = []
+    sections_by_line = {}
+
+    lines = model.lines()
 
     print_log(f'\n    analyze_golden_lines: {len(lines)}')
 
-    for i, el in enumerate(lines):
-        print_log(f'    {i} • {el.coefficients}')
-        sections.extend(analyze_golden(el))
-    
-    return sections
+    for i, line in enumerate(model.lines()):
+        print_log(f'    {i} • {line.coefficients}')
+        line_pts = model.parents[line]
+        line_sections = analyze_golden_line(line_pts)
+        sections.extend(line_sections)
+        sections_by_line[line] = line_sections
+        print(line_sections)
+
+    return sections, sections_by_line
 
 
-def analyze_golden(line):
-    '''check all the points on a line for Golden Sections'''
+def analyze_golden_line(line_pts):
+    '''check all the points on a line for Golden Sections
+    returns a list of golden section pairs '''
     goldens = []
-    #  line_pts = sorted(list(line.pts), key=point_value)
-    line_pts = sort_points(line.pts)
+    print(line_pts)
+    line_pts = sort_points(line_pts)
+
+    # this will walk the combinations of three points down the line
     sections = list(combinations(line_pts, 3))
-    print_log(f'        coefficients: {line.coefficients})')
     print_log(f'        points:    {len(line_pts)}')
     print_log(f'        sections:  {len(sections)}')
 
@@ -81,11 +101,11 @@ def analyze_golden(line):
                 bc = segment(section[1], section[2])
                 goldens.append([ab, bc])
                 logging.info(f'            GOLDEN: {sections[index]}')
-            
+
     print_log(f'        goldens: { len(goldens) }')
     return goldens
-    
-    
+
+
 
 def analyze_golden_pts(test_pts):
     '''check all the points on a line for Golden Sections'''
@@ -105,10 +125,10 @@ def analyze_golden_pts(test_pts):
                 bc = segment(section[1], section[2])
                 goldens.append([ab, bc])
                 logging.info(f'            GOLDEN: {sections[index]}')
-            
+
     print_log(f'        goldens: { len(goldens) }')
     return goldens
-    
+
 
 def analyze_model(m: Model):
     '''Analyze all lines in model for golden sections'''
@@ -126,7 +146,7 @@ def check_range(r):
     ac = segment(r[0], r[2]).length
     bc = segment(r[1], r[2]).length
     return sp.simplify((ad / cd) - (ac / bc))
-    
+
 
 def analyze_harmonics(line):
     line_pts = sort_points(line.pts)
@@ -143,18 +163,16 @@ def analyze_harmonics(line):
             print(f'    {r}')
             harmonics.append(r)
     return harmonics
-    
+
 
 def group_sections(sections):
-    groups = {}
+    groups = defaultdict(list)
     for section in sections:
         for seg in section:
             seg_len = seg.length.simplify()
             seg_len = sp.sqrtdenest(seg_len)
-            if seg_len in groups:
-                groups[seg_len].append(section)
-            else:
-                groups[seg_len] = [section]
+
+            groups[seg_len].append(section)
     return groups
 
 

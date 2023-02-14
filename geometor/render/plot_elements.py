@@ -29,7 +29,8 @@ def plot_circle(ax, circle, classes, edgecolor='', facecolor='', linestyle='', l
         styles['fill'] = fill
 
     patch = plt.Circle(center, radius, **styles)
-    return ax.add_patch(patch)
+    ax.add_patch(patch)
+    return [patch]
 
 
 def plot_line(ax, el, classes, bounds, color='', linestyle='', linewidth=''):

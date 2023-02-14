@@ -110,11 +110,10 @@ def gold_points(ax, pts,
                markersize=12,
                ):
     '''plot all the points in pts'''
-    for pt in pts:
-        #  styles = {'color':color, 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
-        styles = {'markeredgecolor':color, 'fillstyle':'none', 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
-        # collect x, y values into separate arrays
-        xs = [pt.x.evalf()]
-        ys = [pt.y.evalf()]
-        ax.plot(xs, ys, **styles)
+    styles = {'markeredgecolor':color, 'fillstyle':'none', 'linestyle':linestyle, 'marker':marker, 'markersize':markersize}
+
+    xs = [pt.x.evalf() for pt in pts]
+    ys = [pt.y.evalf() for pt in pts]
+
+    return ax.plot(xs, ys, **styles)
 

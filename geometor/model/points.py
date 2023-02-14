@@ -34,7 +34,8 @@ def point_value(pt):
 
 
 def sort_points(pts):
-    return sorted(list(pts), key=point_value)
+    #  return sorted(list(pts), key=point_value)
+    return sorted(pts, key=point_value)
 
 
 def get_pts_by_class(pts, classname):

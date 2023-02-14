@@ -20,9 +20,21 @@ if __name__ == '__main__':
     B = M.gen_point(1, 0)
     l1 = M.gen_line(A, B)
     c1 = M.gen_circle(A, B)
+    C = M.points()[-1]
     c2 = M.gen_circle(B, A)
+    D = M.points()[-3]
+    E = M.points()[-2]
+    F = M.points()[-1]
+    l2 = M.gen_line(E, F)
+    c2 = M.gen_circle(A, D)
+    c3 = M.gen_circle(B, C)
+
     print(M)
     M.summary()
+
+    print_log(f'\nANALYZE: {NAME}')
+    sections, sections_by_line = analyze_golden(M)
+
 
     # PLOT *********************************
     print_log(f'\nPLOT: {NAME}')
@@ -35,20 +47,14 @@ if __name__ == '__main__':
     #  title = f'G E O M E T O R'
     #  fig.suptitle(title, fontdict={'color': '#960', 'size':'small'})
 
+    print_log('\nPlot Goldens')
+    plot_sections(NAME, ax, ax_btm, sections)
 
-    #  print_log('\nPlot Build')
-    #  build_sequence(NAME, ax, ax_btm, m, bounds)
+    plot_all_sections(NAME, ax, ax_btm, M, sections)
 
-    #  bounds = get_bounds_from_sections(goldens)
+    print_log('\nPlot Golden Groups')
+    groups = group_sections(sections)
+    plot_all_groups(NAME, ax, ax_btm, M, groups)
 
-    #  print_log('\nPlot Goldens')
-    #  plot_sections(NAME, ax, ax_btm, history, goldens, bounds)
 
-    #  print_log('\nPlot Golden Groups')
-    #  plot_all_groups(NAME, ax, ax_btm, history, groups, bounds)
-
-    #  plot_all_sections(NAME, ax, ax_btm, history, goldens, bounds)
-
-    #  complete_summary(NAME, start_time, goldens, groups)
-
-    plt.show()
+    #  plt.show()

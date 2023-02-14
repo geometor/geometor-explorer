@@ -22,15 +22,7 @@ class Model(list):
         super().__init__(self)
         self.parents = defaultdict(set)
         self.classes = defaultdict(list)
-        
 
-    def points(self) -> list:
-        """filter points from model
-        :returns: list
-
-        """
-        return [el for el in self if isinstance(el, spg.Point)]
-        
 
     def gen_point(self, x_val, y_val, parents=set(), classes=[]) -> spg.Point:
         '''generate a sympy.geometry.Point'''
@@ -47,7 +39,7 @@ class Model(list):
         set parents and classes'''
         #  logging.info(f'* add_point: {pt}')
         if isinstance(pt, spg.Point):
-            # make new point with simplified values 
+            # make new point with simplified values
             x = sp.sqrtdenest(pt.x.simplify())
             y = sp.sqrtdenest(pt.y.simplify())
             pt = spg.Point(x, y)
@@ -56,7 +48,7 @@ class Model(list):
                 self.parents[pt].update(parents)
                 self.classes[pt].extend(classes)
                 return pt
-                
+
             else:
                 for prev_pt in self.points():
                     if pt.equals(prev_pt):
@@ -84,9 +76,10 @@ class Model(list):
 
     def add_line(self, struct: spg.Line, classes=[]) -> spg.Line:
         '''
-        Add ``line`` to list. 
+        Add ``line`` to list.
         check for duplicates in elements.
         find intersection points for new element with all precedng elements
+        TODO: return new points from intersections
         '''
         # check if struct is in the element list
         if isinstance(struct, spg.Line):
@@ -122,12 +115,12 @@ class Model(list):
                         results = struct.intersection(prev)
                         for pt in results:
                             self.add_point(pt, parents={prev, struct})
-                            self.parents[prev].update(pt)
-                            self.parents[struct].update(pt)
+                            self.parents[prev].update({pt})
+                            self.parents[struct].update({pt})
                 return struct
         else:
             print_log('not a line')
-    
+
 
     def gen_circle(self, pt_c: spg.Point, pt_r: spg.Point, classes=[]) -> spg.Circle:
         """
@@ -172,18 +165,26 @@ class Model(list):
                         results = struct.intersection(prev)
                         for pt in results:
                             self.add_point(pt, parents={prev, struct})
-                            self.parents[prev].update(pt)
-                            self.parents[struct].update(pt)
+                            self.parents[prev].update({pt})
+                            self.parents[struct].update({pt})
                 return struct
         else:
             print_log('not a circle')
 
-        
+
 
     # Lists
+    def points(self) -> list:
+        """filter points from model
+        :returns: list
+
+        """
+        return [el for el in self if isinstance(el, spg.Point)]
+
+
     def structs(self):
         """
-        filtered list of structs 
+        filtered list of structs
         currently lines and circles
         """
         return [el for el in self if isinstance(el, spg.Line) or isinstance(el, spg.Circle)]

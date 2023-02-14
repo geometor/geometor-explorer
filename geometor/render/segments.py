@@ -17,7 +17,7 @@ def plot_segment(ax, pt1, pt2, color='#fc09', linestyle='-', linewidth=3, marker
     ax.plot( [x1, x2], [y1, y2], **styles )
 
 
-def plot_segment2(ax, seg, classes, color='', linestyle='-', linewidth=0, marker='', markersize=0):
+def plot_segment2(ax, seg, classes=[], color='', linestyle='-', linewidth=0, marker='', markersize=0):
     x1 = seg.points[0].x.evalf()
     x2 = seg.points[1].x.evalf()
     y1 = seg.points[0].y.evalf()
@@ -43,7 +43,10 @@ def plot_segment2(ax, seg, classes, color='', linestyle='-', linewidth=0, marker
     return ax.plot( [x1, x2], [y1, y2], **styles )
 
 
-def plot_segments(ax, segs):
+def plot_segments(ax, segs, classes=[]):
+    current = []
     for seg in segs:
-        plot_segment2(ax, seg)
+        current.append(plot_segment2(ax, seg))
+
+    return current
 
