@@ -25,9 +25,13 @@ if __name__ == '__main__':
     D = M.points()[-3]
     E = M.points()[-2]
     F = M.points()[-1]
-    l2 = M.gen_line(E, F)
-    c2 = M.gen_circle(A, D)
-    c3 = M.gen_circle(B, C)
+
+    t1 = M.gen_polygon([A, B, E])
+    t2 = M.gen_polygon([A, B, F])
+
+    #  l2 = M.gen_line(E, F)
+    #  c2 = M.gen_circle(A, D)
+    #  c3 = M.gen_circle(B, C)
 
     print(M)
     M.summary()

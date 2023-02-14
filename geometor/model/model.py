@@ -109,6 +109,7 @@ class Model(list):
                 self.append(struct)
                 self.parents[struct].update(struct.points)
                 self.classes[struct].extend(classes)
+
                 # check intersections
                 for prev in self.structs():
                     if not struct.equals(prev):
@@ -171,6 +172,26 @@ class Model(list):
         else:
             print_log('not a circle')
 
+
+    def gen_polygon(self, poly_pts, classes=[], style={}):
+        '''- takes array of points - make sympy.geometry.Polygon, Triangle or Segment'''
+        el = spg.Polygon(*poly_pts)
+        return self.add_polygon(el, classes=classes)
+
+
+    def add_polygon(self, poly: spg.Polygon, classes=[]) -> spg.Polygon:
+        '''
+        Add ``line`` to list.
+        check for duplicates in elements.
+        find intersection points for new element with all precedng elements
+        TODO: return new points from intersections
+        '''
+        # add struct
+        self.append(poly)
+        self.parents[poly].update(poly.vertices)
+        self.classes[poly].extend(classes)
+
+        return poly
 
 
     # Lists

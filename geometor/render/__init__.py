@@ -170,9 +170,6 @@ def plot_model(plot_name, ax, ax_label, model, margin=1):
             plot_polygon(ax, [el])
             selected.append(plot_selected_points(ax, el.vertices))
 
-        #  ax_label.clear()
-        #  ax_label.axis(False)
-        #  ax_label.text(0.5, 0.5, xlabel, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
         plot_label(ax_label, xlabel)
 
         filename = f'{str(i).zfill(5)}-{typ}'
