@@ -28,7 +28,7 @@ def plot_label(ax_label, label):
     ax_label.text(0.5, 0.5, label, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
 
     
-def plot_model(plot_name, ax, ax_label, model, margin=1):
+def plot_model(plot_name, ax, ax_label, model, margin=0.1):
     '''\
     plot sequence of all types of elements in layers
 
@@ -45,7 +45,8 @@ def plot_model(plot_name, ax, ax_label, model, margin=1):
 
     # find boundary
     # TODO: bounds are rquired for extents of lines
-    limx, limy = get_limits_from_points(model.points(), margin=margin)
+    #  limx, limy = get_limits_from_points(model.points(), margin=margin)
+    limx, limy = model.limits()
     limx, limy = adjust_lims(limx, limy)
     bounds = set_bounds(limx, limy)
 
@@ -173,7 +174,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=1):
         plot_label(ax_label, xlabel)
 
         filename = f'{str(i).zfill(5)}-{typ}'
-        snapshot(plot_name + '/sequences', f'{filename}.png')
+        snapshot_2('./sequences', f'{filename}.png')
 
         for select in selected:
             selected_el = select.pop(0)
@@ -185,7 +186,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=1):
 
     print(xlabel)
 
-    snapshot(plot_name + '/sequences', 'summary.png')
+    snapshot_2('./sequences', 'summary.png')
 
 
 def plot_sections(NAME, ax, ax_label, sections ):

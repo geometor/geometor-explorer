@@ -16,18 +16,20 @@ if __name__ == '__main__':
 
     M = Model()
     # TODO: add label to Models
-    A = M.gen_point(0, 0)
-    B = M.gen_point(1, 0)
-    l1 = M.gen_line(A, B)
-    c1 = M.gen_circle(A, B)
+    A = M.set_point(0, 0)
+    B = M.set_point(1, 0)
+    l1 = M.construct_line(A, B)
+
+    c1 = M.construct_circle(A, B)
     C = M.points()[-1]
-    c2 = M.gen_circle(B, A)
+
+    c2 = M.construct_circle(B, A)
     D = M.points()[-3]
     E = M.points()[-2]
     F = M.points()[-1]
 
-    t1 = M.gen_polygon([A, B, E])
-    t2 = M.gen_polygon([A, B, F])
+    t1 = M.set_polygon([A, B, E])
+    t2 = M.set_polygon([A, B, F])
 
     #  l2 = M.gen_line(E, F)
     #  c2 = M.gen_circle(A, D)

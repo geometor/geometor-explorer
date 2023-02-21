@@ -73,19 +73,32 @@ def adjust_ratio(w, h, r=FIG_W/FIG_H):
         h = w / r
     return w, h
 
-def adjust_lims(limx, limy, r=FIG_W/(FIG_H-1)):
+def adjust_lims(limx, limy, ratio=FIG_W/(FIG_H-1), margin_ratio=0.1):
     w = abs(limx[1] - limx[0])
+    w_margin = w * margin_ratio
+    limx[0] -= w_margin
+    limx[1] += w_margin
+    w = abs(limx[1] - limx[0])
+
     h = abs(limy[1] - limy[0])
-    w2, h2 = adjust_ratio(w, h, r)
+    h_margin = h * margin_ratio
+    limy[0] -= h_margin
+    limy[1] += h_margin
+    h = abs(limy[1] - limy[0])
+
+    w2, h2 = adjust_ratio(w, h, ratio)
     xdiff = abs(w2 - w) / 2
     ydiff = abs(h2 - h) / 2
+
     limx[0] -= xdiff
     limx[1] += xdiff
     limy[0] -= ydiff
     limy[1] += ydiff
+
     return limx, limy
 
-def get_limits_from_points(pts, margin=1):
+
+def get_limits_from_points(pts, margin=0.1):
     '''find x, y limits from a set of points'''
     limx = [0, 0]
     limy = [0, 0]

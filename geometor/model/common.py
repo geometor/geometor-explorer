@@ -4,6 +4,8 @@ import sympy.plotting as spp
 import sympy.geometry as spg
 from sympy.abc import x, y
 
+sp.init_printing()
+
 import math as math
 import numpy as np
 from collections import defaultdict
@@ -13,5 +15,4 @@ from itertools import permutations, combinations
 from multiprocessing import Pool, cpu_count
 
 from geometor.utils import *
-#  from geometor.render import *
 

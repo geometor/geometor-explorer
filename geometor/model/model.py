@@ -3,15 +3,9 @@ Model class
 ===========
 
 
-
 """
 
-import sympy as sp
-import sympy.plotting as spp
-import sympy.geometry as spg
-import logging
-from collections import defaultdict
-from geometor.utils import *
+from .common import *
 
 class Model(list):
 
@@ -24,8 +18,13 @@ class Model(list):
         self.classes = defaultdict(list)
 
 
-    def gen_point(self, x_val, y_val, parents=set(), classes=[]) -> spg.Point:
+    def set_point(self, x_val, y_val, parents=set(), classes=[]) -> spg.Point:
         '''generate a sympy.geometry.Point'''
+        print(f'set_point:')
+        print(f'    {x_val=}')
+        print(f'    {y_val=}')
+        print(f'    {parents=}')
+        print(f'    {classes=}')
         x_val = sp.simplify(x_val)
         y_val = sp.simplify(y_val)
         pt = spg.Point(x_val, y_val)
@@ -60,16 +59,21 @@ class Model(list):
             self.append(pt)
             self.parents[pt].update(parents)
             self.classes[pt].extend(classes)
+            print(f'    add_point: {pt}')
             return pt
         else:
             logging.info('    not a point')
 
 
-    def gen_line(self, pt1: spg.Point, pt2: spg.Point, classes=[]) -> spg.Line:
+    def construct_line(self, pt1: spg.Point, pt2: spg.Point, classes=[]) -> spg.Line:
         """
         create `spg.Line` object
         add `add_line`
         """
+        print(f'construct_line: ')
+        print(f'    {pt_1=}')
+        print(f'    {pt_2=}')
+        print(f'    {classes=}')
         struct = spg.Line(pt1, pt2)
         return self.add_line(struct, classes)
 
@@ -107,6 +111,7 @@ class Model(list):
 
                 # add struct
                 self.append(struct)
+                print(f'    add_struct: {struct}')
                 self.parents[struct].update(struct.points)
                 self.classes[struct].extend(classes)
 
@@ -123,13 +128,19 @@ class Model(list):
             print_log('not a line')
 
 
-    def gen_circle(self, pt_c: spg.Point, pt_r: spg.Point, classes=[]) -> spg.Circle:
+    def construct_circle(self, center_pt: spg.Point, radius_pt: spg.Point, classes=[]) -> spg.Circle:
         """
         create line object from points
         add_circle
         """
-        struct = spg.Circle(pt_c, pt_c.distance(pt_r))
-        struct.radius_pt = pt_r
+        print(f'construct_circle: ')
+        print(f'    {center_pt=}')
+        print(f'    {radius_pt=}')
+        print(f'    {classes=}')
+        radius_len = center_pt.distance(radius_pt)
+        print(f'    {radius_len=}')
+        struct = spg.Circle(center_pt, radius_len)
+        struct.radius_pt = radius_pt
         return self.add_circle(struct, classes)
 
 
@@ -158,6 +169,7 @@ class Model(list):
 
                 # add struct
                 self.append(struct)
+                print(f'    add_struct: {struct}')
                 self.parents[struct].update({struct.center, struct.radius_pt})
                 self.classes[struct].extend(classes)
                 # check intersections
@@ -173,7 +185,7 @@ class Model(list):
             print_log('not a circle')
 
 
-    def gen_polygon(self, poly_pts, classes=[], style={}):
+    def set_polygon(self, poly_pts, classes=[], style={}):
         '''- takes array of points - make sympy.geometry.Polygon, Triangle or Segment'''
         el = spg.Polygon(*poly_pts)
         return self.add_polygon(el, classes=classes)
@@ -193,6 +205,25 @@ class Model(list):
 
         return poly
 
+    def set_segment(self, pt_1, pt_2, classes=[], style={}):
+        '''- takes 2 points - make sympy.geometry.Segment'''
+        el = spg.Segment(pt_1, pt_2)
+        return self.add_segment(el, classes=classes)
+
+
+    def add_segment(self, seg: spg.Segment, classes=[]) -> spg.Segment:
+        '''
+        Add ``line`` to list.
+        check for duplicates in elements.
+        find intersection points for new element with all precedng elements
+        TODO: return new points from intersections
+        '''
+        # add struct
+        self.append(seg)
+        self.parents[seg].update(seg.vertices)
+        self.classes[seg].extend(classes)
+
+        return seg
 
     # Lists
     def points(self) -> list:
@@ -236,12 +267,51 @@ class Model(list):
         print_log(f'      points: {len(pts)}')
 
 
+    def limits(self, margin=0.1):
+        '''\
+        find x, y limits from points and circles of the model
+        returns a list of lists of x, y limits'''
+        limx = [0, 0]
+        limy = [0, 0]
+        for el in self:
+            if isinstance(el, spg.Point):
+                ptx = float(el.x.evalf())
+                pty = float(el.y.evalf())
+                limx[0] = ptx if ptx < limx[0] else limx[0]
+                limx[1] = ptx if ptx > limx[1] else limx[1]
+                limy[0] = pty if pty < limy[0] else limy[0]
+                limy[1] = pty if pty > limy[1] else limy[1]
+
+            if isinstance(el, spg.Circle):
+                xmin, ymin, xmax, ymax = el.bounds
+                xmin = float(xmin.evalf())
+                ymin = float(ymin.evalf())
+                xmax = float(xmax.evalf())
+                ymax = float(ymax.evalf())
+                limx[0] = xmin if xmin < limx[0] else limx[0]
+                limx[1] = xmax if xmax > limx[1] else limx[1]
+                limy[0] = ymin if ymin < limy[0] else limy[0]
+                limy[1] = ymax if ymax > limy[1] else limy[1]
+
+        #  w = limx[1] - limx[0]
+        #  h = limy[1] - limy[0]
+        #  if w > h
+
+        #  # TODO: change margin to percentage
+        #  limx[0] -= margin
+        #  limx[1] += margin
+        #  limy[0] -= margin
+        #  limy[1] += margin
+
+        return [limx, limy]
+
+
 if __name__ == '__main__':
     m = Model()
-    a = m.gen_point(0, 0)
-    b = m.gen_point(1, 0)
-    m.gen_line(a, b)
-    m.gen_circle(a, b)
-    m.gen_circle(b, a)
+    a = m.set_point(0, 0)
+    b = m.set_point(1, 0)
+    m.construct_line(a, b)
+    m.construct_circle(a, b)
+    m.construct_circle(b, a)
     print(m)
     m.summary()
