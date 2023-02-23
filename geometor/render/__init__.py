@@ -37,8 +37,16 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
     # clear the axis - add the label
     ax.clear()
     ax.axis(False)
-    ax.set_aspect('equal')
-    ax.invert_yaxis()
+    #  ax.set_aspect('equal')
+    #  ax.invert_yaxis()
+    #  ax.set_xticks([-1, 0, 1], labels=[r'$-1$', '$0$', '$1$'])
+    #  ax.set_xticks([0.5], labels=[r'$\frac{1}{2}$'], minor=True)
+
+    #  ax.tick_params(color='#222222', labelcolor='#999999', grid_color='#222222')
+    #  ax.set_yticks([-1, 0, 1], labels=[-1, 0, 1 ])
+
+    #  ax.spines['left'].set_color('k')
+    #  ax.tick_params(axis='x', colors='k')
 
     ax_label.clear()
     ax_label.axis(False)
@@ -47,7 +55,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
     # TODO: bounds are rquired for extents of lines
     #  limx, limy = get_limits_from_points(model.points(), margin=margin)
     limx, limy = model.limits()
-    limx, limy = adjust_lims(limx, limy)
+    limx, limy = adjust_lims(limx, limy, ratio=1)
     bounds = set_bounds(limx, limy)
 
     vmin = bounds.vertices[0]
@@ -175,6 +183,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
 
         filename = f'{str(i).zfill(5)}-{typ}'
         snapshot_2('./sequences', f'{filename}.png')
+        snapshot_2('./sequences', f'{filename}.svg')
 
         for select in selected:
             selected_el = select.pop(0)
@@ -187,6 +196,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
     print(xlabel)
 
     snapshot_2('./sequences', 'summary.png')
+    snapshot_2('./sequences', 'summary.svg')
 
 
 def plot_sections(NAME, ax, ax_label, sections ):
