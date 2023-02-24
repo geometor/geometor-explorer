@@ -8,6 +8,7 @@ from .common import *
 from .styles import *
 
 def plot_point(ax, pt,
+               M,
                classes=[],
                color='w',
                linestyle='',
@@ -25,10 +26,11 @@ def plot_point(ax, pt,
         # TODO: establish an indexed list of all objects added to the cursor with details
         # TODO: remove the ``pts`` reference below
         i = sel.index
+        breakpoint()
         #  xval = str(pts[i].x).replace('GoldenRatio', 'Φ')
-        xval = sp.latex(pts[i].x)
+        xval = sp.latex(M.points()[i].x)
         #  yval = str(pts[i].y).replace('GoldenRatio', 'Φ')
-        yval = sp.latex(pts[i].y)
+        yval = sp.latex(M.points()[i].y)
         sel.annotation.set_text(f'{i}:\nx: ${xval}$\ny: ${yval}$')
         sel.annotation.set(color='k', fontsize='x-large', bbox=dict(boxstyle='round,pad=0.5', fc='w'))
         sel.annotation.arrow_patch.set(arrowstyle="simple", ec="k", fc='w')
@@ -64,7 +66,7 @@ def plot_point(ax, pt,
         cursor = mplcursors.cursor(pt_inner)
         cursor.connect("add", on_add)
 
-    return [pt_inner, pt_outer, pt_highlight]
+    return pt_inner, pt_outer, pt_highlight
 
 
 def highlight_points(ax, pts,

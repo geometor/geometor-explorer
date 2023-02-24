@@ -22,31 +22,33 @@ plt.rcParams['figure.figsize'] = [FIG_W, FIG_H]
 plt.style.use('dark_background')
 
 
-def plot_label(ax_label, label):
+def plot_label(ax_label, i, label):
     ax_label.clear()
     ax_label.axis(False)
     ax_label.text(0.5, 0.5, label, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
+    ax_label.text(0, 0.5, i, ha='left', va='center', fontdict={'color': 'r', 'size':'24'})
+
 
     
-def plot_model(plot_name, ax, ax_label, model, margin=0.1):
+def plot_model(plot_name, ax, ax_label, M, margin=0.1):
     '''\
     plot sequence of all types of elements in layers
 
     '''
 
+    cursor_points = []
+
     # clear the axis - add the label
     ax.clear()
     ax.axis(False)
     #  ax.set_aspect('equal')
-    #  ax.invert_yaxis()
+    ax.invert_yaxis()
     #  ax.set_xticks([-1, 0, 1], labels=[r'$-1$', '$0$', '$1$'])
     #  ax.set_xticks([0.5], labels=[r'$\frac{1}{2}$'], minor=True)
 
     #  ax.tick_params(color='#222222', labelcolor='#999999', grid_color='#222222')
     #  ax.set_yticks([-1, 0, 1], labels=[-1, 0, 1 ])
 
-    #  ax.spines['left'].set_color('k')
-    #  ax.tick_params(axis='x', colors='k')
 
     ax_label.clear()
     ax_label.axis(False)
@@ -54,7 +56,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
     # find boundary
     # TODO: bounds are rquired for extents of lines
     #  limx, limy = get_limits_from_points(model.points(), margin=margin)
-    limx, limy = model.limits()
+    limx, limy = M.limits()
     limx, limy = adjust_lims(limx, limy, ratio=1)
     bounds = set_bounds(limx, limy)
 
@@ -64,9 +66,9 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
     ax.set_ylim(float(vmin.y.evalf()), float(vmax.y.evalf()))
 
 
-    for i, el in enumerate(model):
-        el_classes = model.classes[el]
-        el_parents = model.parents[el]
+    for i, el in enumerate(M):
+        el_classes = M.classes[el]
+        el_parents = M.parents[el]
 
         # gather info for xlabel
         # point
@@ -74,20 +76,22 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
             typ = 'point'
             ptx = sp.sqrtdenest(el.x.simplify())
             pty = sp.sqrtdenest(el.y.simplify())
-            xlabel = f'$\\left( \\ {sp.latex(ptx)}, \\ {sp.latex(pty)} \\ \\right)$'
+            xlabel = f'$\\left[ \\ {sp.latex(ptx)}, \\ {sp.latex(pty)} \\ \\right]$'
 
         # line
         if isinstance(el, spg.Line):
             typ = 'line'
-            a, b, c = el.coefficients
-            a = a.simplify()
-            b = b.simplify()
-            c = c.simplify()
+            eq = el.equation().simplify()
+            #  a, b, c = el.coefficients
+            #  a = a.simplify()
+            #  b = b.simplify()
+            #  c = c.simplify()
             seg = segment(el.p1, el.p2)
             seg = sp.sqrtdenest(seg.length.simplify())
 
-            xlabel = f'$\\left[ \\ {sp.latex(a)} \\ : \\ {sp.latex(b)} \\ : \\ {sp.latex(c)} \\ \\right]$'
-            xlabel += f' • seg: ${sp.latex(seg)}$'
+            xlabel = f'${sp.latex(eq)} = 0$'
+            #  xlabel = f'$\\left[ \\ {sp.latex(a)} \\ : \\ {sp.latex(b)} \\ : \\ {sp.latex(c)} \\ \\right]$'
+            #  xlabel += f' • seg: ${sp.latex(seg)}$'
 
         # circle
         if isinstance(el, spg.Circle):
@@ -97,8 +101,9 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
             area = sp.sqrtdenest(el.area.simplify())
             areaf = str(round(float(area.evalf()), 4))
 
-            xlabel = f'${sp.latex(eq)}$ • r: ${sp.latex(rad)}$ • A: ${sp.latex(area)}$'
-            xlabel += ' $ \\approx ' + areaf + '$'
+            xlabel = f'${sp.latex(eq)} = 0$'
+            #  xlabel = f'${sp.latex(eq)}$ • r: ${sp.latex(rad)}$ • A: ${sp.latex(area)}$'
+            #  xlabel += ' $ \\approx ' + areaf + '$'
 
         # polygon
         if isinstance(el, spg.Polygon):
@@ -133,13 +138,14 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
 
         # point
         if isinstance(el, spg.Point):
-            plot_point(ax, el, el_classes)
+            pt_inner, *pts = plot_point(ax, el, M, el_classes)
+            cursor_points.append(pt_inner.pop())
             selected.append(plot_selected_points(ax, [el]))
-            #  for parent in el_parents:
-                #  if isinstance(parent, spg.Line):
-                    #  plot_line(ax, parent, bounds, linestyle='-')
-                #  if isinstance(parent, spg.Circle):
-                    #  plot_circle(ax, parent, linestyle='-')
+            for parent in el_parents:
+                if isinstance(parent, spg.Line):
+                    selected.append(plot_line(ax, parent, [], bounds, linestyle='-'))
+                if isinstance(parent, spg.Circle):
+                    selected.append(plot_circle(ax, parent, [], linestyle='-'))
 
         # line
         if isinstance(el, spg.Line):
@@ -179,7 +185,7 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
             plot_polygon(ax, [el])
             selected.append(plot_selected_points(ax, el.vertices))
 
-        plot_label(ax_label, xlabel)
+        plot_label(ax_label, f'{i:03}', xlabel)
 
         filename = f'{str(i).zfill(5)}-{typ}'
         snapshot_2('./sequences', f'{filename}.png')
@@ -190,13 +196,16 @@ def plot_model(plot_name, ax, ax_label, model, margin=0.1):
             selected_el.remove()
 
 
-    xlabel = f'elements: {len(model)} | points: {len(model.points())}'
-    plot_label(ax_label, xlabel)
+    xlabel = f'elements: {len(M)} | points: {len(M.points())}'
+    plot_label(ax_label, '', xlabel)
 
     print(xlabel)
 
     snapshot_2('./sequences', 'summary.png')
     snapshot_2('./sequences', 'summary.svg')
+
+    mplcursors.cursor(cursor_points, highlight=True)
+
 
 
 def plot_sections(NAME, ax, ax_label, sections ):
