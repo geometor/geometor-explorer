@@ -22,11 +22,14 @@ plt.rcParams['figure.figsize'] = [FIG_W, FIG_H]
 plt.style.use('dark_background')
 
 
-def plot_label(ax_label, i, label):
+def plot_label(ax_label, i, xlabel, el_label):
     ax_label.clear()
     ax_label.axis(False)
-    ax_label.text(0.5, 0.5, label, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
+    ax_label.text(0.5, 0.5, xlabel, ha='center', va='center', fontdict={'color': 'w', 'size':'20'})
     ax_label.text(0, 0.5, i, ha='left', va='center', fontdict={'color': 'r', 'size':'24'})
+    if el_label:
+        el_label = f'${el_label}$'
+    ax_label.text(1, 0.5, el_label, ha='right', va='center', fontdict={'color': 'r', 'size':'24'})
 
 
     
@@ -42,7 +45,6 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
     ax.clear()
     ax.axis(False)
     #  ax.set_aspect('equal')
-    ax.invert_yaxis()
     #  ax.set_xticks([-1, 0, 1], labels=[r'$-1$', '$0$', '$1$'])
     #  ax.set_xticks([0.5], labels=[r'$\frac{1}{2}$'], minor=True)
 
@@ -62,13 +64,16 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
 
     vmin = bounds.vertices[0]
     vmax = bounds.vertices[2]
+
     ax.set_xlim(float(vmin.x.evalf()), float(vmax.x.evalf()))
     ax.set_ylim(float(vmin.y.evalf()), float(vmax.y.evalf()))
+    ax.invert_yaxis()
 
 
     for i, el in enumerate(M):
         el_classes = M.classes[el]
-        el_parents = M.parents[el]
+        el_parents = list(M.parents[el])[0:2]
+        el_label = M.labels[el]
 
         # gather info for xlabel
         # point
@@ -82,6 +87,7 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
         if isinstance(el, spg.Line):
             typ = 'line'
             eq = el.equation().simplify()
+            xlabel = f'${sp.latex(eq)} = 0$'
             #  a, b, c = el.coefficients
             #  a = a.simplify()
             #  b = b.simplify()
@@ -89,7 +95,10 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
             seg = segment(el.p1, el.p2)
             seg = sp.sqrtdenest(seg.length.simplify())
 
-            xlabel = f'${sp.latex(eq)} = 0$'
+            pt1_label = M.labels[el.p1]
+            pt2_label = M.labels[el.p2]
+            el_label = r'\overline{' + pt1_label + pt2_label + '}'
+            
             #  xlabel = f'$\\left[ \\ {sp.latex(a)} \\ : \\ {sp.latex(b)} \\ : \\ {sp.latex(c)} \\ \\right]$'
             #  xlabel += f' • seg: ${sp.latex(seg)}$'
 
@@ -104,6 +113,10 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
             xlabel = f'${sp.latex(eq)} = 0$'
             #  xlabel = f'${sp.latex(eq)}$ • r: ${sp.latex(rad)}$ • A: ${sp.latex(area)}$'
             #  xlabel += ' $ \\approx ' + areaf + '$'
+
+            pt1_label = M.labels[el.center]
+            pt2_label = M.labels[el.radius_pt]
+            el_label = f'({pt1_label}, {pt2_label})'
 
         # polygon
         if isinstance(el, spg.Polygon):
@@ -141,11 +154,12 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
             pt_inner, *pts = plot_point(ax, el, M, el_classes)
             cursor_points.append(pt_inner.pop())
             selected.append(plot_selected_points(ax, [el]))
-            for parent in el_parents:
-                if isinstance(parent, spg.Line):
-                    selected.append(plot_line(ax, parent, [], bounds, linestyle='-'))
-                if isinstance(parent, spg.Circle):
-                    selected.append(plot_circle(ax, parent, [], linestyle='-'))
+            if 'start' not in el_classes:
+                for parent in el_parents:
+                    if isinstance(parent, spg.Line):
+                        selected.append(plot_line(ax, parent, [], bounds, linestyle='-'))
+                    if isinstance(parent, spg.Circle):
+                        selected.append(plot_circle(ax, parent, [], linestyle='-'))
 
         # line
         if isinstance(el, spg.Line):
@@ -185,11 +199,11 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
             plot_polygon(ax, [el])
             selected.append(plot_selected_points(ax, el.vertices))
 
-        plot_label(ax_label, f'{i:03}', xlabel)
+        plot_label(ax_label, f'{i:03}', xlabel, el_label)
 
         filename = f'{str(i).zfill(5)}-{typ}'
-        snapshot_2('./sequences', f'{filename}.png')
-        snapshot_2('./sequences', f'{filename}.svg')
+        snapshot_2(f'./{plot_name}/step', f'{filename}.png')
+        snapshot_2(f'./{plot_name}/step', f'{filename}.svg')
 
         for select in selected:
             selected_el = select.pop(0)
@@ -197,12 +211,12 @@ def plot_model(plot_name, ax, ax_label, M, margin=0.1):
 
 
     xlabel = f'elements: {len(M)} | points: {len(M.points())}'
-    plot_label(ax_label, '', xlabel)
+    plot_label(ax_label, '', xlabel, '')
 
     print(xlabel)
 
-    snapshot_2('./sequences', 'summary.png')
-    snapshot_2('./sequences', 'summary.svg')
+    snapshot_2(f'./{plot_name}/step', 'summary.png')
+    snapshot_2(f'./{plot_name}/step', 'summary.svg')
 
     mplcursors.cursor(cursor_points, highlight=True)
 
@@ -238,7 +252,7 @@ def plot_sections(NAME, ax, ax_label, sections ):
         ax.set_xlim(float(vmin.x.evalf()), float(vmax.x.evalf()))
         ax.set_ylim(float(vmin.y.evalf()), float(vmax.y.evalf()))
 
-        plot_label(ax_label, xlabel)
+        plot_label(ax_label, '', xlabel, '')
 
         snapshot(f'{NAME}/sections', f'{num}.png')
 
@@ -279,7 +293,7 @@ def plot_all_sections(NAME, ax, ax_label,  model, sections):
     ax.set_xlim(limx[0], limx[1])
     ax.set_ylim(limy[0], limy[1])
 
-    plot_label(ax_label, xlabel)
+    plot_label(ax_label, '', xlabel, '')
 
     snapshot(f'{NAME}/sections', f'summary.png')
 
@@ -297,7 +311,7 @@ def plot_all_sections(NAME, ax, ax_label,  model, sections):
 
 
 
-def plot_group_sections(NAME, ax, ax_label, model, sections, bounds, filename, title='golden sections'):
+def plot_group_sections(NAME, ax, ax_label, model, sections, filename, title='golden sections'):
     xlabel = f'[{len(sections)}] • {title}'
     section_pts = set()
     group_pts = set()
@@ -315,7 +329,7 @@ def plot_group_sections(NAME, ax, ax_label, model, sections, bounds, filename, t
         selected.append(gold_points(ax, section_pts ))
         selected.extend(plot_segments(ax, section))
 
-    plot_label(ax_label, xlabel)
+    plot_label(ax_label, '', xlabel, '')
 
     snapshot(f'{NAME}/groups', f'{filename}.png')
 
@@ -339,7 +353,7 @@ def plot_all_groups(NAME, ax, ax_label, model, groups):
 
         groupf = str(float(group.evalf()))[0:6]
         title=f'${sp.latex(group)} \\ \\approx {groupf}\\ldots$'
-        plot_group_sections(NAME, ax, ax_label, model, groups[group], bounds, filename=i, title=title)
+        plot_group_sections(NAME, ax, ax_label, model, groups[group], filename=i, title=title)
 
 
 def plot_all_ranges(NAME, ax, ax_btm,  history, ranges, bounds):

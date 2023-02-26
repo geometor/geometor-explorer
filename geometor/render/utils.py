@@ -135,7 +135,7 @@ def get_bounds_from_sections(sections, r=FIG_W/(FIG_H-1)):
             for pt in seg.points:
                 section_pts.add(pt)
     limx, limy = get_limits_from_points(section_pts, margin=.25)
-    limx, limy = adjust_lims(limx, limy, r=r)
+    limx, limy = adjust_lims(limx, limy, ratio=r)
     bounds = set_bounds(limx, limy)
     return bounds
 
@@ -154,7 +154,7 @@ def ax_set_spines(ax):
     ax.spines['left'].set_color('k')
     ax.tick_params(axis='x', colors='k')
     ax.tick_params(axis='y', colors='k')
-    
+
 def ax_prep_caption(bounds, xlabel):
     plt.rcParams['figure.figsize'] = [16, 9]
     #  plt.tight_layout()

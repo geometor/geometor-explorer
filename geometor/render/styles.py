@@ -60,6 +60,8 @@ STYLES['segment_3'] = {
         }
 
 
+STYLES['guide'] = {'color':'#333', 'linestyle':':'}
+
 STYLES['blue'] = {'color':'#66F', 'linestyle':':'}
 STYLES['red'] = {'color':'#F33', 'linestyle':':'}
 STYLES['green'] = {'color':'#2F2', 'linestyle':':'}

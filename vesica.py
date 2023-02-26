@@ -15,27 +15,32 @@ if __name__ == '__main__':
     print_log(f'\nMODEL: {NAME}')
 
     M = Model()
-    # TODO: add label to Models
-    A = M.set_point(0, 0)
-    B = M.set_point(1, 0)
-    l1 = M.construct_line(A, B)
+    A = M.set_point(0, 0, classes=['start'], label='A')
+    B = M.set_point(1, 0, classes=['start'], label='B')
 
-    c1 = M.construct_circle(A, B)
+    l_1 = M.construct_line(A, B)
+
+    c_1 = M.construct_circle(A, B)
     C = M.points()[-1]
+    M.labels[C] = 'C'
 
-    c2 = M.construct_circle(B, A)
+    c_2 = M.construct_circle(B, A)
     D = M.points()[-3]
     E = M.points()[-2]
     F = M.points()[-1]
+    M.labels[D] = 'D'
+    M.labels[E] = 'E'
+    M.labels[F] = 'F'
 
-    t1 = M.set_polygon([A, B, E])
-    t2 = M.set_polygon([A, B, F])
+    t_1 = M.set_polygon([A, B, E])
+    M.labels[t_1] = 't_1'
+    t_2 = M.set_polygon([A, B, F])
+    M.labels[t_2] = 't_2'
 
-    #  l2 = M.gen_line(E, F)
-    #  c2 = M.gen_circle(A, D)
-    #  c3 = M.gen_circle(B, C)
+    l_2 = M.construct_line(E, F)
+    c_3 = M.construct_circle(A, D)
+    c_4 = M.construct_circle(B, C)
 
-    print(M)
     M.summary()
 
     print_log(f'\nANALYZE: {NAME}')
