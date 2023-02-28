@@ -5,18 +5,18 @@ from geometor import *
 
 if __name__ == '__main__':
 
-    sp.init_printing()
+    #  sp.init_printing()
 
     NAME = 'vesica'
-    NAME += input(f'\nsession name: {NAME}')
+    #  NAME += input(f'\nsession name: {NAME}')
     log_init(NAME)
-    start_time = timer()
+    #  start_time = timer()
 
     print_log(f'\nMODEL: {NAME}')
 
     M = Model()
-    A = M.set_point(0, 0, classes=['start'], label='A')
-    B = M.set_point(1, 0, classes=['start'], label='B')
+    A = M.set_point(0, 0, classes=['given'], label='A')
+    B = M.set_point(1, 0, classes=['given'], label='B')
 
     l_1 = M.construct_line(A, B)
 

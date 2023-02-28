@@ -3,9 +3,17 @@ styles module
 =============
 
 functions to plot styles
+
+.. todo::
+   integrate new styles
 """
 
 STYLES = {}
+
+from .default import *
+
+STYLES['default'] = styles_default
+
 STYLES['default_line'] = {
         'color':'#999',
         'linestyle':':',
@@ -60,6 +68,8 @@ STYLES['segment_3'] = {
         }
 
 
+STYLES['given'] = {'color':'#FFF6', 'markersize':7, 'marker':'o'}
+
 STYLES['guide'] = {'color':'#333', 'linestyle':':'}
 
 STYLES['blue'] = {'color':'#66F', 'linestyle':':'}
@@ -80,7 +90,7 @@ STYLES['ring'] = {'color':'#4444', 'linestyle':'-'}
 STYLES['gold'] = {'color':'#C90', 'linestyle':':'}
 STYLES['goldpt'] = {'color':'#C90', 'markersize':8, 'marker':'o'}
 
-STYLES['start'] = {'color':'#FFF6', 'markersize':7, 'marker':'o'}
+
 STYLES['circle'] = {'color':'#0FF', 'markersize':7, 'marker':'o'}
 STYLES['square'] = {'color':'#FF0', 'markersize':7, 'marker':'s'}
 STYLES['diamond'] = {'color':'#F0F', 'markersize':7, 'marker':'D'}
