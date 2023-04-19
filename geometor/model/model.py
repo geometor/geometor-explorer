@@ -7,6 +7,7 @@ points, lines, circles, polygons, and segments.
 
 import sympy as sp
 import sympy.geometry as spg
+
 sp.init_printing()
 
 from collections import defaultdict
@@ -103,7 +104,6 @@ class Model(list):
         else:
             print(f"    NOT a point: {pt}")
 
-
     def construct_line(
         self, pt_1: spg.Point, pt_2: spg.Point, classes=[], label=""
     ) -> spg.Line:
@@ -143,7 +143,8 @@ class Model(list):
                         prev.equation().simplify() - struct.equation().simplify()
                     ).simplify()
                     if not diff:
-                        print_log(f"""
+                        print_log(
+                            f"""
                     ! COINCIDENT
                         {el}
                         {prev}
@@ -212,7 +213,7 @@ class Model(list):
                     diff = (
                         prev.equation().simplify() - struct.equation().simplify()
                     ).simplify()
-                    print_log(f'    > diff: {diff}')
+                    print_log(f"    > diff: {diff}")
                     if not diff:
                         self.parents[prev][struct.center] = ""
                         self.parents[prev][struct.radius_pt] = ""
