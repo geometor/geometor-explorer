@@ -1,7 +1,7 @@
 """
-Model class
-===========
-
+This module provides the `Model` class, which is used to represent a geometric model
+in 2D space. The `Model` class is based on the `list` data structure, and can contain
+points, lines, circles, polygons, and segments.
 
 """
 
@@ -11,7 +11,32 @@ from rich import print
 
 class Model(list):
 
-    """Docstring for Model. """
+    """
+    A collection of geometric elements, including points, lines, circles, and polygons,
+    represented using the `sympy.geometry` library.
+
+    When lines and circles are added to the model, intersection points of the new element with the preceding elements are identify and added.
+
+    When new elements or points are added to the model, we check for exisitng duplicates.
+
+    Construction method prefixes:
+    - `set_`: creates a new point or object, replacing any existing object with the same coordinates.
+    - `add_`: adds an object to the collection, or updates the attributes of an existing object with the same coordinates.
+    - `construct_`: creates a new object based on existing points, and adds it to the collection.
+
+    Attributes:
+    - `parents`: a dictionary mapping each object in the collection to its parent objects, if any.
+    - `classes`: a dictionary mapping each object in the collection to a list of its classes, if any.
+    - `labels`: a dictionary mapping each object in the collection to its label, if any.
+
+    Collection Methods:
+    - `points()`: returns a list of all points in the collection.
+    - `lines()`: returns a list of all lines in the collection.
+    - `circles()`: returns a list of all circles in the collection.
+    - `structs()`: returns a list of all lines and circles in the collection.
+    - `summary()`: prints a summary of the collection, including the number of elements of each type.
+    - `limits()`: returns the x and y limits of the model, based on the coordinates of its elements.
+"""
 
     def __init__(self):
         """TODO: to be defined. """
