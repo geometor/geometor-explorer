@@ -23,4 +23,4 @@ from geometor.utils import *
 Z_POINT_HILITE = 1  #hilite under everything
 Z_POINT_OUTER = 50  #dark ring
 Z_POINT_INNER = 51  #light dot
-Z_SELECTED = 44440
+Z_SELECTED = 100

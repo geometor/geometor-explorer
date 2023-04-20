@@ -38,10 +38,10 @@ def plot_line(ax, el, classes, bounds, color='', linestyle='', linewidth=''):
     xs = [pt.x.evalf() for pt in ends]
     ys = [pt.y.evalf() for pt in ends]
 
-    styles = STYLES['default_line'].copy()
+    styles = STYLES['default']['line'].copy()
     for cl in classes:
         if cl in STYLES:
-            styles.update(STYLES[cl])
+            styles.update(STYLES[cl]['line'])
     # override defaults
     if color:
         styles['color'] = color
