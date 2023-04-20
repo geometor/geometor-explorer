@@ -1,0 +1,1 @@
+"""The resources used by the application."""
