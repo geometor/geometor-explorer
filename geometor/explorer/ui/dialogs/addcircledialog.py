@@ -1,0 +1,1 @@
+"""The dialog box for adding a new circle."""

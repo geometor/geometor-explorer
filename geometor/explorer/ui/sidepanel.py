@@ -1,0 +1,1 @@
+"""The side panel that displays the list of elements."""
